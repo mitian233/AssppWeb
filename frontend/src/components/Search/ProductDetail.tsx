@@ -66,7 +66,7 @@ export default function ProductDetail() {
   if (loading) {
     return (
       <PageContainer title={t('search.product.title')}>
-        <div className="text-center text-gray-500 py-12">{t('loading')}</div>
+        <div className="py-12 text-center text-app-secondary">{t('loading')}</div>
       </PageContainer>
     );
   }
@@ -74,7 +74,7 @@ export default function ProductDetail() {
   if (!app) {
     return (
       <PageContainer title={t('search.product.title')}>
-        <p className="text-gray-500">{t('search.product.notFound')}</p>
+        <p className="text-[13px] leading-4 text-app-secondary">{t('search.product.notFound')}</p>
       </PageContainer>
     );
   }
@@ -123,19 +123,21 @@ export default function ProductDetail() {
           </Alert>
         )}
 
-        <section className="flex min-w-0 items-start gap-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:gap-5 sm:p-6">
+        <section className="flex min-w-0 items-start gap-4 rounded-app-card bg-app-surface p-5 shadow-app-card sm:gap-5 sm:p-6">
           <div className="shrink-0">
             <AppIcon url={app.artworkUrl} name={app.name} size="lg" />
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-3xl">{app.name}</h1>
-            <p className="text-gray-500 dark:text-gray-400">{app.artistName}</p>
-            <div className="mt-3 flex flex-wrap gap-2 text-xs font-medium text-gray-500 dark:text-gray-400">
-              <span className="rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-800">
+            <h1 className="text-[17px] leading-[22px] font-bold tracking-tight text-app-ink sm:text-[34px] sm:leading-10">
+              {app.name}
+            </h1>
+            <p className="text-[13px] leading-4 text-app-secondary">{app.artistName}</p>
+            <div className="mt-3 flex flex-wrap gap-2 text-[12px] leading-[15px] font-medium text-app-secondary">
+              <span className="rounded-full bg-app-canvas px-3 py-1">
                 {app.formattedPrice ?? t('search.product.free')}
               </span>
-              <span className="rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-800">{app.primaryGenreName}</span>
-              <span className="rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-800">v{app.version}</span>
+              <span className="rounded-full bg-app-canvas px-3 py-1">{app.primaryGenreName}</span>
+              <span className="rounded-full bg-app-canvas px-3 py-1">v{app.version}</span>
               <span>
                 ★ {app.averageUserRating.toFixed(1)} ({app.userRatingCount} {t('search.product.ratings')})
               </span>
@@ -144,26 +146,26 @@ export default function ProductDetail() {
         </section>
 
         {productAccounts.length === 0 ? (
-          <div className="rounded-2xl bg-yellow-50 p-4 text-sm text-yellow-800 ring-1 ring-yellow-200/70 dark:bg-yellow-950/30 dark:text-yellow-300 dark:ring-yellow-800/50">
+          <div className="rounded-2xl bg-yellow-50 p-4 text-[13px] leading-4 text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
             <Link to="/accounts/add" className="font-medium underline">
               {t('search.product.addAccountLink')}
             </Link>{' '}
             {t('search.product.addAccountPrompt')}
           </div>
         ) : filteredAccounts.length === 0 ? (
-          <div className="rounded-2xl bg-yellow-50 p-4 text-sm text-yellow-800 ring-1 ring-yellow-200/70 dark:bg-yellow-950/30 dark:text-yellow-300 dark:ring-yellow-800/50">
+          <div className="rounded-2xl bg-yellow-50 p-4 text-[13px] leading-4 text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
             {t('search.product.noAccountsForRegion')}
           </div>
         ) : (
-          <section className="space-y-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
+          <section className="space-y-4 rounded-app-card bg-app-surface p-5 shadow-app-card">
             <div className="min-w-0">
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label className="mb-1 block text-[13px] leading-4 font-medium text-app-secondary">
                 {t('search.product.account')}
               </label>
               <select
                 value={selectedAccount}
                 onChange={(e) => setSelectedAccount(e.target.value)}
-                className="min-h-11 w-full min-w-0 rounded-xl border-0 bg-gray-100 px-3 py-2 text-base text-gray-900 focus:ring-2 focus:ring-blue-500/40 dark:bg-gray-800 dark:text-white"
+                className="min-h-11 w-full min-w-0 rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40"
                 disabled={loadingAction !== null}
               >
                 {filteredAccounts.map((a) => (
@@ -179,7 +181,7 @@ export default function ProductDetail() {
                   type="button"
                   onClick={handlePurchase}
                   disabled={loadingAction !== null}
-                  className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full bg-blue-50 px-2 py-2 text-center text-xs font-semibold leading-tight text-blue-600 transition-colors hover:bg-blue-100 disabled:opacity-50 dark:bg-blue-950/60 dark:text-blue-400 dark:hover:bg-blue-950 sm:px-5 sm:text-sm"
+                  className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full bg-blue-50 px-2 py-2 text-center text-[13px] leading-4 font-semibold text-app-action transition-colors hover:bg-blue-100 disabled:opacity-50 dark:bg-blue-950/60 dark:text-blue-400 dark:hover:bg-blue-950 sm:px-5"
                 >
                   {loadingAction === 'purchase' ? t('search.product.processing') : t('search.product.getLicense')}
                 </button>
@@ -189,7 +191,7 @@ export default function ProductDetail() {
                 onClick={handleDownload}
                 disabled={loadingAction !== null || !account}
                 aria-busy={isDownloading}
-                className={`inline-flex min-h-10 w-full min-w-0 items-center justify-center gap-1.5 rounded-full bg-blue-600 px-2 py-2 text-center text-xs font-semibold leading-tight text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed sm:gap-2 sm:px-5 sm:text-sm ${
+                className={`inline-flex min-h-10 w-full min-w-0 items-center justify-center gap-1.5 rounded-full bg-app-action px-2 py-2 text-center text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed sm:gap-2 sm:px-5 ${
                   !account || (loadingAction !== null && !isDownloading) ? 'opacity-50' : ''
                 }`}
               >
@@ -201,7 +203,7 @@ export default function ProductDetail() {
               <Link
                 to={`/search/${app.id}/versions`}
                 state={{ app, country }}
-                className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full bg-gray-100 px-2 py-2 text-center text-xs font-semibold leading-tight text-gray-700 transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 sm:px-5 sm:text-sm"
+                className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full bg-app-canvas px-2 py-2 text-center text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover sm:px-5"
               >
                 {t('search.product.versionHistory')}
               </Link>
@@ -209,50 +211,56 @@ export default function ProductDetail() {
           </section>
         )}
 
-        <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
-          <h2 className="font-semibold text-gray-900 dark:text-white mb-2">{t('search.product.details')}</h2>
-          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <dt className="text-gray-500 dark:text-gray-400">{t('search.product.bundleId')}</dt>
-            <dd className="text-gray-900 dark:text-gray-200 break-all">{app.bundleID}</dd>
-            <dt className="text-gray-500 dark:text-gray-400">{t('search.product.version')}</dt>
-            <dd className="text-gray-900 dark:text-gray-200">{app.version}</dd>
-            <dt className="text-gray-500 dark:text-gray-400">{t('search.product.size')}</dt>
-            <dd className="text-gray-900 dark:text-gray-200">
+        <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+          <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">{t('search.product.details')}</h2>
+          <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-[13px] leading-4 sm:grid-cols-2">
+            <dt className="text-app-secondary">{t('search.product.bundleId')}</dt>
+            <dd className="break-all text-app-ink">{app.bundleID}</dd>
+            <dt className="text-app-secondary">{t('search.product.version')}</dt>
+            <dd className="text-app-ink">{app.version}</dd>
+            <dt className="text-app-secondary">{t('search.product.size')}</dt>
+            <dd className="text-app-ink">
               {app.fileSizeBytes ? `${(parseInt(app.fileSizeBytes) / 1024 / 1024).toFixed(1)} MB` : 'N/A'}
             </dd>
-            <dt className="text-gray-500 dark:text-gray-400">{t('search.product.minOs')}</dt>
-            <dd className="text-gray-900 dark:text-gray-200">{app.minimumOsVersion}</dd>
-            <dt className="text-gray-500 dark:text-gray-400">{t('search.product.seller')}</dt>
-            <dd className="text-gray-900 dark:text-gray-200">{app.sellerName}</dd>
-            <dt className="text-gray-500 dark:text-gray-400">{t('search.product.released')}</dt>
-            <dd className="text-gray-900 dark:text-gray-200">{new Date(app.releaseDate).toLocaleDateString()}</dd>
+            <dt className="text-app-secondary">{t('search.product.minOs')}</dt>
+            <dd className="text-app-ink">{app.minimumOsVersion}</dd>
+            <dt className="text-app-secondary">{t('search.product.seller')}</dt>
+            <dd className="text-app-ink">{app.sellerName}</dd>
+            <dt className="text-app-secondary">{t('search.product.released')}</dt>
+            <dd className="text-app-ink">{new Date(app.releaseDate).toLocaleDateString()}</dd>
           </dl>
         </section>
 
         {app.description && (
-          <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
-            <h2 className="font-semibold text-gray-900 dark:text-white mb-2">{t('search.product.description')}</h2>
-            <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{app.description}</p>
+          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+            <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">
+              {t('search.product.description')}
+            </h2>
+            <p className="text-[13px] leading-4 text-app-secondary whitespace-pre-line">{app.description}</p>
           </section>
         )}
 
         {app.releaseNotes && (
-          <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
-            <h2 className="font-semibold text-gray-900 dark:text-white mb-2">{t('search.product.releaseNotes')}</h2>
-            <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{app.releaseNotes}</p>
+          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+            <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">
+              {t('search.product.releaseNotes')}
+            </h2>
+            <p className="text-[13px] leading-4 text-app-secondary whitespace-pre-line">{app.releaseNotes}</p>
           </section>
         )}
 
         {app.screenshotUrls && app.screenshotUrls.length > 0 && (
-          <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
-            <h2 className="font-semibold text-gray-900 dark:text-white mb-2">{t('search.product.screenshots')}</h2>
+          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+            <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">
+              {t('search.product.screenshots')}
+            </h2>
             <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {app.screenshotUrls.map((url, i) => (
                 <img
                   key={i}
                   src={url}
                   alt={`Screenshot ${i + 1}`}
-                  className="h-64 shrink-0 snap-start snap-always rounded-3xl object-contain sm:h-80"
+                  className="h-64 shrink-0 snap-start snap-always rounded-app-card object-contain sm:h-80"
                   loading="lazy"
                 />
               ))}

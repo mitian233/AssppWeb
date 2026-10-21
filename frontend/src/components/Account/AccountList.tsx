@@ -19,17 +19,17 @@ export default function AccountList() {
       action={
         <Link
           to="/accounts/add"
-          className="inline-flex min-h-10 items-center rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+          className="inline-flex min-h-10 items-center rounded-full bg-app-action px-5 py-2 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700"
         >
           {t('accounts.add')}
         </Link>
       }
     >
       {loading ? (
-        <div className="text-center text-gray-500 dark:text-gray-400 py-12">{t('accounts.loading')}</div>
+        <div className="py-12 text-center text-[13px] leading-4 text-app-tertiary">{t('accounts.loading')}</div>
       ) : accounts.length === 0 ? (
-        <div className="my-4 flex flex-col items-center justify-center rounded-3xl bg-white px-6 py-16 text-center shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-950">
+        <div className="my-4 flex flex-col items-center justify-center rounded-app-card bg-app-surface px-6 py-16 text-center shadow-app-card">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-950">
             <svg
               className="h-8 w-8 text-blue-600 dark:text-blue-400"
               fill="none"
@@ -44,13 +44,13 @@ export default function AccountList() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{t('accounts.empty')}</h3>
-          <p className="mb-6 max-w-full whitespace-nowrap text-[clamp(0.5625rem,2.8vw,0.875rem)] leading-relaxed tracking-[-0.015em] text-gray-500 dark:text-gray-400">
+          <h3 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">{t('accounts.empty')}</h3>
+          <p className="mb-6 max-w-full text-[13px] leading-4 tracking-[-0.015em] text-app-secondary">
             {t('accounts.emptyDesc')}
           </p>
           <Link
             to="/accounts/add"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -59,8 +59,8 @@ export default function AccountList() {
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
-          <div className="divide-y divide-gray-100 dark:divide-gray-800">
+        <div className="overflow-hidden rounded-app-card bg-app-surface shadow-app-card">
+          <div className="divide-y divide-app-divider">
             {accounts.map((account) => {
               const countryCode = storeIdToCountry(account.store) || account.store;
               const countryName = t(`countries.${countryCode}`, countryCode);
@@ -71,9 +71,7 @@ export default function AccountList() {
                   to={`/accounts/${encodeURIComponent(account.email)}`}
                   className={({ isActive }) =>
                     `flex items-center gap-4 p-4 transition-colors ${
-                      isActive
-                        ? 'bg-blue-50 dark:bg-blue-950/50'
-                        : 'hover:bg-gray-50 active:bg-gray-100 dark:hover:bg-gray-800/70 dark:active:bg-gray-800'
+                      isActive ? 'bg-app-selected' : 'hover:bg-app-hover'
                     }`
                   }
                 >
@@ -81,19 +79,19 @@ export default function AccountList() {
                     {(account.firstName || account.email).charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate font-semibold text-gray-900 dark:text-white">
+                    <p className="truncate text-[13px] leading-4 font-semibold text-app-ink">
                       {account.firstName} {account.lastName}
                     </p>
-                    <p className="truncate text-sm text-gray-500 dark:text-gray-400">{account.email}</p>
+                    <p className="truncate text-[12px] leading-[15px] text-app-secondary">{account.email}</p>
                   </div>
                   <div
                     title={countryName}
-                    className="max-w-24 shrink-0 truncate rounded-full bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-500 dark:bg-gray-800 dark:text-gray-400 sm:px-3"
+                    className="max-w-24 shrink-0 truncate rounded-full bg-app-canvas px-2.5 py-1 text-[12px] leading-[15px] font-medium text-app-tertiary sm:px-3"
                   >
                     <span className="sm:hidden">{countryCode}</span>
                     <span className="hidden truncate sm:block">{countryName}</span>
                   </div>
-                  <span className="text-xl text-gray-300 dark:text-gray-600" aria-hidden="true">
+                  <span className="text-xl text-app-tertiary" aria-hidden="true">
                     ›
                   </span>
                 </NavLink>

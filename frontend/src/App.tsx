@@ -26,7 +26,7 @@ function Loading() {
 
   return (
     <div className="flex min-h-[40vh] items-center justify-center px-6" role="status">
-      <div className="inline-flex items-center gap-2.5 rounded-full border border-gray-200/80 bg-white/90 px-4 py-2.5 text-sm font-medium text-gray-500 shadow-sm dark:border-gray-800 dark:bg-gray-900/90 dark:text-gray-400">
+      <div className="inline-flex items-center gap-2.5 rounded-full border border-app-divider bg-app-surface px-4 py-2.5 text-[13px] leading-4 font-medium text-app-secondary">
         <span
           aria-hidden="true"
           className="h-4 w-4 animate-spin rounded-full border-2 border-blue-600/25 border-t-blue-600 dark:border-blue-500/25 dark:border-t-blue-500"
@@ -62,7 +62,7 @@ export default function App() {
 
   return (
     <PasswordGate>
-      <div className="flex h-screen h-[100dvh] overflow-hidden bg-gray-50 text-gray-900 selection:bg-blue-200 dark:bg-gray-950 dark:text-gray-100 dark:selection:bg-blue-800">
+      <div className="flex h-screen h-[100dvh] overflow-hidden bg-app-canvas text-app-ink selection:bg-blue-200 dark:selection:bg-blue-800">
         <ToastContainer />
         <GlobalDownloadNotifier />
 

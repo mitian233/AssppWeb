@@ -295,18 +295,17 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Design Tokens
 
-- **Primary accent**: `blue-600` / `blue-700` (hover) — trust + system authority, echoes Apple dev tooling
-- **Backgrounds**: `gray-50` (app), `white` (cards/surfaces)
-- **Text**: `gray-900` (primary), `gray-600` (secondary), `gray-400` (tertiary)
-- **Borders**: `gray-200` (default), `gray-300` (hover) — use sparingly, prefer background tinting for containment
-- **Status badges**: Muted tones — `green` (completed), `blue` (downloading), `yellow` (paused), `purple` (injecting), `red` (failed), `gray` (pending)
-- **Alerts**: `red-50`/`red-700` (error), `amber-50`/`amber-700` (warning), `green-50`/`green-700` (success)
+- **Semantic colors**: Use `app-canvas`, `app-surface`, `app-ink`, `app-secondary`, `app-tertiary`, `app-divider`, `app-selected`, `app-action`, and `app-hover` utilities, backed by the light/dark CSS variables in `frontend/src/index.css`.
+- **Canvas and surfaces**: Light canvas `#f5f5f7` with `#fff` surfaces; dark canvas `#151515` with `#1f1f1f` surfaces. Use the semantic tokens instead of paired hardcoded neutral overrides.
+- **Text hierarchy**: Primary, secondary, and tertiary ink use theme-aware opacity tokens. Keep status badges and alerts in their semantic green, blue, amber, purple, and red colors.
+- **Borders and selection**: Use `app-divider` sparingly for structure. Sidebar selected items use the neutral `app-selected` fill and ink text; hover uses `app-hover`.
+- **Actions and focus**: `app-action` is `#007aff` in both themes. Keyboard `:focus-visible` uses a 4px `#007aff99` outline; controls must not add a competing ring.
 
 ### Typography
 
-- System font stack (Inter / SF Pro fallback)
-- Weight scale: `500` (medium, workhorse), `600` (semibold, page titles and key labels only). Avoid `700` in body.
-- Size scale: `xs` (12px), `sm` (14px), `base` (16px), `lg` (18px), `xl` (20px), `2xl` (24px)
+- System font stack with platform SF Pro fallbacks.
+- Body text: 13px / 16px. Metadata and captions: 12px / 15px. Section headings: 17px / 22px bold. Page headings: 26px / 32px bold. Keep form control text at 16px.
+- Preserve existing page-specific hierarchy and do not change text sizing by shrinking controls or altering their layout.
 
 ### Spacing
 
@@ -317,27 +316,26 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Depth & Surfaces
 
-- Single elevation: white cards on `gray-50` background
-- No shadows. Borders only where they serve function (form inputs, dividers, interactive boundaries)
-- Rounded corners: `rounded-lg` (8px) for cards, `rounded-md` (6px) for inputs/buttons, `rounded-full` for badges
-- Prefer background tinting (`gray-50` → `gray-100`) over borders for visual containment
+- Use semantic canvas and surface colors with the shared 17px `rounded-app-card` panel radius and low `shadow-app-card` elevation where panels need separation.
+- Keep lists and structural regions flat; use borders only for useful dividers and interactive boundaries.
+- Small controls retain their established radii; pills remain fully rounded. Avoid broad blur and heavy shadows in application chrome.
 
 ### Layout
 
-- Desktop: fixed sidebar (240px / `w-60`) + scrollable main content
-- Mobile: bottom tab bar with safe-area padding
-- Breakpoint: `md:` (768px) for sidebar ↔ bottom nav switch
-- Page structure: `PageContainer` with title + optional action button, then content
+- Desktop: fixed 272px sidebar with scrollable main content.
+- Mobile: preserve the 56px header and bottom navigation, including safe-area padding.
+- Breakpoint: existing `md:` (768px) switch between sidebar and mobile navigation.
+- Keep `PageContainer` at `max-w-5xl` with its existing responsive gutters. Preserve page sections, grids, and their current dimensions.
 
 ### Component Patterns
 
-- **Buttons**: Primary (`bg-blue-600 text-white`), Secondary (`border border-gray-300 text-gray-700`), Danger (`text-red-600 border-red-300`)
-- **Inputs**: `rounded-md border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500`
-- **Cards**: White background, `border border-gray-200 rounded-lg`, no shadow
-- **Badge**: Color-coded pill (`rounded-full px-2 py-0.5 text-xs font-medium`)
-- **ProgressBar**: Gray track, blue fill, percentage label
-- **AppIcon**: 3 sizes (40/56/80px), rounded corners, letter fallback
-- **Nav active state**: `bg-blue-50 text-blue-700` (sidebar), `text-blue-600` (mobile)
+- **Buttons**: Use `app-action` for primary actions, neutral semantic surfaces for secondary actions, and status colors for destructive actions.
+- **Inputs**: Keep controls at 16px text; use semantic surfaces and the shared focus-visible outline without competing focus rings.
+- **Cards**: Use semantic surfaces, `rounded-app-card`, and low `shadow-app-card` when separation is needed.
+- **Badge**: Color-coded status pills; neutral pending state uses semantic neutral tokens.
+- **ProgressBar**: Neutral track and action blue fill without glow.
+- **AppIcon**: 3 sizes (40/56/80px), 25% rounded corners, letter fallback.
+- **Nav active state**: Neutral selected fill and ink in the sidebar; action color for the active mobile item.
 
 ## Frontend Cleanup Rules
 
@@ -356,7 +354,7 @@ These rules prevent the codebase from becoming messy after merging PRs. Enforce 
 
 **Never use `transition-colors` on**:
 
-- Card containers (`bg-white dark:bg-gray-900 rounded-lg border ...`)
+- Card containers using semantic surfaces and card tokens
 - Section wrappers (`<section>` with background)
 - Alert/warning banners (use the `<Alert>` component)
 - Badge pills
@@ -392,21 +390,21 @@ Before merging any frontend PR, verify imports follow the convention in every ch
 Empty states (shown when a list has no items) use a consistent pattern:
 
 - `border-2 border-dashed` (not solid border)
-- `bg-gray-50 dark:bg-gray-900/30` background
+- `bg-app-canvas` background
 - No `transition-colors` (removed to prevent dark mode flashing)
-- Centered icon in a white circle, title, description, optional CTA button
+- Centered icon in a surface circle, title, description, optional CTA button
 
 ### Dark Mode Color Pairings
 
 Always pair light and dark variants consistently:
 
-- **Primary text**: `text-gray-900 dark:text-white`
-- **Secondary text**: `text-gray-600 dark:text-gray-400` or `text-gray-500 dark:text-gray-400`
-- **Tertiary text**: `text-gray-400 dark:text-gray-500`
-- **Card background**: `bg-white dark:bg-gray-900`
-- **Page background**: `bg-gray-50 dark:bg-gray-950`
-- **Card border**: `border-gray-200 dark:border-gray-800`
-- **Input border**: `border-gray-300 dark:border-gray-700`
+- **Primary text**: `text-app-ink`
+- **Secondary text**: `text-app-secondary`
+- **Tertiary text**: `text-app-tertiary`
+- **Card background**: `bg-app-surface`
+- **Page background**: `bg-app-canvas`
+- **Borders**: `border-app-divider`
+- **Selection and hover**: `bg-app-selected` and `bg-app-hover`
 
 ### Code Duplication Prevention
 

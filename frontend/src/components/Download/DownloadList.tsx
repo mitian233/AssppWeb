@@ -158,19 +158,19 @@ export default function DownloadList() {
   return (
     <PageContainer>
       <div className="mb-6 grid grid-cols-2 items-start gap-2 min-[360px]:grid-cols-3 sm:mb-7 sm:grid-cols-6">
-        <h1 className="col-span-2 min-w-0 text-[2rem] font-semibold leading-[1.12] tracking-[-0.035em] text-gray-900 min-[360px]:col-span-1 sm:col-span-4 sm:text-[2.125rem] dark:text-white">
+        <h1 className="col-span-2 min-w-0 text-[20px] leading-[26px] font-bold tracking-[-0.5px] text-app-ink min-[360px]:col-span-1 sm:col-span-4 sm:text-[26px] sm:leading-8">
           {t('downloads.title')}
         </h1>
         <button
           onClick={handleCheckAllUpdates}
           disabled={checkingAll}
-          className="flex h-9 w-full min-w-0 items-center justify-center rounded-full bg-emerald-100 px-2.5 text-center text-[clamp(0.75rem,3.6vw,0.875rem)] font-semibold leading-tight text-emerald-800 transition-colors hover:bg-emerald-200 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 dark:bg-emerald-900/60 dark:text-emerald-300 dark:hover:bg-emerald-900 dark:disabled:bg-gray-800 dark:disabled:text-gray-600"
+          className="flex h-9 w-full min-w-0 items-center justify-center rounded-full bg-emerald-100 px-2.5 text-center text-[13px] leading-4 font-semibold text-emerald-800 transition-colors hover:bg-emerald-200 disabled:cursor-not-allowed disabled:bg-app-canvas disabled:text-app-tertiary dark:bg-emerald-900/60 dark:text-emerald-300 dark:hover:bg-emerald-900 disabled:dark:bg-app-canvas disabled:dark:text-app-tertiary"
         >
           {checkingAll ? t('downloads.checkingUpdates') : t('downloads.checkUpdates')}
         </button>
         <Link
           to="/downloads/add"
-          className="flex h-9 w-full min-w-0 items-center justify-center rounded-full bg-blue-600 px-2.5 text-center text-[clamp(0.75rem,3.6vw,0.875rem)] font-semibold leading-tight text-white transition-colors hover:bg-blue-700"
+          className="flex h-9 w-full min-w-0 items-center justify-center rounded-full bg-app-action px-2.5 text-center text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700"
         >
           {t('downloads.new')}
         </Link>
@@ -185,10 +185,8 @@ export default function DownloadList() {
           <button
             key={status}
             onClick={() => setFilter(status)}
-            className={`flex h-9 w-full min-w-0 items-center justify-center rounded-full px-2.5 text-center text-[clamp(0.75rem,3.6vw,0.875rem)] font-semibold leading-tight transition-colors ${
-              filter === status
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-600 shadow-sm ring-1 ring-black/5 hover:bg-gray-50 dark:bg-gray-900 dark:text-gray-300 dark:ring-white/10 dark:hover:bg-gray-800'
+            className={`flex h-9 w-full min-w-0 items-center justify-center rounded-full px-2.5 text-center text-[13px] leading-4 font-semibold transition-colors ${
+              filter === status ? 'bg-app-action text-white' : 'bg-app-surface text-app-secondary hover:bg-app-hover'
             }`}
           >
             {t(`downloads.status.${status}`)}
@@ -205,18 +203,18 @@ export default function DownloadList() {
         role="note"
         aria-label={t('downloads.warning')}
         title={t('downloads.warning')}
-        className="mb-5 min-w-0 max-w-full overflow-hidden rounded-2xl bg-amber-50 px-2.5 py-3 text-center leading-relaxed text-amber-800 ring-1 ring-amber-200/70 dark:bg-amber-950/30 dark:text-amber-300 dark:ring-amber-800/50"
+        className="mb-5 min-w-0 max-w-full overflow-hidden rounded-2xl bg-amber-50 px-2.5 py-3 text-center leading-relaxed text-amber-800 dark:bg-amber-950/30 dark:text-amber-300"
       >
-        <span aria-hidden="true" className="block whitespace-nowrap text-[clamp(0.625rem,3.1vw,0.75rem)] xl:hidden">
+        <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-[15px] xl:hidden">
           {t('downloads.warningShort')}
         </span>
-        <span aria-hidden="true" className="hidden whitespace-nowrap text-xs xl:block">
+        <span aria-hidden="true" className="hidden whitespace-nowrap text-[12px] leading-[15px] xl:block">
           {t('downloads.warning')}
         </span>
       </div>
 
       {previewEnabled && (
-        <div className="mb-5 flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-sm text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
+        <div className="mb-5 flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[13px] leading-4 text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
           <span
             aria-hidden="true"
             className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-full bg-blue-600 px-2 text-[10px] font-semibold uppercase tracking-wide text-white"
@@ -228,12 +226,12 @@ export default function DownloadList() {
       )}
 
       {loading && displayTasks.length === 0 ? (
-        <div className="text-center text-gray-500 dark:text-gray-400 py-12">{t('downloads.loading')}</div>
+        <div className="py-12 text-center text-app-secondary">{t('downloads.loading')}</div>
       ) : sortedTasks.length === 0 ? (
-        <div className="my-4 flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-200 bg-gray-50 px-6 py-16 text-center dark:border-gray-800 dark:bg-gray-900/30">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-white dark:bg-gray-900">
+        <div className="my-4 flex flex-col items-center justify-center rounded-app-card bg-app-canvas px-6 py-16 text-center">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-app-surface">
             <svg
-              className="h-8 w-8 text-blue-600 dark:text-blue-400"
+              className="h-8 w-8 text-app-action"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -246,7 +244,7 @@ export default function DownloadList() {
               />
             </svg>
           </div>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 text-center">
+          <h3 className="mb-2 text-center text-[17px] leading-[22px] font-bold text-app-ink">
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
@@ -254,24 +252,21 @@ export default function DownloadList() {
                 })}
           </h3>
           <p
-            className="mb-6 max-w-full overflow-hidden text-center text-gray-500 dark:text-gray-400"
+            className="mb-6 max-w-full overflow-hidden text-center text-[13px] leading-4 text-app-secondary"
             aria-label={filter === 'all' ? t('downloads.emptyAllDesc') : t('downloads.emptyFilterDesc')}
             title={filter === 'all' ? t('downloads.emptyAllDesc') : t('downloads.emptyFilterDesc')}
           >
             {filter === 'all' ? (
               <>
-                <span
-                  aria-hidden="true"
-                  className="block whitespace-nowrap text-[clamp(0.625rem,3vw,0.875rem)] xl:hidden"
-                >
+                <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-[15px] xl:hidden">
                   {t('downloads.emptyAllDescShort')}
                 </span>
-                <span aria-hidden="true" className="hidden whitespace-nowrap text-sm xl:block">
+                <span aria-hidden="true" className="hidden whitespace-nowrap text-[13px] leading-4 xl:block">
                   {t('downloads.emptyAllDesc')}
                 </span>
               </>
             ) : (
-              <span className="block whitespace-nowrap text-[clamp(0.625rem,3vw,0.875rem)]">
+              <span className="block whitespace-nowrap text-[12px] leading-[15px]">
                 {t('downloads.emptyFilterDesc')}
               </span>
             )}
@@ -279,7 +274,7 @@ export default function DownloadList() {
           {filter === 'all' && (
             <Link
               to="/search"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-[18px] font-semibold text-white transition-colors hover:bg-blue-700"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path
@@ -313,14 +308,14 @@ export default function DownloadList() {
         title={t('downloads.checkingUpdates')}
       >
         <div className="space-y-4">
-          <div className="flex justify-center text-blue-600 dark:text-blue-400">
+          <div className="flex justify-center text-app-action">
             <Spinner />
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-600 dark:text-gray-400 truncate">
+            <p className="truncate text-[13px] leading-4 text-app-secondary">
               {checkProgress.appName ? `${t('downloads.checkingApp')}${checkProgress.appName}` : '...'}
             </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 font-mono">
+            <p className="mt-1 font-mono text-[12px] leading-[15px] text-app-secondary">
               {checkProgress.current} / {checkProgress.total}
             </p>
           </div>
@@ -328,11 +323,11 @@ export default function DownloadList() {
             label={t('downloads.checkingUpdates')}
             progress={checkProgress.total > 0 ? (checkProgress.current / checkProgress.total) * 100 : 0}
           />
-          <p className="text-xs text-gray-400 dark:text-gray-500 text-center">{t('downloads.checkUpdatesDesc')}</p>
+          <p className="text-center text-[12px] leading-[15px] text-app-tertiary">{t('downloads.checkUpdatesDesc')}</p>
           <div className="flex justify-center">
             <button
               onClick={handleCancelCheck}
-              className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              className="rounded-lg border border-app-divider px-4 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
             >
               {t('settings.data.cancel')}
             </button>

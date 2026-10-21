@@ -92,7 +92,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
       <GateBackdrop>
         <div className="flex flex-col items-center gap-4 text-blue-600 dark:text-blue-400">
           <AppMark />
-          <div className="flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-[13px] leading-4 font-medium text-app-tertiary">
             <Spinner />
             <span>{t('loading')}</span>
           </div>
@@ -107,18 +107,16 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
 
   return (
     <GateBackdrop>
-      <main className="w-full max-w-md rounded-[2rem] border border-white/70 bg-white/85 p-6 backdrop-blur-2xl sm:p-8 dark:border-gray-800/80 dark:bg-gray-900/85">
+      <main className="w-full max-w-md rounded-app-card border border-app-divider bg-app-surface/85 p-6 shadow-app-card backdrop-blur-2xl sm:p-8">
         <div className="text-center">
           <AppMark />
-          <h1 className="mt-5 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-            {t('auth.title')}
-          </h1>
-          <p className="mt-2 text-sm leading-6 text-gray-500 dark:text-gray-400">Asspp Web</p>
+          <h1 className="mt-5 text-[26px] leading-8 font-bold tracking-tight text-app-ink">{t('auth.title')}</h1>
+          <p className="mt-2 text-[13px] leading-4 text-app-secondary">Asspp Web</p>
         </div>
 
         <form onSubmit={handleSubmit} className="mt-7 space-y-4">
           <div className="relative">
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400 dark:text-gray-500">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 text-app-tertiary">
               <LockIcon />
             </div>
             <input
@@ -134,7 +132,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
               aria-describedby={error ? 'access-password-error' : undefined}
               autoComplete="current-password"
               autoFocus
-              className="min-h-12 w-full rounded-2xl border border-gray-200 bg-gray-100/80 py-3 pl-11 pr-4 text-base text-gray-900 outline-none transition-colors placeholder:text-gray-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 dark:border-gray-700 dark:bg-gray-800/80 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-blue-400 dark:focus:bg-gray-800"
+              className="min-h-12 w-full rounded-[6px] border border-app-divider bg-app-canvas py-3 pl-11 pr-4 text-base text-app-ink outline-none transition-colors placeholder:text-app-tertiary focus:border-blue-500 focus:bg-app-surface focus:ring-4 focus:ring-blue-500/10"
             />
           </div>
 
@@ -142,7 +140,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
             <p
               id="access-password-error"
               role="alert"
-              className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-400"
+              className="rounded-lg bg-red-50 px-4 py-3 text-[13px] leading-4 text-red-700 dark:bg-red-950/40 dark:text-red-400"
             >
               {error}
             </p>
@@ -152,7 +150,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
             type="submit"
             disabled={submitting || !password}
             aria-busy={submitting}
-            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus-visible:ring-offset-gray-900"
+            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-app-action px-5 py-3 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {submitting && <Spinner />}
             {submitting ? t('auth.verifying') : t('auth.submit')}
@@ -165,7 +163,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
 
 function GateBackdrop({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-gray-100 px-4 py-10 dark:bg-gray-950">
+    <div className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-app-canvas px-4 py-10">
       <div
         aria-hidden="true"
         className="absolute -left-32 -top-36 h-96 w-96 rounded-full bg-blue-300/40 blur-3xl dark:bg-blue-900/30"

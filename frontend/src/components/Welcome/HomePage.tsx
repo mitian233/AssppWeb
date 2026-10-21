@@ -72,30 +72,30 @@ export default function HomePage() {
   return (
     <PageContainer>
       <div className="space-y-8 pb-4">
-        <section className="relative isolate min-h-80 overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-500 px-6 py-8 sm:min-h-96 sm:px-10 sm:py-10 dark:from-blue-700 dark:via-blue-600 dark:to-indigo-700">
+        <section className="relative isolate min-h-80 overflow-hidden rounded-app-card bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-500 px-6 py-8 shadow-app-card sm:min-h-96 sm:px-10 sm:py-10">
           <div
             aria-hidden="true"
-            className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-cyan-300/30 blur-3xl"
+            className="absolute -left-20 -top-24 h-72 w-72 rounded-full bg-cyan-300/15 blur-3xl"
           />
           <div
             aria-hidden="true"
-            className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-purple-300/25 blur-3xl"
+            className="absolute -bottom-24 left-1/3 h-72 w-72 rounded-full bg-purple-300/15 blur-3xl"
           />
 
           <div className="relative z-10 flex min-h-64 max-w-xl flex-col items-start justify-center sm:min-h-76">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/15 px-3 py-1.5 text-xs font-medium text-white/90 backdrop-blur-md">
+            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[12px] leading-[15px] font-medium text-white/90">
               <span className="h-2 w-2 rounded-full bg-white" />
               App Store
             </div>
-            <h1 className="max-w-full whitespace-nowrap text-[clamp(1.5rem,7vw,1.875rem)] font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="max-w-full text-[clamp(1.5rem,7vw,2.125rem)] leading-[1.1765] font-bold tracking-tight text-white sm:text-[34px] sm:leading-10">
               {t('home.welcome')}
             </h1>
-            <p className="mt-4 max-w-full whitespace-nowrap text-[clamp(0.625rem,3.1vw,1rem)] leading-relaxed tracking-[-0.015em] text-blue-50 sm:max-w-lg sm:text-lg sm:leading-7">
+            <p className="mt-4 max-w-full whitespace-nowrap text-[13px] leading-4 tracking-[-0.015em] text-blue-50 sm:max-w-lg">
               {t('home.subtitle')}
             </p>
             <Link
               to={primaryAction.to}
-              className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-blue-700 transition-colors hover:bg-blue-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-blue-600"
+              className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] leading-[18px] font-semibold text-blue-700 transition-colors hover:bg-blue-50"
             >
               {primaryAction.label}
               <ArrowRightIcon />
@@ -104,18 +104,18 @@ export default function HomePage() {
 
           <div
             aria-hidden="true"
-            className="absolute -bottom-6 -right-5 hidden h-64 w-64 rotate-3 grid-cols-2 gap-3 rounded-[2.5rem] border border-white/20 bg-white/10 p-5 backdrop-blur-md lg:grid"
+            className="absolute -bottom-6 -right-5 hidden h-64 w-64 rotate-3 grid-cols-2 gap-3 rounded-app-card border border-white/15 bg-white/5 p-5 lg:grid"
           >
-            <div className="flex items-center justify-center rounded-3xl bg-gradient-to-br from-cyan-300 to-blue-500 text-white">
+            <div className="flex items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300 to-blue-500 text-white">
               <SearchGlyph className="h-10 w-10" />
             </div>
-            <div className="flex items-center justify-center rounded-3xl bg-gradient-to-br from-violet-300 to-indigo-500 text-white">
+            <div className="flex items-center justify-center rounded-2xl bg-gradient-to-br from-violet-300 to-indigo-500 text-white">
               <AccountGlyph className="h-10 w-10" />
             </div>
-            <div className="flex items-center justify-center rounded-3xl bg-gradient-to-br from-emerald-300 to-teal-500 text-white">
+            <div className="flex items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-300 to-teal-500 text-white">
               <DownloadGlyph className="h-10 w-10" />
             </div>
-            <div className="flex items-center justify-center rounded-3xl bg-white text-2xl font-semibold text-blue-600">
+            <div className="flex items-center justify-center rounded-2xl bg-white text-2xl font-semibold text-blue-600">
               A
             </div>
           </div>
@@ -182,11 +182,11 @@ function StatCard({
   value: number;
 }) {
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900">
+    <div className="rounded-app-card bg-app-surface p-5 shadow-app-card">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{label}</p>
-          <p className="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">{value}</p>
+          <p className="text-[12px] leading-[15px] font-medium text-app-secondary">{label}</p>
+          <p className="mt-1 text-3xl font-semibold tracking-tight text-app-ink">{value}</p>
         </div>
         <div
           aria-hidden="true"
@@ -215,19 +215,19 @@ function ActionCard({
   return (
     <Link
       to={to}
-      className="group flex min-h-44 flex-col rounded-2xl border border-gray-200 bg-white p-5 transition-colors hover:border-blue-300 hover:bg-blue-50/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-700 dark:hover:bg-blue-950/20 dark:focus-visible:ring-offset-gray-950"
+      className="group flex min-h-44 flex-col rounded-app-card bg-app-surface p-5 shadow-app-card transition-colors hover:bg-app-hover"
     >
       <div className="flex items-start justify-between gap-4">
         <div aria-hidden="true" className={`flex h-12 w-12 items-center justify-center rounded-2xl ${iconClassName}`}>
           {icon}
         </div>
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:bg-gray-800 dark:text-gray-400">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-app-canvas text-app-secondary transition-colors group-hover:bg-app-action group-hover:text-white">
           <ArrowRightIcon />
         </span>
       </div>
       <div className="mt-auto pt-5">
-        <h2 className="text-base font-semibold text-gray-900 dark:text-white">{title}</h2>
-        <p className="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-400">{description}</p>
+        <h2 className="text-[17px] leading-[22px] font-bold text-app-ink">{title}</h2>
+        <p className="mt-1 text-[13px] leading-4 text-app-secondary">{description}</p>
       </div>
     </Link>
   );

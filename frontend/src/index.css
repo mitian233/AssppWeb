@@ -9,6 +9,8 @@
   --radius-xl: 1.25rem;
   --radius-2xl: 1.5rem;
   --radius-3xl: 2rem;
+  --radius-app-card: 17px;
+  --shadow-app-card: 0 3px 9px #00000014;
 
   --color-blue-50: #eef6ff;
   --color-blue-100: #d9ecff;
@@ -35,17 +37,53 @@
   --color-gray-950: #000000;
 }
 
-/* Enable class-based dark mode strategy for Tailwind v4 */
+@theme inline {
+  --color-app-canvas: var(--app-canvas);
+  --color-app-surface: var(--app-surface);
+  --color-app-ink: var(--app-ink);
+  --color-app-secondary: var(--app-secondary);
+  --color-app-tertiary: var(--app-tertiary);
+  --color-app-divider: var(--app-divider);
+  --color-app-selected: var(--app-selected);
+  --color-app-action: var(--app-action);
+  --color-app-hover: var(--app-hover);
+}
+
 @variant dark (&:where(.dark, .dark *));
 
 :root {
+  --app-canvas: #f5f5f7;
+  --app-surface: #fff;
+  --app-ink: rgba(0, 0, 0, 0.88);
+  --app-secondary: rgba(0, 0, 0, 0.56);
+  --app-tertiary: rgba(0, 0, 0, 0.48);
+  --app-divider: rgba(0, 0, 0, 0.15);
+  --app-selected: rgba(60, 60, 67, 0.1);
+  --app-action: #007aff;
+  --app-hover: rgba(0, 0, 0, 0.05);
   font-family: var(--font-sans);
   font-synthesis: none;
-  color: var(--color-gray-900);
-  background: var(--color-gray-50);
+  color: var(--app-ink);
+  background: var(--app-canvas);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html.dark,
+html.dark body {
+  color: var(--app-ink);
+  background: var(--app-canvas);
+}
+html.dark {
+  --app-canvas: #151515;
+  --app-surface: #1f1f1f;
+  --app-ink: rgba(255, 255, 255, 0.92);
+  --app-secondary: rgba(255, 255, 255, 0.64);
+  --app-tertiary: rgba(255, 255, 255, 0.4);
+  --app-divider: rgba(255, 255, 255, 0.1);
+  --app-selected: rgba(255, 255, 255, 0.1);
+  --app-hover: rgba(255, 255, 255, 0.05);
 }
 
 html,
@@ -59,21 +97,18 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   margin: 0;
-  background: var(--color-gray-50);
+  color: var(--app-ink);
+  background: var(--app-canvas);
   overscroll-behavior-y: none;
 }
 
-html.dark,
-html.dark body {
-  color: white;
-  background: var(--color-gray-950);
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
 }
 
 input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='hidden']),
@@ -110,8 +145,21 @@ select {
   -webkit-tap-highlight-color: transparent;
 }
 
+*:focus-visible {
+  outline: 4px solid #007aff99;
+  outline-offset: 1px;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  box-shadow: none;
+  outline: 4px solid #007aff99;
+  outline-offset: 1px;
+}
+
 ::selection {
-  color: var(--color-gray-900);
+  color: var(--app-ink);
   background: var(--color-blue-200);
 }
 

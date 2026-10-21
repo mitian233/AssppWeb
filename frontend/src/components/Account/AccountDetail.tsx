@@ -34,7 +34,7 @@ export default function AccountDetail() {
   if (storeLoading) {
     return (
       <PageContainer title={t('accounts.title')}>
-        <div className="text-center text-gray-500 py-12">{t('loading')}</div>
+        <div className="py-12 text-center text-[13px] leading-4 text-app-tertiary">{t('loading')}</div>
       </PageContainer>
     );
   }
@@ -43,8 +43,8 @@ export default function AccountDetail() {
     return (
       <PageContainer title={t('accounts.title')}>
         <div className="text-center py-12">
-          <p className="text-gray-500 mb-4">{t('accounts.detail.notFound')}</p>
-          <button onClick={() => navigate('/accounts')} className="text-blue-600 hover:text-blue-700 font-medium">
+          <p className="mb-4 text-app-secondary">{t('accounts.detail.notFound')}</p>
+          <button onClick={() => navigate('/accounts')} className="font-medium text-app-action hover:text-blue-700">
             {t('accounts.detail.back')}
           </button>
         </div>
@@ -97,8 +97,8 @@ export default function AccountDetail() {
   return (
     <PageContainer title={t('accounts.detail.title')}>
       <div className="max-w-2xl space-y-6">
-        <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
-          <dl className="divide-y divide-gray-100 dark:divide-gray-800">
+        <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+          <dl className="divide-y divide-app-divider">
             <DetailRow label={t('accounts.detail.name')} value={`${account.firstName} ${account.lastName}`} />
             <DetailRow label={t('accounts.detail.email')} value={account.email} />
             <DetailRow label={t('accounts.detail.appleId')} value={account.appleId || account.email} />
@@ -110,8 +110,11 @@ export default function AccountDetail() {
         </section>
 
         {needsCode && (
-          <section className="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
-            <label htmlFor="reauth-code" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+            <label
+              htmlFor="reauth-code"
+              className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary"
+            >
               {t('accounts.detail.code')}
             </label>
             <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
@@ -125,13 +128,13 @@ export default function AccountDetail() {
                 onChange={(e) => setReauthCode(e.target.value)}
                 disabled={reauthing}
                 placeholder="000000"
-                className="min-h-11 w-full min-w-0 flex-1 rounded-xl border-0 bg-gray-100 px-3 py-2 text-base text-gray-900 focus:ring-2 focus:ring-blue-500/40 disabled:opacity-60 dark:bg-gray-800 dark:text-white"
+                className="min-h-11 w-full min-w-0 flex-1 rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40 disabled:opacity-60"
                 autoFocus
               />
               <button
                 onClick={handleReauth}
                 disabled={reauthing || !reauthCode}
-                className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full bg-app-action px-5 py-2 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {reauthing && <Spinner />}
                 {t('accounts.detail.verify')}
@@ -141,7 +144,7 @@ export default function AccountDetail() {
         )}
 
         {reauthRetry && (
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-[13px] leading-4 text-app-secondary">
             {t('accounts.addForm.retrying', {
               status: reauthRetry.status,
               seconds: Math.round(reauthRetry.delayMs / 1000),
@@ -155,7 +158,7 @@ export default function AccountDetail() {
           <button
             onClick={handleReauth}
             disabled={reauthing}
-            className="flex min-h-11 items-center gap-2 rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex min-h-11 items-center gap-2 rounded-full bg-app-action px-5 py-2 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {reauthing && <Spinner />}
             {t('accounts.detail.reauth')}
@@ -164,22 +167,22 @@ export default function AccountDetail() {
           {!showDelete ? (
             <button
               onClick={() => setShowDelete(true)}
-              className="min-h-11 rounded-full bg-red-50 px-5 py-2 text-sm font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/70"
+              className="min-h-11 rounded-full bg-red-50 px-5 py-2 text-[13px] leading-4 font-semibold text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/70"
             >
               {t('accounts.detail.delete')}
             </button>
           ) : (
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-sm text-gray-600 dark:text-gray-400">{t('accounts.detail.areYouSure')}</span>
+              <span className="text-[13px] leading-4 text-app-secondary">{t('accounts.detail.areYouSure')}</span>
               <button
                 onClick={handleDelete}
-                className="min-h-11 rounded-full bg-red-600 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700"
+                className="min-h-11 rounded-full bg-red-600 px-5 py-2 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-red-700"
               >
                 {t('accounts.detail.confirmDelete')}
               </button>
               <button
                 onClick={() => setShowDelete(false)}
-                className="min-h-11 rounded-full bg-gray-200 px-5 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                className="min-h-11 rounded-full bg-app-canvas px-5 py-2 text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover"
               >
                 {t('accounts.detail.cancel')}
               </button>
@@ -189,7 +192,7 @@ export default function AccountDetail() {
 
         <button
           onClick={() => navigate('/accounts')}
-          className="mt-2 inline-block min-h-11 rounded-full bg-gray-200 px-5 py-2 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+          className="mt-2 inline-block min-h-11 rounded-full bg-app-canvas px-5 py-2 text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover"
         >
           {t('accounts.detail.back')}
         </button>
@@ -201,8 +204,8 @@ export default function AccountDetail() {
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="py-3 first:pt-0 last:pb-0">
-      <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">{label}</dt>
-      <dd className="mt-0.5 text-sm text-gray-900 dark:text-white break-all">{value || '--'}</dd>
+      <dt className="text-[12px] leading-[15px] font-medium text-app-tertiary">{label}</dt>
+      <dd className="mt-0.5 text-[13px] leading-4 text-app-ink break-all">{value || '--'}</dd>
     </div>
   );
 }

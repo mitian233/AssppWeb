@@ -78,7 +78,7 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto overscroll-contain bg-gray-950/45 backdrop-blur-sm"
+      className="fixed inset-0 z-[70] flex items-center justify-center overflow-y-auto overscroll-contain bg-gray-950/45"
       style={{
         paddingTop: 'calc(1rem + env(safe-area-inset-top))',
         paddingRight: 'calc(1rem + env(safe-area-inset-right))',
@@ -93,12 +93,12 @@ export default function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-sm overflow-y-auto overscroll-contain rounded-[28px] border border-white/70 bg-white/95 p-6 text-gray-900 shadow-[0_24px_70px_-20px_rgba(15,23,42,0.45)] backdrop-blur-2xl dark:border-white/10 dark:bg-gray-900/95 dark:text-white dark:shadow-black/60"
+        className="w-full max-w-sm overflow-y-auto overscroll-contain rounded-app-card border border-app-divider bg-app-surface p-6 text-app-ink shadow-app-card"
         style={{
           maxHeight: 'calc(100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
         }}
       >
-        <h3 id={titleId} className="mb-4 text-lg font-semibold tracking-tight">
+        <h3 id={titleId} className="mb-4 text-[17px] font-bold leading-[22px]">
           {title}
         </h3>
         {children}

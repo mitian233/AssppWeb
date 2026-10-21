@@ -22,8 +22,8 @@ export default function PackageQuickActions({ task, size = 'default' }: PackageQ
 
   const installInfo = getInstallInfo(task.id);
   const isPreview = isPreviewDownloadTask(task);
-  const buttonSize = size === 'compact' ? 'min-h-10 px-2 text-xs' : 'min-h-11 px-3 text-sm';
-  const secondaryButton = `${buttonSize} inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg border border-gray-300 bg-white font-medium text-gray-700 transition-colors hover:border-gray-400 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:border-gray-600 dark:hover:bg-gray-800`;
+  const buttonSize = size === 'compact' ? 'min-h-10 px-2 text-[13px]' : 'min-h-11 px-3 text-[13px]';
+  const secondaryButton = `${buttonSize} inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-app-canvas font-medium text-app-secondary transition-colors hover:bg-app-hover`;
 
   function showPreviewNotice() {
     addToast(t('downloads.preview.actionHint'), 'info', t('downloads.preview.badge'));
@@ -99,7 +99,7 @@ export default function PackageQuickActions({ task, size = 'default' }: PackageQ
       <a
         href={installInfo.installUrl}
         onClick={handleInstall}
-        className={`${buttonSize} inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-blue-600 font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-gray-900`}
+        className={`${buttonSize} inline-flex min-w-0 items-center justify-center gap-1.5 rounded-lg bg-app-action font-medium text-white transition-colors hover:bg-blue-700`}
         aria-label={t('downloads.package.install')}
       >
         <InstallIcon />
@@ -123,10 +123,10 @@ export default function PackageQuickActions({ task, size = 'default' }: PackageQ
             role="tooltip"
             className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-2 hidden -translate-x-1/2 opacity-0 transition-opacity duration-200 md:invisible md:block md:group-hover:visible md:group-hover:opacity-100 md:group-focus-within:visible md:group-focus-within:opacity-100"
           >
-            <div className="flex flex-col items-center rounded-lg border border-gray-200 bg-white p-2 text-gray-500 shadow-xl dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400">
+            <div className="flex flex-col items-center rounded-lg bg-app-surface p-2 text-app-secondary shadow-xl">
               <QRCodeSVG value={installInfo.installUrl} size={128} className="mb-1 rounded bg-white p-1" />
-              <span className="mt-1 whitespace-nowrap text-xs">{t('downloads.package.scan')}</span>
-              <span className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b border-r border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-900" />
+              <span className="mt-1 whitespace-nowrap text-[12px] leading-[15px]">{t('downloads.package.scan')}</span>
+              <span className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b border-r border-app-divider bg-app-surface" />
             </div>
           </div>
         )}

@@ -52,7 +52,7 @@ export default function SearchPage() {
     <PageContainer title={t('search.title')}>
       <form
         onSubmit={handleSubmit}
-        className="mb-8 space-y-3 rounded-3xl bg-white p-3 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-4"
+        className="mb-8 space-y-3 rounded-app-card bg-app-surface p-3 shadow-app-card sm:p-4"
       >
         <div className="flex flex-col gap-2 sm:flex-row">
           <input
@@ -60,29 +60,29 @@ export default function SearchPage() {
             value={term}
             onChange={(e) => setSearchParam({ term: e.target.value })}
             placeholder={t('search.placeholder')}
-            className="min-h-11 flex-1 rounded-2xl border-0 bg-gray-100 px-4 py-2.5 text-base text-gray-900 placeholder:text-gray-500 focus:ring-2 focus:ring-blue-500/40 dark:bg-gray-800 dark:text-white dark:placeholder:text-gray-400"
+            className="min-h-11 flex-1 rounded-[4px] border-0 bg-app-canvas px-4 py-2.5 text-base text-app-ink placeholder:text-app-tertiary focus:ring-2 focus:ring-blue-500/40"
           />
           <button
             type="submit"
             disabled={loading || !term.trim()}
-            className="min-h-11 whitespace-nowrap rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="min-h-11 whitespace-nowrap rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-[18px] font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? t('search.searching') : t('search.button')}
           </button>
         </div>
-        <div className="flex w-full gap-3 overflow-hidden border-t border-gray-100 pt-3 dark:border-gray-800">
+        <div className="flex w-full gap-3 overflow-hidden border-t border-app-divider pt-3">
           <CountrySelect
             value={activeCountry}
             onChange={(c) => setSearchParam({ country: c })}
             availableCountryCodes={availableCountryCodes}
             allCountryCodes={allCountryCodes}
-            className="w-1/2 truncate border-0 bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white"
+            className="w-1/2 truncate border-0 bg-app-canvas text-base text-app-ink"
           />
           <select
             value={activeEntity}
             onChange={(e) => setSearchParam({ entity: e.target.value })}
             aria-label={t('settings.defaults.entity')}
-            className="min-h-11 w-1/2 truncate rounded-xl border-0 bg-gray-100 px-3 py-2 text-base text-gray-900 focus:ring-2 focus:ring-blue-500/40 dark:bg-gray-800 dark:text-white"
+            className="min-h-11 w-1/2 truncate rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40"
           >
             <option value="iPhone">iPhone</option>
             <option value="iPad">iPad</option>
@@ -91,7 +91,7 @@ export default function SearchPage() {
       </form>
 
       {results.length === 0 && !loading && !error && (
-        <div className="flex flex-col items-center justify-center rounded-3xl bg-white px-6 py-16 text-center shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
+        <div className="flex flex-col items-center justify-center rounded-app-card bg-app-surface px-6 py-16 text-center shadow-app-card">
           <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-950">
             <svg
               className="h-8 w-8 text-blue-600 dark:text-blue-400"
@@ -107,35 +107,33 @@ export default function SearchPage() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">{t('search.empty')}</h3>
-          <p className="max-w-full whitespace-nowrap text-[clamp(0.5625rem,2.8vw,0.875rem)] leading-relaxed tracking-[-0.015em] text-gray-500 dark:text-gray-400">
-            {t('search.emptyDesc')}
-          </p>
+          <h3 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">{t('search.empty')}</h3>
+          <p className="max-w-full text-[13px] leading-4 text-app-secondary">{t('search.emptyDesc')}</p>
         </div>
       )}
 
       {results.length > 0 && (
-        <div className="overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
-          <div className="divide-y divide-gray-100 dark:divide-gray-800">
+        <div className="overflow-hidden rounded-app-card bg-app-surface shadow-app-card">
+          <div className="divide-y divide-app-divider">
             {results.map((app) => (
               <Link
                 key={app.id}
                 to={`/search/${app.id}`}
                 state={{ app, country: activeCountry }}
-                className="flex items-center gap-4 p-4 transition-colors hover:bg-gray-50 active:bg-gray-100 dark:hover:bg-gray-800/70 dark:active:bg-gray-800"
+                className="flex items-center gap-4 p-4 transition-colors hover:bg-app-hover active:bg-app-selected"
               >
                 <AppIcon url={app.artworkUrl} name={app.name} size="md" />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate font-semibold text-gray-900 dark:text-white">{app.name}</p>
-                  <p className="truncate text-sm text-gray-500 dark:text-gray-400">{app.artistName}</p>
-                  <div className="mt-1 flex items-center gap-2 overflow-hidden text-xs text-gray-400 dark:text-gray-500">
+                  <p className="truncate text-[13px] leading-4 font-semibold text-app-ink">{app.name}</p>
+                  <p className="truncate text-[13px] leading-4 text-app-secondary">{app.artistName}</p>
+                  <div className="mt-1 flex items-center gap-2 overflow-hidden text-[12px] leading-[15px] text-app-tertiary">
                     <span className="shrink-0">{app.formattedPrice ?? t('search.free')}</span>
                     <span className="truncate">{app.primaryGenreName}</span>
                     <span className="shrink-0">★ {app.averageUserRating.toFixed(1)}</span>
                   </div>
                 </div>
                 <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gray-100 text-xl text-blue-600 dark:bg-gray-800 dark:text-blue-400"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-app-canvas text-xl text-app-action"
                   aria-hidden="true"
                 >
                   ›

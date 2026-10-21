@@ -16,10 +16,10 @@ export default function ProgressBar({ progress, className = '', label }: Progres
       aria-valuenow={Math.round(clamped)}
       aria-valuetext={`${Math.round(clamped)}%`}
       aria-label={label}
-      className={`h-2 w-full overflow-hidden rounded-full bg-gray-200/90 ring-1 ring-black/[0.03] dark:bg-gray-800 dark:ring-white/[0.04] ${className}`}
+      className={`h-2 w-full overflow-hidden rounded-full bg-app-selected ${className}`}
     >
       <div
-        className="h-full rounded-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.25)] transition-[width] duration-500 ease-out dark:bg-blue-500 dark:shadow-[0_0_10px_rgba(59,130,246,0.2)]"
+        className="h-full rounded-full bg-app-action transition-[width] duration-500 ease-out"
         style={{ width: `${clamped}%` }}
       />
     </div>

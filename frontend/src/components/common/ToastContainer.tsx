@@ -67,7 +67,7 @@ export default function ToastContainer() {
             role={toast.type === 'error' ? 'alert' : 'status'}
             aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
             aria-atomic="true"
-            className="animate-toast-in pointer-events-auto flex w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] shrink-0 items-start gap-3 rounded-[20px] border border-gray-200/80 bg-white/95 p-3 shadow-[0_18px_50px_-18px_rgba(15,23,42,0.4)] backdrop-blur-2xl sm:w-auto sm:min-w-[320px] sm:max-w-md dark:border-white/10 dark:bg-gray-900/95 dark:shadow-black/60"
+            className="animate-toast-in pointer-events-auto flex w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] shrink-0 items-start gap-3 rounded-app-card border border-app-divider bg-app-surface p-3 shadow-app-card sm:w-auto sm:min-w-[320px] sm:max-w-md"
           >
             <div
               className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] ${iconBg[toast.type]}`}
@@ -77,16 +77,18 @@ export default function ToastContainer() {
 
             <div className="min-w-0 flex-1 py-0.5">
               {toast.title && (
-                <h4 className={`mb-0.5 text-sm font-semibold leading-5 ${titleColor[toast.type]}`}>{toast.title}</h4>
+                <h4 className={`mb-0.5 text-[13px] font-semibold leading-4 ${titleColor[toast.type]}`}>
+                  {toast.title}
+                </h4>
               )}
-              <p className="whitespace-pre-line break-words text-sm leading-5 text-gray-700 dark:text-gray-200">
+              <p className="whitespace-pre-line break-words text-[13px] leading-4 text-app-secondary">
                 {toast.message}
               </p>
             </div>
 
             <button
               onClick={() => removeToast(toast.id)}
-              className="-mr-1 -mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 dark:hover:bg-gray-800 dark:hover:text-gray-200"
+              className="-mr-1 -mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-app-tertiary transition-colors hover:bg-app-hover hover:text-app-secondary"
               aria-label="Close notification"
             >
               <svg

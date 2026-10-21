@@ -25,7 +25,7 @@ export default function AddAccountForm() {
   const [loading, setLoading] = useState(false);
   const [retry, setRetry] = useState<AuthRetry | null>(null);
   const inputClassName =
-    'block min-h-11 w-full min-w-0 max-w-full rounded-xl border-0 bg-gray-100 px-3 py-2 text-base text-gray-900 focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-gray-800 dark:text-white';
+    'block min-h-11 w-full min-w-0 max-w-full rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-60';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -62,9 +62,9 @@ export default function AddAccountForm() {
     <PageContainer title={t('accounts.addForm.title')}>
       <div className="max-w-2xl">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <section className="space-y-5 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10 sm:p-6">
+          <section className="space-y-5 rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="email" className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
                 {t('accounts.addForm.email')}
               </label>
               <input
@@ -80,7 +80,10 @@ export default function AddAccountForm() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="password"
+                className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary"
+              >
                 {t('accounts.addForm.password')}
               </label>
               <input
@@ -95,7 +98,10 @@ export default function AddAccountForm() {
             </div>
 
             <div>
-              <label htmlFor="deviceId" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="deviceId"
+                className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary"
+              >
                 {t('accounts.addForm.deviceId')}
               </label>
               <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
@@ -112,17 +118,17 @@ export default function AddAccountForm() {
                   type="button"
                   onClick={() => setDeviceId(generateDeviceId())}
                   disabled={loading || needsCode}
-                  className="min-h-11 w-full shrink-0 whitespace-normal rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:whitespace-nowrap dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+                  className="min-h-11 w-full shrink-0 whitespace-normal rounded-full bg-app-canvas px-4 py-2 text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:whitespace-nowrap"
                 >
                   {t('accounts.addForm.randomize')}
                 </button>
               </div>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{t('accounts.addForm.deviceIdHelp')}</p>
+              <p className="mt-1 text-[12px] leading-[15px] text-app-tertiary">{t('accounts.addForm.deviceIdHelp')}</p>
             </div>
 
             {needsCode && (
               <div>
-                <label htmlFor="code" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label htmlFor="code" className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
                   {t('accounts.addForm.code')}
                 </label>
                 <input
@@ -138,7 +144,7 @@ export default function AddAccountForm() {
                   className={inputClassName}
                   autoFocus
                 />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">{t('accounts.addForm.codeHelp')}</p>
+                <p className="mt-1 text-[12px] leading-[15px] text-app-tertiary">{t('accounts.addForm.codeHelp')}</p>
               </div>
             )}
           </section>
@@ -147,7 +153,7 @@ export default function AddAccountForm() {
             <button
               type="submit"
               disabled={loading}
-              className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading && <Spinner />}
               {needsCode ? t('accounts.addForm.verify') : t('accounts.addForm.signIn')}
@@ -156,13 +162,13 @@ export default function AddAccountForm() {
               type="button"
               onClick={() => navigate('/accounts')}
               disabled={loading}
-              className="min-h-11 rounded-full bg-gray-200 px-6 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-300 disabled:opacity-50 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+              className="min-h-11 rounded-full bg-app-canvas px-6 py-2.5 text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover disabled:opacity-50"
             >
               {t('accounts.addForm.cancel')}
             </button>
           </div>
           {retry && (
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-[13px] leading-4 text-app-secondary">
               {t('accounts.addForm.retrying', {
                 status: retry.status,
                 seconds: Math.round(retry.delayMs / 1000),

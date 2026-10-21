@@ -5,7 +5,7 @@ interface BadgeProps {
 }
 
 const styles: Record<BadgeProps['status'], string> = {
-  pending: 'border-gray-200 bg-gray-100/80 text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300',
+  pending: 'border-app-divider bg-app-selected text-app-secondary',
   downloading:
     'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900/80 dark:bg-blue-950/60 dark:text-blue-300',
   paused:
@@ -18,7 +18,7 @@ const styles: Record<BadgeProps['status'], string> = {
 };
 
 const dotStyles: Record<BadgeProps['status'], string> = {
-  pending: 'bg-gray-400 dark:bg-gray-500',
+  pending: 'bg-app-tertiary',
   downloading: 'bg-blue-500 dark:bg-blue-400',
   paused: 'bg-amber-500 dark:bg-amber-400',
   injecting: 'bg-purple-500 dark:bg-purple-400',

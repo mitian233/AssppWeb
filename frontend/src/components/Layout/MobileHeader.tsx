@@ -8,16 +8,10 @@ export default function MobileHeader() {
   return (
     <>
       {/* Use fixed instead of sticky to prevent PWA overscroll gap, with safe-top / 使用 fixed 替代 sticky 防止 PWA 下拉出现空白缝隙，保留 safe-top */}
-      <header className="safe-top fixed left-0 right-0 top-0 z-40 w-full border-b border-gray-200/70 bg-gray-50/82 shadow-[0_1px_0_rgba(255,255,255,0.65)] backdrop-blur-2xl backdrop-saturate-150 transition-colors duration-200 dark:border-gray-800/80 dark:bg-gray-950/82 dark:shadow-[0_1px_0_rgba(255,255,255,0.025)] md:hidden">
+      <header className="safe-top fixed left-0 right-0 top-0 z-40 w-full border-b border-app-divider bg-app-surface transition-colors duration-200 md:hidden">
         <div className="grid h-14 grid-cols-[2.25rem_1fr_2.25rem] items-center gap-2 px-4">
-          <img
-            src="/icon-192x192.png"
-            alt=""
-            className="h-7 w-7 rounded-[8px] shadow-sm ring-1 ring-black/5 dark:ring-white/10"
-          />
-          <h1 className="truncate text-center text-[17px] font-semibold tracking-[-0.015em] text-gray-900 dark:text-white">
-            Asspp Web
-          </h1>
+          <img src="/icon-192x192.png" alt="" className="h-7 w-7 rounded-[25%]" />
+          <h1 className="truncate text-center text-[17px] font-semibold tracking-[-0.015em] text-app-ink">Asspp Web</h1>
           <ThemeToggle />
         </div>
       </header>
@@ -43,7 +37,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={cycleTheme}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-white/75 text-blue-600 shadow-sm ring-1 ring-gray-200/70 transition-colors hover:bg-white active:bg-gray-100 dark:bg-gray-800/75 dark:text-blue-400 dark:ring-gray-700/80 dark:hover:bg-gray-800 dark:active:bg-gray-700"
+      className="flex h-9 w-9 items-center justify-center rounded-full bg-app-surface text-app-action transition-colors hover:bg-app-hover active:bg-app-selected"
       title={t(`theme.${theme}`)}
     >
       {theme === 'light' && <SunIcon className="h-[18px] w-[18px]" />}

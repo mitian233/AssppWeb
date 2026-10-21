@@ -88,7 +88,9 @@ export default function VersionHistory() {
   if (!app) {
     return (
       <PageContainer title={t('search.versions.title')}>
-        <p className="text-gray-500 [overflow-wrap:anywhere]">{t('search.versions.unavailable')}</p>
+        <p className="text-[13px] leading-4 text-app-secondary [overflow-wrap:anywhere]">
+          {t('search.versions.unavailable')}
+        </p>
       </PageContainer>
     );
   }
@@ -101,26 +103,26 @@ export default function VersionHistory() {
             <AppIcon url={app.artworkUrl} name={app.name} size="md" />
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="font-medium text-gray-900 [overflow-wrap:anywhere] dark:text-white">{app.name}</h2>
-            <p className="text-sm text-gray-500 [overflow-wrap:anywhere] dark:text-gray-400">{app.bundleID}</p>
+            <h2 className="text-[17px] leading-[22px] font-bold text-app-ink [overflow-wrap:anywhere]">{app.name}</h2>
+            <p className="text-[12px] leading-[15px] text-app-secondary [overflow-wrap:anywhere]">{app.bundleID}</p>
           </div>
         </div>
 
         {accounts.length > 0 && filteredAccounts.length === 0 ? (
-          <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-700 [overflow-wrap:anywhere] dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
+          <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-[13px] leading-4 text-yellow-700 [overflow-wrap:anywhere] dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
             {t('search.product.noAccountsForRegion')}
           </div>
         ) : (
           filteredAccounts.length > 0 && (
             <div className="flex min-w-0 flex-col items-stretch gap-3 sm:flex-row sm:items-end">
               <div className="min-w-0 flex-1">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                <label className="mb-1 block text-[13px] leading-4 font-medium text-app-secondary">
                   {t('search.versions.account')}
                 </label>
                 <select
                   value={selectedAccount}
                   onChange={(e) => setSelectedAccount(e.target.value)}
-                  className="w-full min-w-0 rounded-md border border-gray-300 bg-white px-3 py-2 text-base text-gray-900 transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800 dark:text-white"
+                  className="w-full min-w-0 rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                 >
                   {filteredAccounts.map((a) => (
                     <option key={a.email} value={a.email}>
@@ -132,7 +134,7 @@ export default function VersionHistory() {
               <button
                 onClick={handleLoadVersions}
                 disabled={loading || !account}
-                className="w-full shrink-0 whitespace-normal rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto sm:whitespace-nowrap"
+                className="w-full shrink-0 whitespace-normal rounded-lg bg-app-action px-4 py-2 text-[13px] leading-4 font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto sm:whitespace-nowrap"
               >
                 {loading ? t('search.versions.loading') : t('search.versions.load')}
               </button>
@@ -141,7 +143,7 @@ export default function VersionHistory() {
         )}
 
         {versions.length > 0 && (
-          <div className="min-w-0 divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 bg-white dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-900">
+          <div className="min-w-0 divide-y divide-app-divider overflow-hidden rounded-app-card bg-app-surface shadow-app-card">
             {versions.map((versionId) => {
               const meta = versionMeta[versionId];
               const isLoadingMeta = loadingMeta[versionId];
@@ -150,24 +152,24 @@ export default function VersionHistory() {
               return (
                 <div key={versionId} className="flex min-w-0 items-center justify-between gap-3 p-4">
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium text-gray-900 [overflow-wrap:anywhere] dark:text-white">
+                    <p className="text-[13px] leading-4 font-medium text-app-ink [overflow-wrap:anywhere]">
                       {meta ? `v${meta.displayVersion}` : `ID: ${versionId}`}
                     </p>
                     {meta && (
-                      <p className="text-xs text-gray-500 [overflow-wrap:anywhere] dark:text-gray-400">
+                      <p className="text-[12px] leading-[15px] text-app-secondary [overflow-wrap:anywhere]">
                         {new Date(meta.releaseDate).toLocaleDateString()}
                       </p>
                     )}
                     {!meta && !isLoadingMeta && (
                       <button
                         onClick={() => handleLoadMeta(versionId)}
-                        className="max-w-full py-1 text-left text-xs text-blue-600 [overflow-wrap:anywhere] transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                        className="max-w-full py-1 text-left text-[12px] leading-[15px] text-app-action [overflow-wrap:anywhere] transition-colors hover:text-blue-700"
                       >
                         {t('search.versions.loadDetails')}
                       </button>
                     )}
                     {isLoadingMeta && (
-                      <span className="text-xs text-gray-400 [overflow-wrap:anywhere] dark:text-gray-500">
+                      <span className="text-[12px] leading-[15px] text-app-tertiary [overflow-wrap:anywhere]">
                         {t('search.versions.loading')}
                       </span>
                     )}
@@ -175,7 +177,7 @@ export default function VersionHistory() {
                   <button
                     onClick={() => handleDownloadVersion(versionId)}
                     disabled={isDownloading || downloadingVersion !== null}
-                    className="max-w-[45%] shrink-0 rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-medium leading-tight text-white [overflow-wrap:anywhere] transition-colors hover:bg-blue-700 disabled:opacity-50"
+                    className="max-w-[45%] shrink-0 rounded-md bg-app-action px-3 py-2 text-center text-[13px] leading-4 font-medium text-white [overflow-wrap:anywhere] transition-colors hover:bg-blue-700 disabled:opacity-50"
                   >
                     {isDownloading ? t('search.versions.downloading') : t('search.versions.download')}
                   </button>

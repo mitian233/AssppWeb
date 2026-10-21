@@ -167,11 +167,14 @@ export default function SettingsPage() {
   return (
     <PageContainer title={t('settings.title')}>
       <div className="min-w-0 space-y-6">
-        <section className="min-w-0 rounded-lg border border-gray-200 bg-white p-4 sm:p-6 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('settings.language.title')}</h2>
+        <section className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-6">
+          <h2 className="mb-4 text-[17px] leading-[22px] font-bold text-app-ink">{t('settings.language.title')}</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="language" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label
+                htmlFor="language"
+                className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary"
+              >
                 {t('settings.language.label')}
               </label>
               <select
@@ -182,7 +185,7 @@ export default function SettingsPage() {
                   await i18n.changeLanguage(newLang);
                   addToast(t('settings.language.changed'), 'success');
                 }}
-                className="block min-w-0 max-w-full w-full truncate rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-base text-gray-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="block min-w-0 max-w-full w-full truncate rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               >
                 <option value="en-US">English (US)</option>
                 <option value="zh-CN">简体中文</option>
@@ -195,11 +198,11 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <section className="min-w-0 rounded-lg border border-gray-200 bg-white p-4 sm:p-6 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('settings.defaults.title')}</h2>
+        <section className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-6">
+          <h2 className="mb-4 text-[17px] leading-[22px] font-bold text-app-ink">{t('settings.defaults.title')}</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="country" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="country" className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
                 {t('settings.defaults.country')}
               </label>
               <select
@@ -209,7 +212,7 @@ export default function SettingsPage() {
                   setCountry(e.target.value);
                   addToast(t('settings.defaults.countryChanged'), 'success');
                 }}
-                className="block min-w-0 max-w-full w-full truncate rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-base text-gray-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="block min-w-0 max-w-full w-full truncate rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               >
                 {sortedCountries.map((code) => (
                   <option key={code} value={code}>
@@ -219,7 +222,7 @@ export default function SettingsPage() {
               </select>
             </div>
             <div>
-              <label htmlFor="entity" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              <label htmlFor="entity" className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
                 {t('settings.defaults.entity')}
               </label>
               <select
@@ -229,7 +232,7 @@ export default function SettingsPage() {
                   setEntity(e.target.value);
                   addToast(t('settings.defaults.entityChanged'), 'success');
                 }}
-                className="block min-w-0 max-w-full w-full truncate rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-base text-gray-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+                className="block min-w-0 max-w-full w-full truncate rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
               >
                 {entityTypes.map((et) => (
                   <option key={et.value} value={et.value}>
@@ -241,11 +244,11 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <section className="min-w-0 rounded-lg border border-gray-200 bg-white p-4 sm:p-6 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('settings.server.title')}</h2>
+        <section className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-6">
+          <h2 className="mb-4 text-[17px] leading-[22px] font-bold text-app-ink">{t('settings.server.title')}</h2>
           {serverInfo ? (
             <div className="min-w-0 space-y-6">
-              <dl className="min-w-0 divide-y divide-gray-100 dark:divide-gray-800">
+              <dl className="min-w-0 divide-y divide-app-divider">
                 {serverInfo.uptime != null && (
                   <SettingsInfoRow label={t('settings.server.uptime')}>
                     {formatUptime(serverInfo.uptime)}
@@ -254,10 +257,10 @@ export default function SettingsPage() {
               </dl>
 
               <div className="min-w-0">
-                <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                <h3 className="mb-3 text-[17px] leading-[22px] font-bold text-app-ink">
                   {t('settings.server.configuration')}
                 </h3>
-                <dl className="min-w-0 divide-y divide-gray-100 border-y border-gray-100 dark:divide-gray-800 dark:border-gray-800">
+                <dl className="min-w-0 divide-y divide-app-divider border-y border-app-divider">
                   <SettingsInfoRow label="PORT" mono>
                     {serverInfo.port}
                   </SettingsInfoRow>
@@ -266,7 +269,7 @@ export default function SettingsPage() {
                   </SettingsInfoRow>
                   <SettingsInfoRow label="PUBLIC_BASE_URL" mono valueTitle={serverInfo.publicBaseUrl || undefined}>
                     {serverInfo.publicBaseUrl || (
-                      <span className="italic text-gray-400 dark:text-gray-500">{t('settings.server.notSet')}</span>
+                      <span className="text-app-tertiary italic">{t('settings.server.notSet')}</span>
                     )}
                   </SettingsInfoRow>
                   <SettingsInfoRow label="UNSAFE_DANGEROUSLY_DISABLE_HTTPS_REDIRECT" mono>
@@ -288,26 +291,26 @@ export default function SettingsPage() {
               </div>
             </div>
           ) : (
-            <p className="text-sm text-gray-500 dark:text-gray-400">{t('settings.server.offline')}</p>
+            <p className="text-[13px] leading-4 text-app-tertiary">{t('settings.server.offline')}</p>
           )}
         </section>
 
-        <section className="min-w-0 rounded-lg border border-gray-200 bg-white p-4 sm:p-6 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('settings.data.title')}</h2>
-          <p className="mb-4 max-w-full whitespace-nowrap text-[clamp(0.5625rem,2.8vw,0.875rem)] leading-relaxed tracking-[-0.015em] text-gray-600 dark:text-gray-400">
+        <section className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-6">
+          <h2 className="mb-4 text-[17px] leading-[22px] font-bold text-app-ink">{t('settings.data.title')}</h2>
+          <p className="mb-4 max-w-full text-[13px] leading-4 tracking-[-0.015em] text-app-secondary">
             {t('settings.data.description')}
           </p>
 
           <div className="mb-6 grid w-full min-w-0 grid-cols-2 gap-3 sm:max-w-sm">
             <button
               onClick={() => setExportModalOpen(true)}
-              className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-blue-300 px-3 py-2 text-center text-sm font-medium text-blue-600 transition-colors hover:bg-blue-50 sm:px-4 dark:border-blue-800 dark:text-blue-400 dark:hover:bg-blue-900/30"
+              className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-blue-300 px-3 py-2 text-center text-[13px] leading-4 font-medium text-blue-600 transition-colors hover:bg-blue-50 sm:px-4 dark:border-blue-800 dark:text-blue-400 dark:hover:bg-blue-900/30"
             >
               {t('settings.data.exportBtn')}
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-green-300 px-3 py-2 text-center text-sm font-medium text-green-600 transition-colors hover:bg-green-50 sm:px-4 dark:border-green-800 dark:text-green-400 dark:hover:bg-green-900/30"
+              className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-green-300 px-3 py-2 text-center text-[13px] leading-4 font-medium text-green-600 transition-colors hover:bg-green-50 sm:px-4 dark:border-green-800 dark:text-green-400 dark:hover:bg-green-900/30"
             >
               {t('settings.data.importBtn')}
             </button>
@@ -324,19 +327,19 @@ export default function SettingsPage() {
                 window.location.href = '/';
               }, 1000);
             }}
-            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-red-300 px-4 py-2 text-center text-sm font-medium text-red-600 transition-colors hover:bg-red-50 sm:w-auto dark:border-red-800 dark:text-red-400 dark:hover:bg-red-900/30"
+            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-red-300 px-4 py-2 text-center text-[13px] leading-4 font-medium text-red-600 transition-colors hover:bg-red-50 sm:w-auto dark:border-red-800 dark:text-red-400 dark:hover:bg-red-900/30"
           >
             {t('settings.data.button')}
           </button>
         </section>
 
-        <section className="min-w-0 rounded-lg border border-gray-200 bg-white p-4 sm:p-6 dark:border-gray-800 dark:bg-gray-900">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">{t('settings.about.title')}</h2>
-          <p className="max-w-full whitespace-nowrap text-[clamp(0.5625rem,2.8vw,0.875rem)] leading-relaxed tracking-[-0.015em] text-gray-600 dark:text-gray-400">
+        <section className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-6">
+          <h2 className="mb-4 text-[17px] leading-[22px] font-bold text-app-ink">{t('settings.about.title')}</h2>
+          <p className="max-w-full text-[13px] leading-4 tracking-[-0.015em] text-app-secondary">
             {t('settings.about.description')}
           </p>
           {serverInfo && (
-            <dl className="mt-3 min-w-0 divide-y divide-gray-100 dark:divide-gray-800">
+            <dl className="mt-3 min-w-0 divide-y divide-app-divider">
               {serverInfo.buildCommit && serverInfo.buildCommit !== 'unknown' && (
                 <SettingsInfoRow
                   label={t('settings.about.buildCommit')}
@@ -360,39 +363,39 @@ export default function SettingsPage() {
       <Modal open={exportModalOpen} onClose={() => setExportModalOpen(false)} title={t('settings.data.exportBtn')}>
         <div className="min-w-0 space-y-4">
           <div className="min-w-0">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
               {t('settings.data.passwordPrompt')}
             </label>
             <input
               type="password"
               value={exportPassword}
               onChange={(e) => setExportPassword(e.target.value)}
-              className="block min-w-0 max-w-full w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-base text-gray-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+              className="block min-w-0 max-w-full w-full rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
           <div className="min-w-0">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
               {t('settings.data.passwordConfirm')}
             </label>
             <input
               type="password"
               value={exportConfirmPassword}
               onChange={(e) => setExportConfirmPassword(e.target.value)}
-              className="block min-w-0 max-w-full w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-base text-gray-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+              className="block min-w-0 max-w-full w-full rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
         <div className="mt-6 flex min-w-0 flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
           <button
             onClick={() => setExportModalOpen(false)}
-            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 sm:w-auto dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg border border-app-divider px-4 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover sm:w-auto"
           >
             {t('settings.data.cancel')}
           </button>
           <button
             onClick={handleExport}
             disabled={!exportPassword || !exportConfirmPassword}
-            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto"
+            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg bg-app-action px-4 py-2 text-[13px] leading-4 font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto"
           >
             {t('settings.data.confirmBtn')}
           </button>
@@ -402,28 +405,28 @@ export default function SettingsPage() {
       <Modal open={importModalOpen} onClose={() => setImportModalOpen(false)} title={t('settings.data.importBtn')}>
         <div className="min-w-0 space-y-4">
           <div className="min-w-0">
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
               {t('settings.data.passwordPrompt')}
             </label>
             <input
               type="password"
               value={importPassword}
               onChange={(e) => setImportPassword(e.target.value)}
-              className="block min-w-0 max-w-full w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 px-3 py-2 text-base text-gray-900 dark:text-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors"
+              className="block min-w-0 max-w-full w-full rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink transition-colors focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
         <div className="mt-6 flex min-w-0 flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
           <button
             onClick={() => setImportModalOpen(false)}
-            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 sm:w-auto dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg border border-app-divider px-4 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover sm:w-auto"
           >
             {t('settings.data.cancel')}
           </button>
           <button
             onClick={handleImport}
             disabled={!importPassword}
-            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto"
+            className="min-h-11 min-w-0 whitespace-normal break-words rounded-lg bg-app-action px-4 py-2 text-[13px] leading-4 font-medium text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto"
           >
             {t('settings.data.confirmBtn')}
           </button>
@@ -435,7 +438,7 @@ export default function SettingsPage() {
         onClose={() => setConflictModalOpen(false)}
         title={t('settings.data.conflictTitle')}
       >
-        <p className="mb-6 min-w-0 break-words text-sm leading-6 text-gray-700 dark:text-gray-300">
+        <p className="mb-6 min-w-0 break-words text-[13px] leading-4 text-app-secondary">
           {t('settings.data.conflictDesc', {
             conflict: conflictStats.conflict,
             new: conflictStats.new,
@@ -444,19 +447,19 @@ export default function SettingsPage() {
         <div className="flex min-w-0 flex-col gap-3">
           <button
             onClick={() => handleResolveConflict(true)}
-            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg bg-red-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-red-700"
+            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg bg-red-600 px-4 py-2 text-[13px] leading-4 font-medium text-white transition-colors hover:bg-red-700"
           >
             {t('settings.data.conflictOverwrite')}
           </button>
           <button
             onClick={() => handleResolveConflict(false)}
-            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-app-divider px-4 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
           >
             {t('settings.data.conflictSkip')}
           </button>
           <button
             onClick={() => setConflictModalOpen(false)}
-            className="mt-2 min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="mt-2 min-h-11 w-full min-w-0 whitespace-normal break-words rounded-lg border border-app-divider px-4 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
           >
             {t('settings.data.cancel')}
           </button>
@@ -479,15 +482,15 @@ function SettingsInfoRow({
   compact?: boolean;
   valueTitle?: string;
 }) {
-  const labelSize = compact ? 'text-xs' : 'text-sm';
-  const valueSize = compact ? 'text-xs' : 'text-sm';
+  const labelSize = compact ? 'text-[12px] leading-[15px]' : 'text-[13px] leading-4';
+  const valueSize = compact ? 'text-[12px] leading-[15px]' : 'text-[13px] leading-4';
 
   return (
     <div className="grid min-w-0 grid-cols-1 gap-1 py-2.5 sm:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] sm:items-start sm:gap-6">
-      <dt className={`${labelSize} min-w-0 break-all font-medium text-gray-500 dark:text-gray-400`}>{label}</dt>
+      <dt className={`${labelSize} min-w-0 break-all font-medium text-app-tertiary`}>{label}</dt>
       <dd
         title={valueTitle}
-        className={`${valueSize} min-w-0 max-w-full whitespace-pre-wrap break-all text-gray-900 sm:text-right dark:text-gray-200 ${
+        className={`${valueSize} min-w-0 max-w-full whitespace-pre-wrap break-all text-app-ink sm:text-right ${
           mono ? 'font-mono' : ''
         }`}
       >

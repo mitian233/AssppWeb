@@ -23,7 +23,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
   const detailsHref = `/downloads/${task.id}${preview ? '?preview=downloads' : ''}`;
 
   return (
-    <article className="min-w-0 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-gray-900">
+    <article className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card">
       <div className="flex min-w-0 items-start gap-3">
         <AppIcon url={task.software.artworkUrl} name={task.software.name} size="sm" />
         <div className="min-w-0 flex-1">
@@ -31,11 +31,13 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
             <div className="min-w-0 flex-1">
               <Link
                 to={detailsHref}
-                className="block truncate text-sm font-semibold text-gray-900 transition-colors hover:text-blue-600 dark:text-white dark:hover:text-blue-400"
+                className="block truncate text-[13px] leading-4 font-semibold text-app-ink transition-colors hover:text-app-action"
               >
                 {task.software.name}
               </Link>
-              <p className="mt-0.5 truncate text-xs text-gray-500 dark:text-gray-400">{task.software.artistName}</p>
+              <p className="mt-0.5 truncate text-[12px] leading-[15px] text-app-secondary">
+                {task.software.artistName}
+              </p>
             </div>
             <div className="shrink-0 whitespace-nowrap">
               <Badge status={task.status} />
@@ -43,7 +45,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
           </div>
           <p
             title={task.software.bundleID}
-            className="mt-1 truncate font-mono text-[11px] text-gray-400 dark:text-gray-500"
+            className="mt-1 truncate font-mono text-[12px] leading-[15px] text-app-tertiary"
           >
             {task.software.bundleID}
           </p>
@@ -59,7 +61,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
       {(isActive || isPaused) && (
         <div className="mt-3">
           <ProgressBar progress={task.progress} label={task.software.name} />
-          <div className="mt-1.5 flex min-w-0 justify-between gap-3 text-xs font-medium text-gray-500 dark:text-gray-400">
+          <div className="mt-1.5 flex min-w-0 justify-between gap-3 text-[12px] leading-[15px] font-medium text-app-secondary">
             <span>{Math.round(task.progress)}%</span>
             {task.speed && isActive && <span className="max-w-[55%] truncate text-right">{task.speed}</span>}
           </div>
@@ -67,13 +69,13 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
       )}
 
       {task.error && (
-        <p className="mt-3 break-words rounded-lg bg-red-50 p-2.5 text-xs font-medium text-red-700 dark:bg-red-950/40 dark:text-red-400">
+        <p className="mt-3 break-words rounded-lg bg-red-50 p-2.5 text-[13px] leading-4 font-medium text-red-700 dark:bg-red-950/40 dark:text-red-400">
           {task.error}
         </p>
       )}
 
       {task.status === 'completed' && task.hasFile && (
-        <div className="mt-3 border-t border-gray-100 pt-3 dark:border-gray-800">
+        <div className="mt-3 border-t border-app-divider pt-3">
           <PackageQuickActions task={task} size="compact" />
         </div>
       )}
@@ -83,7 +85,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
           <button
             type="button"
             onClick={() => onPause(task.id)}
-            className="min-h-10 min-w-0 rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="min-h-10 min-w-0 rounded-lg bg-app-canvas px-3 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
           >
             {t('downloads.package.pause')}
           </button>
@@ -91,14 +93,14 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
           <button
             type="button"
             onClick={() => onResume(task.id)}
-            className="min-h-10 min-w-0 rounded-lg border border-blue-300 bg-blue-50 px-3 py-2 text-xs font-medium text-blue-700 transition-colors hover:bg-blue-100 dark:border-blue-800 dark:bg-blue-950/60 dark:text-blue-300 dark:hover:bg-blue-950"
+            className="min-h-10 min-w-0 rounded-lg bg-blue-50 px-3 py-2 text-[13px] leading-4 font-medium text-blue-700 transition-colors hover:bg-blue-100 dark:bg-blue-950/60 dark:text-blue-300 dark:hover:bg-blue-950"
           >
             {t('downloads.package.resume')}
           </button>
         ) : (
           <Link
             to={detailsHref}
-            className="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg border border-gray-300 px-3 py-2 text-center text-xs font-medium text-gray-700 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg bg-app-canvas px-3 py-2 text-center text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
           >
             {t('downloads.package.title')}
           </Link>
@@ -106,7 +108,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
         <button
           type="button"
           onClick={() => onDelete(task.id)}
-          className="min-h-10 min-w-0 rounded-lg border border-red-200 px-3 py-2 text-xs font-medium text-red-600 transition-colors hover:bg-red-50 dark:border-red-900 dark:text-red-400 dark:hover:bg-red-950/40"
+          className="min-h-10 min-w-0 rounded-lg bg-red-50 px-3 py-2 text-[13px] leading-4 font-medium text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
         >
           {t('downloads.package.delete')}
         </button>
@@ -117,11 +119,11 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
 
 function SummaryItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-lg bg-gray-50 px-2.5 py-2 dark:bg-gray-800/60">
-      <dt className="truncate text-[10px] font-medium uppercase tracking-wide text-gray-400 dark:text-gray-500">
+    <div className="min-w-0 rounded-lg bg-app-canvas px-2.5 py-2">
+      <dt className="truncate text-[12px] leading-[15px] font-medium uppercase tracking-wide text-app-tertiary">
         {label}
       </dt>
-      <dd title={value} className="mt-0.5 truncate text-xs font-medium text-gray-700 dark:text-gray-200">
+      <dd title={value} className="mt-0.5 truncate text-[12px] leading-[15px] font-medium text-app-secondary">
         {value}
       </dd>
     </div>

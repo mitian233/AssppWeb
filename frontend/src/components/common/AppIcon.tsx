@@ -12,8 +12,7 @@ const sizeClasses = {
   lg: 'h-20 w-20',
 };
 
-const surfaceClassName =
-  'shrink-0 rounded-[22%] ring-1 ring-black/5 shadow-sm shadow-gray-950/10 dark:ring-white/10 dark:shadow-black/30';
+const surfaceClassName = 'shrink-0 rounded-[25%]';
 
 export default function AppIcon({ url, name, size = 'md' }: AppIconProps) {
   const [failed, setFailed] = useState(false);
