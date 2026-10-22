@@ -26,7 +26,7 @@ export default function AccountList() {
         <div className="py-12 text-center text-sm leading-5 text-app-tertiary">{t('accounts.loading')}</div>
       ) : accounts.length === 0 ? (
         <div className="my-4 flex flex-col items-center justify-center px-6 py-16 text-center">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-app-surface text-app-action">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center text-app-action">
             <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path
                 strokeLinecap="round"
@@ -56,8 +56,7 @@ export default function AccountList() {
                   key={account.email}
                   to={`/accounts/${encodeURIComponent(account.email)}`}
                   className={({ isActive }) =>
-                    `flex items-center gap-4 p-4 transition-colors ${
-                      isActive ? 'bg-app-selected' : 'hover:bg-app-hover'
+                    `flex items-center gap-4 p-4 transition-colors ${isActive ? 'bg-app-selected' : 'hover:bg-app-hover'
                     }`
                   }
                 >

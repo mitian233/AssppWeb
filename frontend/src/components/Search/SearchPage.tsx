@@ -89,7 +89,7 @@ export default function SearchPage() {
 
       {results.length === 0 && !loading && !error && (
         <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center bg-app-surface">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center">
             <svg
               className="h-8 w-8 text-app-action"
               fill="none"

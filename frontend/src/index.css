@@ -232,6 +232,70 @@ html.dark ::selection {
   scrollbar-width: thin;
 }
 
+.download-filter-bar {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  border-radius: 9999px;
+  padding: 0.25rem;
+  background: var(--app-selected);
+  touch-action: pan-x;
+  cursor: grab;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.download-filter-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.download-filter-bar:active {
+  cursor: grabbing;
+}
+
+.download-filter-tab {
+  display: flex;
+  min-width: max-content;
+  min-height: 2.75rem;
+  flex: 1 0 max-content;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  background: transparent;
+  color: var(--app-secondary);
+  text-align: center;
+  white-space: nowrap;
+  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
+}
+
+.download-filter-tab:hover {
+  color: var(--app-ink);
+}
+
+.download-filter-tab.is-active {
+  background: var(--app-action);
+  color: #fff;
+}
+
+.download-filter-tab:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download-filter-tab {
+    transition: none;
+  }
+
+  .download-filter-tab:not(:disabled):active {
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -29,6 +29,8 @@ export default function DownloadList() {
   const addToast = useToastStore((s) => s.addToast);
   const { accounts } = useAccounts();
   const { startDownload } = useDownloadAction();
+  const filterTabsRef = useRef<HTMLDivElement>(null);
+  const filterDragRef = useRef({ startX: 0, scrollLeft: 0, dragging: false, moved: false });
   const previewEnabled = isDownloadPreviewEnabled(location.search);
   const displayTasks = previewEnabled ? previewDownloadTasks : tasks;
 
@@ -177,21 +179,51 @@ export default function DownloadList() {
       </div>
 
       <div
-        className="mb-5 grid grid-cols-2 gap-2 min-[360px]:grid-cols-3 sm:grid-cols-6"
+        ref={filterTabsRef}
+        className="download-filter-bar mb-5"
         role="group"
         aria-label={t('downloads.title')}
+        onPointerDown={(event) => {
+          if (event.pointerType !== 'mouse' || event.button !== 0) return;
+          const container = filterTabsRef.current;
+          if (!container) return;
+          filterDragRef.current = {
+            startX: event.clientX,
+            scrollLeft: container.scrollLeft,
+            dragging: true,
+            moved: false,
+          };
+        }}
+        onPointerMove={(event) => {
+          const drag = filterDragRef.current;
+          const container = filterTabsRef.current;
+          if (!drag.dragging || !container) return;
+          const distance = event.clientX - drag.startX;
+          if (Math.abs(distance) > 4) drag.moved = true;
+          if (drag.moved) container.scrollLeft = drag.scrollLeft - distance;
+        }}
+        onPointerUp={() => {
+          filterDragRef.current.dragging = false;
+        }}
+        onPointerLeave={() => {
+          filterDragRef.current.dragging = false;
+        }}
+        onClickCapture={(event) => {
+          if (!filterDragRef.current.moved) return;
+          event.preventDefault();
+          event.stopPropagation();
+          filterDragRef.current.moved = false;
+        }}
       >
         {(['all', 'downloading', 'pending', 'paused', 'completed', 'failed'] as StatusFilter[]).map((status) => (
           <button
             key={status}
             onClick={() => setFilter(status)}
-            className={`${filter === status ? 'app-button-primary' : 'app-button-utility'} flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center`}
+            className={`download-filter-tab${filter === status ? ' is-active' : ''}`}
           >
             {t(`downloads.status.${status}`)}
             <span className="ml-1">
-              {`(${
-                status === 'all' ? displayTasks.length : displayTasks.filter((task) => task.status === status).length
-              })`}
+              {`(${status === 'all' ? displayTasks.length : displayTasks.filter((task) => task.status === status).length})`}
             </span>
           </button>
         ))}
@@ -227,7 +259,7 @@ export default function DownloadList() {
         <div className="py-12 text-center text-app-secondary">{t('downloads.loading')}</div>
       ) : sortedTasks.length === 0 ? (
         <div className="my-4 flex flex-col items-center justify-center px-6 py-16 text-center">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center bg-app-surface">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center">
             <svg
               className="h-8 w-8 text-app-action"
               fill="none"
@@ -246,8 +278,8 @@ export default function DownloadList() {
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
-                  status: t(`downloads.status.${filter}`),
-                })}
+                status: t(`downloads.status.${filter}`),
+              })}
           </h3>
           <p
             className="mb-6 max-w-full overflow-hidden text-center text-[17px] leading-[1.47] text-app-secondary"
