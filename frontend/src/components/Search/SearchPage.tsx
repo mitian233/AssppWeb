@@ -67,7 +67,7 @@ export default function SearchPage() {
             {loading ? t('search.searching') : t('search.button')}
           </button>
         </div>
-        <div className="flex w-full gap-3 overflow-hidden border-t border-app-divider pt-3">
+        <div className="flex w-full gap-3 border-t border-app-divider pt-3">
           <CountrySelect
             value={activeCountry}
             onChange={(c) => setSearchParam({ country: c })}
