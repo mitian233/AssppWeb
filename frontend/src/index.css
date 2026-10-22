@@ -232,6 +232,11 @@ html.dark ::selection {
   scrollbar-width: thin;
 }
 
+.download-filter-wrap {
+  position: relative;
+  min-width: 0;
+}
+
 .download-filter-bar {
   display: flex;
   width: 100%;
@@ -254,6 +259,27 @@ html.dark ::selection {
 
 .download-filter-bar:active {
   cursor: grabbing;
+}
+
+.download-filter-fade-left,
+.download-filter-fade-right {
+  position: absolute;
+  z-index: 1;
+  inset-block: 0;
+  width: 1.5rem;
+  pointer-events: none;
+}
+
+.download-filter-fade-left {
+  inset-inline-start: 0;
+  border-radius: 9999px 0 0 9999px;
+  background: linear-gradient(to right, var(--app-selected), transparent);
+}
+
+.download-filter-fade-right {
+  inset-inline-end: 0;
+  border-radius: 0 9999px 9999px 0;
+  background: linear-gradient(to left, var(--app-selected), transparent);
 }
 
 .download-filter-tab {

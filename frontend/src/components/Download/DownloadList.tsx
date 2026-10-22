@@ -31,6 +31,7 @@ export default function DownloadList() {
   const { startDownload } = useDownloadAction();
   const filterTabsRef = useRef<HTMLDivElement>(null);
   const filterDragRef = useRef({ startX: 0, scrollLeft: 0, dragging: false, moved: false });
+  const [filterOverflow, setFilterOverflow] = useState({ left: false, right: false });
   const previewEnabled = isDownloadPreviewEnabled(location.search);
   const displayTasks = previewEnabled ? previewDownloadTasks : tasks;
 
@@ -45,6 +46,42 @@ export default function DownloadList() {
   useEffect(() => {
     return () => {
       cancelCheckRef.current = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    const container = filterTabsRef.current;
+    if (!container) return;
+
+    const updateOverflow = () => {
+      const firstTab = container.firstElementChild;
+      const lastTab = container.lastElementChild;
+      if (!firstTab || !lastTab) {
+        setFilterOverflow({ left: false, right: false });
+        return;
+      }
+
+      const containerBounds = container.getBoundingClientRect();
+      const styles = getComputedStyle(container);
+      const leftEdge = containerBounds.left + Number.parseFloat(styles.borderLeftWidth || '0');
+      const rightEdge = containerBounds.right - Number.parseFloat(styles.borderRightWidth || '0');
+      const firstTabBounds = firstTab.getBoundingClientRect();
+      const lastTabBounds = lastTab.getBoundingClientRect();
+      const left = firstTabBounds.left < leftEdge - 1;
+      const right = lastTabBounds.right > rightEdge + 1;
+
+      setFilterOverflow((current) => (current.left === left && current.right === right ? current : { left, right }));
+    };
+
+    updateOverflow();
+    container.addEventListener('scroll', updateOverflow, { passive: true });
+    const resizeObserver = new ResizeObserver(updateOverflow);
+    resizeObserver.observe(container);
+    container.querySelectorAll('button').forEach((button) => resizeObserver.observe(button));
+
+    return () => {
+      container.removeEventListener('scroll', updateOverflow);
+      resizeObserver.disconnect();
     };
   }, []);
 
@@ -178,12 +215,13 @@ export default function DownloadList() {
         </Link>
       </div>
 
-      <div
-        ref={filterTabsRef}
-        className="download-filter-bar mb-5"
-        role="group"
-        aria-label={t('downloads.title')}
-        onPointerDown={(event) => {
+      <div className="download-filter-wrap mb-5">
+        <div
+          ref={filterTabsRef}
+          className="download-filter-bar"
+          role="group"
+          aria-label={t('downloads.title')}
+          onPointerDown={(event) => {
           if (event.pointerType !== 'mouse' || event.button !== 0) return;
           const container = filterTabsRef.current;
           if (!container) return;
@@ -215,18 +253,21 @@ export default function DownloadList() {
           filterDragRef.current.moved = false;
         }}
       >
-        {(['all', 'downloading', 'pending', 'paused', 'completed', 'failed'] as StatusFilter[]).map((status) => (
-          <button
-            key={status}
-            onClick={() => setFilter(status)}
-            className={`download-filter-tab${filter === status ? ' is-active' : ''}`}
-          >
-            {t(`downloads.status.${status}`)}
-            <span className="ml-1">
-              {`(${status === 'all' ? displayTasks.length : displayTasks.filter((task) => task.status === status).length})`}
-            </span>
-          </button>
-        ))}
+          {(['all', 'downloading', 'pending', 'paused', 'completed', 'failed'] as StatusFilter[]).map((status) => (
+            <button
+              key={status}
+              onClick={() => setFilter(status)}
+              className={`download-filter-tab${filter === status ? ' is-active' : ''}`}
+            >
+              {t(`downloads.status.${status}`)}
+              <span className="ml-1">
+                {`(${status === 'all' ? displayTasks.length : displayTasks.filter((task) => task.status === status).length})`}
+              </span>
+            </button>
+          ))}
+        </div>
+        {filterOverflow.left && <span aria-hidden="true" className="download-filter-fade-left" />}
+        {filterOverflow.right && <span aria-hidden="true" className="download-filter-fade-right" />}
       </div>
 
       <div
