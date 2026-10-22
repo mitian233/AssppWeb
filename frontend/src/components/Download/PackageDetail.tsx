@@ -141,7 +141,7 @@ export default function PackageDetail() {
     <PageContainer title={t('downloads.package.title')}>
       <div className="min-w-0 space-y-5">
         {isPreview && (
-          <div className="flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[13px] leading-4 text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
+          <div className="flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[17px] leading-[1.47] text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
             <span className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-full bg-blue-600 px-2 text-[10px] font-semibold uppercase tracking-wide text-white">
               {t('downloads.preview.badge')}
             </span>
@@ -149,25 +149,25 @@ export default function PackageDetail() {
           </div>
         )}
 
-        <section className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-5">
+        <section className="min-w-0 p-4 sm:p-5">
           <div className="flex min-w-0 items-start gap-4">
             <AppIcon url={task.software.artworkUrl} name={task.software.name} size="lg" />
             <div className="min-w-0 flex-1">
               <h2
                 title={task.software.name}
-                className="break-words text-[26px] leading-8 font-bold text-app-ink [overflow-wrap:anywhere]"
+                className="break-words text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]"
               >
                 {task.software.name}
               </h2>
               <p
                 title={task.software.artistName}
-                className="mt-0.5 break-words text-[13px] leading-4 text-app-secondary [overflow-wrap:anywhere]"
+                className="mt-0.5 break-words text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]"
               >
                 {task.software.artistName}
               </p>
               <div className="mt-2 flex min-w-0 flex-wrap items-center gap-2">
                 <Badge status={task.status} />
-                <span className="min-w-0 break-all text-[12px] leading-[15px] text-app-secondary">
+                <span className="min-w-0 break-all text-[14px] leading-5 text-app-secondary">
                   v{task.software.version}
                 </span>
               </div>
@@ -177,7 +177,7 @@ export default function PackageDetail() {
           {(isActive || isPaused) && (
             <div className="mt-4 min-w-0 border-t border-app-divider pt-4">
               <ProgressBar progress={task.progress} label={task.software.name} />
-              <div className="mt-1.5 flex min-w-0 justify-between gap-3 text-[12px] leading-[15px] text-app-secondary">
+              <div className="mt-1.5 flex min-w-0 justify-between gap-3 text-[14px] leading-5 text-app-secondary">
                 <span>{Math.round(task.progress)}%</span>
                 {task.speed && isActive && <span className="min-w-0 truncate text-right">{task.speed}</span>}
               </div>
@@ -187,18 +187,15 @@ export default function PackageDetail() {
           {task.error && (
             <p
               role="alert"
-              className="mt-4 min-w-0 break-words rounded-lg bg-red-50 px-3 py-2 text-[13px] leading-4 text-red-700 [overflow-wrap:anywhere] dark:bg-red-950/30 dark:text-red-400"
+              className="mt-4 min-w-0 break-words rounded-lg bg-red-50 px-3 py-2 text-[14px] leading-5 text-red-700 [overflow-wrap:anywhere] dark:bg-red-950/30 dark:text-red-400"
             >
               {task.error}
             </p>
           )}
         </section>
 
-        <section
-          aria-labelledby="package-information-title"
-          className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-5"
-        >
-          <h3 id="package-information-title" className="text-[17px] leading-[22px] font-bold text-app-ink">
+        <section aria-labelledby="package-information-title" className="min-w-0 p-4 sm:p-5">
+          <h3 id="package-information-title" className="text-[21px] leading-tight font-semibold text-app-ink">
             {t('downloads.package.information')}
           </h3>
 
@@ -209,7 +206,7 @@ export default function PackageDetail() {
             <DetailTile label={t('downloads.package.released')} value={formatDate(task.software.releaseDate)} />
           </dl>
 
-          <dl className="mt-4 min-w-0 divide-y divide-app-divider border-t border-app-divider text-[13px] leading-4">
+          <dl className="mt-4 min-w-0 divide-y divide-app-divider border-t border-app-divider text-[14px] leading-5">
             <PackageDetailRow label={t('downloads.package.developer')} valueTitle={task.software.sellerName}>
               {task.software.sellerName || task.software.artistName}
             </PackageDetailRow>
@@ -228,11 +225,8 @@ export default function PackageDetail() {
           </dl>
         </section>
 
-        <section
-          aria-labelledby="package-actions-title"
-          className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-5"
-        >
-          <h3 id="package-actions-title" className="text-[17px] leading-[22px] font-bold text-app-ink">
+        <section aria-labelledby="package-actions-title" className="min-w-0 p-4 sm:p-5">
+          <h3 id="package-actions-title" className="text-[21px] leading-tight font-semibold text-app-ink">
             {t('downloads.package.quickActions')}
           </h3>
 
@@ -243,7 +237,7 @@ export default function PackageDetail() {
           )}
 
           {isCompleted && !task.hasFile && (
-            <p className="mt-4 rounded-lg bg-amber-50 px-3 py-2 text-[13px] leading-4 text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
+            <p className="mt-4 rounded-lg bg-amber-50 px-3 py-2 text-[17px] leading-[1.47] text-amber-800 dark:bg-amber-950/30 dark:text-amber-300">
               {t('downloads.package.fileUnavailable')}
             </p>
           )}
@@ -254,33 +248,25 @@ export default function PackageDetail() {
                 type="button"
                 onClick={handleCheckUpdate}
                 disabled={checkingUpdate || (!account && !isPreview)}
-                className="min-h-11 min-w-0 rounded-lg bg-app-canvas px-3 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover disabled:cursor-not-allowed disabled:opacity-50"
+                className="app-button-utility min-w-0"
               >
                 {checkingUpdate ? t('downloads.package.checkingUpdate') : t('downloads.package.checkUpdate')}
               </button>
             )}
             {isActive && (
-              <button
-                type="button"
-                onClick={handlePause}
-                className="min-h-11 min-w-0 rounded-lg bg-app-canvas px-3 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
-              >
+              <button type="button" onClick={handlePause} className="app-button-utility min-w-0">
                 {t('downloads.package.pause')}
               </button>
             )}
             {isPaused && (
-              <button
-                type="button"
-                onClick={handleResume}
-                className="min-h-11 min-w-0 rounded-lg bg-app-action px-3 py-2 text-[13px] leading-4 font-medium text-white transition-colors hover:bg-blue-700"
-              >
+              <button type="button" onClick={handleResume} className="app-button-primary min-w-0">
                 {t('downloads.package.resume')}
               </button>
             )}
             <button
               type="button"
               onClick={handleDelete}
-              className="min-h-11 min-w-0 rounded-lg bg-red-50 px-3 py-2 text-[13px] leading-4 font-medium text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
+              className="min-h-11 min-w-0 rounded-[8px] bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
             >
               {t('downloads.package.delete')}
             </button>
@@ -294,20 +280,20 @@ export default function PackageDetail() {
         title={t('downloads.package.updateAvailable')}
       >
         <div className="min-w-0 space-y-4">
-          <p className="min-w-0 break-words text-[13px] leading-4 text-app-secondary [overflow-wrap:anywhere]">
+          <p className="min-w-0 break-words text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]">
             {t('downloads.package.updatePrompt', {
               version: latestApp?.version,
             })}
           </p>
           {availableVersions.length > 0 && (
             <div className="min-w-0">
-              <label className="mb-1 block text-[13px] leading-4 font-medium text-app-secondary">
+              <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
                 {t('downloads.package.selectVersion')}
               </label>
               <select
                 value={selectedVersion}
                 onChange={(event) => setSelectedVersion(event.target.value)}
-                className="min-h-11 w-full min-w-0 max-w-full truncate rounded-[6px] border border-app-divider bg-app-surface px-3 py-2 text-base text-app-ink focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="app-field min-h-11 w-full min-w-0 max-w-full truncate"
               >
                 {availableVersions.map((version, index) => (
                   <option key={version} value={version}>
@@ -318,18 +304,10 @@ export default function PackageDetail() {
             </div>
           )}
           <div className="mt-6 grid min-w-0 grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => setShowUpdateModal(false)}
-              className="min-h-11 min-w-0 rounded-lg bg-app-canvas px-3 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
-            >
+            <button type="button" onClick={() => setShowUpdateModal(false)} className="app-button-utility min-w-0">
               {t('settings.data.cancel')}
             </button>
-            <button
-              type="button"
-              onClick={handleConfirmUpdate}
-              className="min-h-11 min-w-0 rounded-lg bg-app-action px-3 py-2 text-[13px] leading-4 font-medium text-white transition-colors hover:bg-blue-700"
-            >
+            <button type="button" onClick={handleConfirmUpdate} className="app-button-primary min-w-0">
               {t('downloads.package.update')}
             </button>
           </div>
@@ -341,9 +319,9 @@ export default function PackageDetail() {
 
 function DetailTile({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-lg bg-app-canvas px-3 py-2.5">
-      <dt className="truncate text-[12px] leading-[15px] text-app-secondary">{label}</dt>
-      <dd title={value} className="mt-1 truncate text-[13px] leading-4 font-medium text-app-ink">
+    <div className="min-w-0 px-3 py-2.5">
+      <dt className="truncate text-[14px] leading-5 text-app-secondary">{label}</dt>
+      <dd title={value} className="mt-1 truncate text-[14px] leading-5 text-app-ink">
         {value}
       </dd>
     </div>
@@ -362,7 +340,7 @@ function PackageDetailRow({
   valueTitle?: string;
 }) {
   return (
-    <div className="grid min-w-0 grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] items-start gap-4 py-2.5 text-[13px] leading-4 sm:gap-6">
+    <div className="grid min-w-0 grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] items-start gap-4 py-2.5 text-[14px] leading-5 sm:gap-6">
       <dt className="min-w-0 break-words text-app-secondary [overflow-wrap:anywhere]">{label}</dt>
       <dd
         title={valueTitle}

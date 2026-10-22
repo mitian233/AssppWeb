@@ -127,27 +127,22 @@ export default function AddDownload() {
   return (
     <PageContainer title={t('downloads.add.title')}>
       <div className="min-w-0 space-y-6">
-        <form
-          onSubmit={handleLookup}
-          className="min-w-0 space-y-4 rounded-app-card bg-app-surface p-4 shadow-app-card sm:p-5"
-        >
+        <form onSubmit={handleLookup} className="min-w-0 space-y-4">
           <div className="min-w-0">
-            <label className="mb-1 block text-[13px] leading-4 font-medium text-app-secondary">
-              {t('downloads.add.bundleId')}
-            </label>
+            <label className="mb-1 block text-[14px] leading-5 text-app-secondary">{t('downloads.add.bundleId')}</label>
             <div className="flex min-w-0 flex-col gap-2 sm:flex-row">
               <input
                 type="text"
                 value={bundleId}
                 onChange={(e) => setBundleId(e.target.value)}
                 placeholder={t('downloads.add.placeholder')}
-                className="min-h-11 w-full min-w-0 flex-1 rounded-[6px] border-0 bg-app-canvas px-4 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-60"
+                className="app-field min-h-11 w-full min-w-0 flex-1 disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !bundleId.trim()}
-                className="min-h-11 min-w-0 whitespace-normal break-words rounded-full bg-app-action px-6 py-2 text-[13px] leading-[18px] font-semibold text-white transition-colors hover:bg-blue-700 disabled:opacity-50 sm:w-auto"
+                className="app-button-primary min-w-0 whitespace-normal break-words disabled:opacity-50 sm:w-auto"
               >
                 {loadingAction === 'lookup' ? t('downloads.add.lookingUp') : t('downloads.add.lookup')}
               </button>
@@ -163,12 +158,12 @@ export default function AddDownload() {
               availableCountryCodes={availableCountryCodes}
               allCountryCodes={allCountryCodes}
               disabled={isLoading}
-              className="min-h-11 w-full min-w-0 max-w-full truncate rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink disabled:cursor-not-allowed disabled:bg-app-canvas disabled:text-app-tertiary"
+              className="app-field min-h-11 w-full min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
             />
             <select
               value={selectedAccount}
               onChange={(e) => setSelectedAccount(e.target.value)}
-              className="min-h-11 w-full min-w-0 max-w-full truncate rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-60"
+              className="app-field min-h-11 w-full min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
               disabled={isLoading || filteredAccounts.length === 0}
             >
               {filteredAccounts.length > 0 ? (
@@ -185,10 +180,10 @@ export default function AddDownload() {
         </form>
 
         {!app && !isLoading && (
-          <div className="flex min-w-0 flex-col items-center justify-center rounded-app-card bg-app-surface px-5 py-14 text-center shadow-app-card sm:px-6">
-            <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-950">
+          <div className="flex min-w-0 flex-col items-center justify-center px-5 py-14 text-center sm:px-6">
+            <div className="mb-5 flex h-16 w-16 items-center justify-center bg-app-surface">
               <svg
-                className="h-8 w-8 text-blue-600 dark:text-blue-400"
+                className="h-8 w-8 text-app-action"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -197,35 +192,35 @@ export default function AddDownload() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="mb-2 min-w-0 break-words text-center text-[17px] leading-[22px] font-bold text-app-ink [overflow-wrap:anywhere]">
+            <h3 className="mb-2 min-w-0 break-words text-center text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]">
               {t('downloads.add.emptyTitle')}
             </h3>
-            <p className="max-w-sm min-w-0 break-words text-center text-[13px] leading-4 text-app-secondary [overflow-wrap:anywhere]">
+            <p className="max-w-sm min-w-0 break-words text-center text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]">
               {t('downloads.add.emptyDesc')}
             </p>
           </div>
         )}
 
         {app && (
-          <div className="min-w-0 rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+          <div className="min-w-0 p-5 sm:p-6">
             <div className="mb-4 flex min-w-0 items-start gap-4">
               <AppIcon url={app.artworkUrl} name={app.name} size="md" />
               <div className="min-w-0 flex-1">
                 <p
                   title={app.name}
-                  className="min-w-0 break-words text-[13px] leading-4 font-medium text-app-ink [overflow-wrap:anywhere]"
+                  className="min-w-0 break-words text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]"
                 >
                   {app.name}
                 </p>
                 <p
                   title={app.artistName}
-                  className="min-w-0 break-words text-[13px] leading-4 text-app-secondary [overflow-wrap:anywhere]"
+                  className="min-w-0 break-words text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]"
                 >
                   {app.artistName}
                 </p>
                 <p
                   title={`${app.version} - ${app.formattedPrice ?? t('search.product.free')}`}
-                  className="min-w-0 break-all text-[12px] leading-[15px] text-app-tertiary"
+                  className="min-w-0 break-all text-[14px] leading-5 text-app-tertiary"
                 >
                   v{app.version} - {app.formattedPrice ?? t('search.product.free')}
                 </p>
@@ -234,13 +229,13 @@ export default function AddDownload() {
 
             {step === 'versions' && versions.length > 0 && (
               <div className="mb-4 min-w-0">
-                <label className="mb-1 block text-[13px] leading-4 font-medium text-app-secondary">
+                <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
                   {t('downloads.add.versionOptional')}
                 </label>
                 <select
                   value={selectedVersion}
                   onChange={(e) => setSelectedVersion(e.target.value)}
-                  className="min-h-11 w-full min-w-0 max-w-full truncate rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="app-field min-h-11 w-full min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <option value="">{t('downloads.add.latest')}</option>
                   {versions.map((v) => (
@@ -257,7 +252,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleGetLicense}
                   disabled={isLoading || !account}
-                  className="min-h-11 min-w-0 whitespace-normal break-words rounded-full bg-blue-50 px-4 py-2 text-[13px] leading-[18px] font-semibold text-app-action transition-colors hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto dark:bg-blue-950/60 dark:text-blue-400"
+                  className="app-button-secondary min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {loadingAction === 'license' ? t('downloads.add.processing') : t('downloads.add.getLicense')}
                 </button>
@@ -266,7 +261,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleLoadVersions}
                   disabled={isLoading || !account}
-                  className="min-h-11 min-w-0 whitespace-normal break-words rounded-full bg-app-canvas px-4 py-2 text-[13px] leading-[18px] font-semibold text-app-secondary transition-colors hover:bg-app-hover disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="app-button-utility min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {loadingAction === 'versions' ? t('downloads.add.processing') : t('downloads.add.selectVersion')}
                 </button>
@@ -274,7 +269,7 @@ export default function AddDownload() {
               <button
                 onClick={handleDownload}
                 disabled={isLoading || !account}
-                className="min-h-11 min-w-0 whitespace-normal break-words rounded-full bg-app-action px-5 py-2 text-[13px] leading-[18px] font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="app-button-primary min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               >
                 {loadingAction === 'download' ? t('downloads.add.processing') : t('downloads.add.download')}
               </button>

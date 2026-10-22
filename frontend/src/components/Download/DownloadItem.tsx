@@ -23,7 +23,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
   const detailsHref = `/downloads/${task.id}${preview ? '?preview=downloads' : ''}`;
 
   return (
-    <article className="min-w-0 rounded-app-card bg-app-surface p-4 shadow-app-card">
+    <article className="min-w-0 p-4">
       <div className="flex min-w-0 items-start gap-3">
         <AppIcon url={task.software.artworkUrl} name={task.software.name} size="sm" />
         <div className="min-w-0 flex-1">
@@ -31,11 +31,11 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
             <div className="min-w-0 flex-1">
               <Link
                 to={detailsHref}
-                className="block truncate text-[13px] leading-4 font-semibold text-app-ink transition-colors hover:text-app-action"
+                className="block truncate text-[17px] leading-[22px] font-semibold text-app-ink transition-colors hover:text-app-link-action"
               >
                 {task.software.name}
               </Link>
-              <p className="mt-0.5 truncate text-[12px] leading-[15px] text-app-secondary">
+              <p className="mt-0.5 truncate text-[17px] leading-[1.47] text-app-secondary">
                 {task.software.artistName}
               </p>
             </div>
@@ -43,10 +43,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
               <Badge status={task.status} />
             </div>
           </div>
-          <p
-            title={task.software.bundleID}
-            className="mt-1 truncate font-mono text-[12px] leading-[15px] text-app-tertiary"
-          >
+          <p title={task.software.bundleID} className="mt-1 truncate font-mono text-[14px] leading-5 text-app-tertiary">
             {task.software.bundleID}
           </p>
         </div>
@@ -61,7 +58,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
       {(isActive || isPaused) && (
         <div className="mt-3">
           <ProgressBar progress={task.progress} label={task.software.name} />
-          <div className="mt-1.5 flex min-w-0 justify-between gap-3 text-[12px] leading-[15px] font-medium text-app-secondary">
+          <div className="mt-1.5 flex min-w-0 justify-between gap-3 text-[14px] leading-5 text-app-secondary">
             <span>{Math.round(task.progress)}%</span>
             {task.speed && isActive && <span className="max-w-[55%] truncate text-right">{task.speed}</span>}
           </div>
@@ -69,7 +66,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
       )}
 
       {task.error && (
-        <p className="mt-3 break-words rounded-lg bg-red-50 p-2.5 text-[13px] leading-4 font-medium text-red-700 dark:bg-red-950/40 dark:text-red-400">
+        <p className="mt-3 break-words rounded-lg bg-red-50 p-2.5 text-[14px] leading-5 text-red-700 dark:bg-red-950/40 dark:text-red-400">
           {task.error}
         </p>
       )}
@@ -82,25 +79,17 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
 
       <div className="mt-3 grid min-w-0 grid-cols-2 gap-2">
         {isActive ? (
-          <button
-            type="button"
-            onClick={() => onPause(task.id)}
-            className="min-h-10 min-w-0 rounded-lg bg-app-canvas px-3 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
-          >
+          <button type="button" onClick={() => onPause(task.id)} className="app-button-utility min-w-0">
             {t('downloads.package.pause')}
           </button>
         ) : isPaused ? (
-          <button
-            type="button"
-            onClick={() => onResume(task.id)}
-            className="min-h-10 min-w-0 rounded-lg bg-blue-50 px-3 py-2 text-[13px] leading-4 font-medium text-blue-700 transition-colors hover:bg-blue-100 dark:bg-blue-950/60 dark:text-blue-300 dark:hover:bg-blue-950"
-          >
+          <button type="button" onClick={() => onResume(task.id)} className="app-button-primary min-w-0">
             {t('downloads.package.resume')}
           </button>
         ) : (
           <Link
             to={detailsHref}
-            className="inline-flex min-h-10 min-w-0 items-center justify-center rounded-lg bg-app-canvas px-3 py-2 text-center text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
+            className="app-button-utility inline-flex min-w-0 items-center justify-center text-center"
           >
             {t('downloads.package.title')}
           </Link>
@@ -108,7 +97,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
         <button
           type="button"
           onClick={() => onDelete(task.id)}
-          className="min-h-10 min-w-0 rounded-lg bg-red-50 px-3 py-2 text-[13px] leading-4 font-medium text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
+          className="min-h-11 min-w-0 rounded-[8px] bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
         >
           {t('downloads.package.delete')}
         </button>
@@ -119,11 +108,9 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
 
 function SummaryItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded-lg bg-app-canvas px-2.5 py-2">
-      <dt className="truncate text-[12px] leading-[15px] font-medium uppercase tracking-wide text-app-tertiary">
-        {label}
-      </dt>
-      <dd title={value} className="mt-0.5 truncate text-[12px] leading-[15px] font-medium text-app-secondary">
+    <div className="min-w-0 px-2.5 py-2">
+      <dt className="truncate text-[14px] leading-5 text-app-tertiary">{label}</dt>
+      <dd title={value} className="mt-0.5 truncate text-[14px] leading-5 text-app-secondary">
         {value}
       </dd>
     </div>

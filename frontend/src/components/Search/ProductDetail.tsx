@@ -74,7 +74,7 @@ export default function ProductDetail() {
   if (!app) {
     return (
       <PageContainer title={t('search.product.title')}>
-        <p className="text-[13px] leading-4 text-app-secondary">{t('search.product.notFound')}</p>
+        <p className="text-[17px] leading-[1.47] text-app-secondary">{t('search.product.notFound')}</p>
       </PageContainer>
     );
   }
@@ -123,16 +123,14 @@ export default function ProductDetail() {
           </Alert>
         )}
 
-        <section className="flex min-w-0 items-start gap-4 rounded-app-card bg-app-surface p-5 shadow-app-card sm:gap-5 sm:p-6">
+        <section className="flex min-w-0 items-start gap-4 p-5 sm:gap-5 sm:p-6">
           <div className="shrink-0">
             <AppIcon url={app.artworkUrl} name={app.name} size="lg" />
           </div>
           <div className="flex-1 min-w-0">
-            <h1 className="text-[17px] leading-[22px] font-bold tracking-tight text-app-ink sm:text-[34px] sm:leading-10">
-              {app.name}
-            </h1>
-            <p className="text-[13px] leading-4 text-app-secondary">{app.artistName}</p>
-            <div className="mt-3 flex flex-wrap gap-2 text-[12px] leading-[15px] font-medium text-app-secondary">
+            <h1 className="app-heading min-w-0 break-words [overflow-wrap:anywhere]">{app.name}</h1>
+            <p className="text-[17px] leading-[1.47] text-app-secondary">{app.artistName}</p>
+            <div className="mt-3 flex flex-wrap gap-2 text-[14px] leading-5 font-normal text-app-secondary">
               <span className="rounded-full bg-app-canvas px-3 py-1">
                 {app.formattedPrice ?? t('search.product.free')}
               </span>
@@ -146,26 +144,26 @@ export default function ProductDetail() {
         </section>
 
         {productAccounts.length === 0 ? (
-          <div className="rounded-2xl bg-yellow-50 p-4 text-[13px] leading-4 text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
-            <Link to="/accounts/add" className="font-medium underline">
+          <div className="rounded-2xl bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
+            <Link to="/accounts/add" className="app-link-action font-normal underline">
               {t('search.product.addAccountLink')}
             </Link>{' '}
             {t('search.product.addAccountPrompt')}
           </div>
         ) : filteredAccounts.length === 0 ? (
-          <div className="rounded-2xl bg-yellow-50 p-4 text-[13px] leading-4 text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
+          <div className="rounded-2xl bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
             {t('search.product.noAccountsForRegion')}
           </div>
         ) : (
-          <section className="space-y-4 rounded-app-card bg-app-surface p-5 shadow-app-card">
+          <section className="space-y-4 p-5">
             <div className="min-w-0">
-              <label className="mb-1 block text-[13px] leading-4 font-medium text-app-secondary">
+              <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
                 {t('search.product.account')}
               </label>
               <select
                 value={selectedAccount}
                 onChange={(e) => setSelectedAccount(e.target.value)}
-                className="min-h-11 w-full min-w-0 rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40"
+                className="app-field min-h-11 w-full min-w-0"
                 disabled={loadingAction !== null}
               >
                 {filteredAccounts.map((a) => (
@@ -181,7 +179,7 @@ export default function ProductDetail() {
                   type="button"
                   onClick={handlePurchase}
                   disabled={loadingAction !== null}
-                  className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full bg-blue-50 px-2 py-2 text-center text-[13px] leading-4 font-semibold text-app-action transition-colors hover:bg-blue-100 disabled:opacity-50 dark:bg-blue-950/60 dark:text-blue-400 dark:hover:bg-blue-950 sm:px-5"
+                  className="app-button-secondary inline-flex min-h-11 w-full min-w-0 items-center justify-center px-2 text-center disabled:opacity-50 sm:px-5"
                 >
                   {loadingAction === 'purchase' ? t('search.product.processing') : t('search.product.getLicense')}
                 </button>
@@ -191,7 +189,7 @@ export default function ProductDetail() {
                 onClick={handleDownload}
                 disabled={loadingAction !== null || !account}
                 aria-busy={isDownloading}
-                className={`inline-flex min-h-10 w-full min-w-0 items-center justify-center gap-1.5 rounded-full bg-app-action px-2 py-2 text-center text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed sm:gap-2 sm:px-5 ${
+                className={`app-button-primary inline-flex min-h-11 w-full min-w-0 items-center justify-center gap-1.5 px-2 disabled:cursor-not-allowed sm:gap-2 sm:px-5 ${
                   !account || (loadingAction !== null && !isDownloading) ? 'opacity-50' : ''
                 }`}
               >
@@ -203,7 +201,7 @@ export default function ProductDetail() {
               <Link
                 to={`/search/${app.id}/versions`}
                 state={{ app, country }}
-                className="inline-flex min-h-10 w-full min-w-0 items-center justify-center rounded-full bg-app-canvas px-2 py-2 text-center text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover sm:px-5"
+                className="app-button-utility inline-flex min-h-11 w-full min-w-0 items-center justify-center px-2 text-center sm:px-5"
               >
                 {t('search.product.versionHistory')}
               </Link>
@@ -211,9 +209,9 @@ export default function ProductDetail() {
           </section>
         )}
 
-        <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
-          <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">{t('search.product.details')}</h2>
-          <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-[13px] leading-4 sm:grid-cols-2">
+        <section className="p-5 sm:p-6">
+          <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">{t('search.product.details')}</h2>
+          <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-[14px] leading-5 sm:grid-cols-2">
             <dt className="text-app-secondary">{t('search.product.bundleId')}</dt>
             <dd className="break-all text-app-ink">{app.bundleID}</dd>
             <dt className="text-app-secondary">{t('search.product.version')}</dt>
@@ -232,26 +230,26 @@ export default function ProductDetail() {
         </section>
 
         {app.description && (
-          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
-            <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">
+          <section className="p-5 sm:p-6">
+            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
               {t('search.product.description')}
             </h2>
-            <p className="text-[13px] leading-4 text-app-secondary whitespace-pre-line">{app.description}</p>
+            <p className="text-[17px] leading-[1.47] text-app-secondary whitespace-pre-line">{app.description}</p>
           </section>
         )}
 
         {app.releaseNotes && (
-          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
-            <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">
+          <section className="p-5 sm:p-6">
+            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
               {t('search.product.releaseNotes')}
             </h2>
-            <p className="text-[13px] leading-4 text-app-secondary whitespace-pre-line">{app.releaseNotes}</p>
+            <p className="text-[17px] leading-[1.47] text-app-secondary whitespace-pre-line">{app.releaseNotes}</p>
           </section>
         )}
 
         {app.screenshotUrls && app.screenshotUrls.length > 0 && (
-          <section className="rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
-            <h2 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">
+          <section className="p-5 sm:p-6">
+            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
               {t('search.product.screenshots')}
             </h2>
             <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

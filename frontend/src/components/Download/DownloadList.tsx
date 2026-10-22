@@ -158,19 +158,19 @@ export default function DownloadList() {
   return (
     <PageContainer>
       <div className="mb-6 grid grid-cols-2 items-start gap-2 min-[360px]:grid-cols-3 sm:mb-7 sm:grid-cols-6">
-        <h1 className="col-span-2 min-w-0 text-[20px] leading-[26px] font-bold tracking-[-0.5px] text-app-ink min-[360px]:col-span-1 sm:col-span-4 sm:text-[26px] sm:leading-8">
+        <h1 className="app-heading col-span-2 min-w-0 text-[28px] leading-tight min-[360px]:col-span-1 sm:col-span-4 sm:text-[32px]">
           {t('downloads.title')}
         </h1>
         <button
           onClick={handleCheckAllUpdates}
           disabled={checkingAll}
-          className="flex h-9 w-full min-w-0 items-center justify-center rounded-full bg-emerald-100 px-2.5 text-center text-[13px] leading-4 font-semibold text-emerald-800 transition-colors hover:bg-emerald-200 disabled:cursor-not-allowed disabled:bg-app-canvas disabled:text-app-tertiary dark:bg-emerald-900/60 dark:text-emerald-300 dark:hover:bg-emerald-900 disabled:dark:bg-app-canvas disabled:dark:text-app-tertiary"
+          className="app-button-secondary flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
         >
           {checkingAll ? t('downloads.checkingUpdates') : t('downloads.checkUpdates')}
         </button>
         <Link
           to="/downloads/add"
-          className="flex h-9 w-full min-w-0 items-center justify-center rounded-full bg-app-action px-2.5 text-center text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700"
+          className="app-button-primary flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center"
         >
           {t('downloads.new')}
         </Link>
@@ -185,9 +185,7 @@ export default function DownloadList() {
           <button
             key={status}
             onClick={() => setFilter(status)}
-            className={`flex h-9 w-full min-w-0 items-center justify-center rounded-full px-2.5 text-center text-[13px] leading-4 font-semibold transition-colors ${
-              filter === status ? 'bg-app-action text-white' : 'bg-app-surface text-app-secondary hover:bg-app-hover'
-            }`}
+            className={`${filter === status ? 'app-button-primary' : 'app-button-utility'} flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center`}
           >
             {t(`downloads.status.${status}`)}
             <span className="ml-1">
@@ -214,7 +212,7 @@ export default function DownloadList() {
       </div>
 
       {previewEnabled && (
-        <div className="mb-5 flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[13px] leading-4 text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
+        <div className="mb-5 flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[17px] leading-[1.47] text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
           <span
             aria-hidden="true"
             className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-full bg-blue-600 px-2 text-[10px] font-semibold uppercase tracking-wide text-white"
@@ -228,8 +226,8 @@ export default function DownloadList() {
       {loading && displayTasks.length === 0 ? (
         <div className="py-12 text-center text-app-secondary">{t('downloads.loading')}</div>
       ) : sortedTasks.length === 0 ? (
-        <div className="my-4 flex flex-col items-center justify-center rounded-app-card bg-app-canvas px-6 py-16 text-center">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-app-surface">
+        <div className="my-4 flex flex-col items-center justify-center px-6 py-16 text-center">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center bg-app-surface">
             <svg
               className="h-8 w-8 text-app-action"
               fill="none"
@@ -244,7 +242,7 @@ export default function DownloadList() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-center text-[17px] leading-[22px] font-bold text-app-ink">
+          <h3 className="mb-2 text-center text-[17px] leading-[22px] font-semibold text-app-ink">
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
@@ -252,7 +250,7 @@ export default function DownloadList() {
                 })}
           </h3>
           <p
-            className="mb-6 max-w-full overflow-hidden text-center text-[13px] leading-4 text-app-secondary"
+            className="mb-6 max-w-full overflow-hidden text-center text-[17px] leading-[1.47] text-app-secondary"
             aria-label={filter === 'all' ? t('downloads.emptyAllDesc') : t('downloads.emptyFilterDesc')}
             title={filter === 'all' ? t('downloads.emptyAllDesc') : t('downloads.emptyFilterDesc')}
           >
@@ -261,7 +259,7 @@ export default function DownloadList() {
                 <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-[15px] xl:hidden">
                   {t('downloads.emptyAllDescShort')}
                 </span>
-                <span aria-hidden="true" className="hidden whitespace-nowrap text-[13px] leading-4 xl:block">
+                <span aria-hidden="true" className="hidden whitespace-nowrap text-[17px] leading-[1.47] xl:block">
                   {t('downloads.emptyAllDesc')}
                 </span>
               </>
@@ -272,10 +270,7 @@ export default function DownloadList() {
             )}
           </p>
           {filter === 'all' && (
-            <Link
-              to="/search"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-[18px] font-semibold text-white transition-colors hover:bg-blue-700"
-            >
+            <Link to="/search" className="app-button-primary inline-flex min-h-11 items-center gap-2">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path
                   strokeLinecap="round"
@@ -312,10 +307,10 @@ export default function DownloadList() {
             <Spinner />
           </div>
           <div className="text-center">
-            <p className="truncate text-[13px] leading-4 text-app-secondary">
+            <p className="truncate text-[17px] leading-[1.47] text-app-secondary">
               {checkProgress.appName ? `${t('downloads.checkingApp')}${checkProgress.appName}` : '...'}
             </p>
-            <p className="mt-1 font-mono text-[12px] leading-[15px] text-app-secondary">
+            <p className="mt-1 font-mono text-[14px] leading-5 text-app-secondary">
               {checkProgress.current} / {checkProgress.total}
             </p>
           </div>
@@ -323,12 +318,9 @@ export default function DownloadList() {
             label={t('downloads.checkingUpdates')}
             progress={checkProgress.total > 0 ? (checkProgress.current / checkProgress.total) * 100 : 0}
           />
-          <p className="text-center text-[12px] leading-[15px] text-app-tertiary">{t('downloads.checkUpdatesDesc')}</p>
+          <p className="text-center text-[14px] leading-5 text-app-tertiary">{t('downloads.checkUpdatesDesc')}</p>
           <div className="flex justify-center">
-            <button
-              onClick={handleCancelCheck}
-              className="rounded-lg border border-app-divider px-4 py-2 text-[13px] leading-4 font-medium text-app-secondary transition-colors hover:bg-app-hover"
-            >
+            <button onClick={handleCancelCheck} className="app-button-utility">
               {t('settings.data.cancel')}
             </button>
           </div>

@@ -50,22 +50,19 @@ export default function SearchPage() {
 
   return (
     <PageContainer title={t('search.title')}>
-      <form
-        onSubmit={handleSubmit}
-        className="mb-8 space-y-3 rounded-app-card bg-app-surface p-3 shadow-app-card sm:p-4"
-      >
+      <form onSubmit={handleSubmit} className="mb-8 space-y-3">
         <div className="flex flex-col gap-2 sm:flex-row">
           <input
             type="text"
             value={term}
             onChange={(e) => setSearchParam({ term: e.target.value })}
             placeholder={t('search.placeholder')}
-            className="min-h-11 flex-1 rounded-[4px] border-0 bg-app-canvas px-4 py-2.5 text-base text-app-ink placeholder:text-app-tertiary focus:ring-2 focus:ring-blue-500/40"
+            className="app-search-field min-h-11 flex-1"
           />
           <button
             type="submit"
             disabled={loading || !term.trim()}
-            className="min-h-11 whitespace-nowrap rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-[18px] font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="app-button-primary whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? t('search.searching') : t('search.button')}
           </button>
@@ -76,13 +73,13 @@ export default function SearchPage() {
             onChange={(c) => setSearchParam({ country: c })}
             availableCountryCodes={availableCountryCodes}
             allCountryCodes={allCountryCodes}
-            className="w-1/2 truncate border-0 bg-app-canvas text-base text-app-ink"
+            className="app-field w-1/2 truncate"
           />
           <select
             value={activeEntity}
             onChange={(e) => setSearchParam({ entity: e.target.value })}
             aria-label={t('settings.defaults.entity')}
-            className="min-h-11 w-1/2 truncate rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40"
+            className="app-field min-h-11 w-1/2 truncate"
           >
             <option value="iPhone">iPhone</option>
             <option value="iPad">iPad</option>
@@ -91,10 +88,10 @@ export default function SearchPage() {
       </form>
 
       {results.length === 0 && !loading && !error && (
-        <div className="flex flex-col items-center justify-center rounded-app-card bg-app-surface px-6 py-16 text-center shadow-app-card">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 dark:bg-blue-950">
+        <div className="flex flex-col items-center justify-center px-6 py-16 text-center">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center bg-app-surface">
             <svg
-              className="h-8 w-8 text-blue-600 dark:text-blue-400"
+              className="h-8 w-8 text-app-action"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -107,13 +104,13 @@ export default function SearchPage() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">{t('search.empty')}</h3>
-          <p className="max-w-full text-[13px] leading-4 text-app-secondary">{t('search.emptyDesc')}</p>
+          <h3 className="mb-2 text-[17px] leading-[22px] font-semibold text-app-ink">{t('search.empty')}</h3>
+          <p className="max-w-full text-[17px] leading-[1.47] text-app-secondary">{t('search.emptyDesc')}</p>
         </div>
       )}
 
       {results.length > 0 && (
-        <div className="overflow-hidden rounded-app-card bg-app-surface shadow-app-card">
+        <div className="overflow-hidden">
           <div className="divide-y divide-app-divider">
             {results.map((app) => (
               <Link
@@ -124,9 +121,9 @@ export default function SearchPage() {
               >
                 <AppIcon url={app.artworkUrl} name={app.name} size="md" />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[13px] leading-4 font-semibold text-app-ink">{app.name}</p>
-                  <p className="truncate text-[13px] leading-4 text-app-secondary">{app.artistName}</p>
-                  <div className="mt-1 flex items-center gap-2 overflow-hidden text-[12px] leading-[15px] text-app-tertiary">
+                  <p className="truncate text-[17px] leading-[22px] font-semibold text-app-ink">{app.name}</p>
+                  <p className="truncate text-[17px] leading-[1.47] text-app-secondary">{app.artistName}</p>
+                  <div className="mt-1 flex items-center gap-2 overflow-hidden text-[14px] leading-5 text-app-tertiary">
                     <span className="shrink-0">{app.formattedPrice ?? t('search.free')}</span>
                     <span className="truncate">{app.primaryGenreName}</span>
                     <span className="shrink-0">★ {app.averageUserRating.toFixed(1)}</span>
