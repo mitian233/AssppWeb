@@ -37,7 +37,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={cycleTheme}
-      className="flex h-9 w-9 items-center justify-center rounded-full bg-app-surface text-app-action transition-colors hover:bg-app-hover active:bg-app-selected"
+      className="flex h-11 w-11 items-center justify-center rounded-full bg-app-surface text-app-action transition-transform hover:bg-app-hover motion-safe:active:scale-[0.95]"
       title={t(`theme.${theme}`)}
     >
       {theme === 'light' && <SunIcon className="h-[18px] w-[18px]" />}

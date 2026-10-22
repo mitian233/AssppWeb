@@ -22,7 +22,7 @@ export default function CountrySelect({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       aria-label={t('regions.all')}
-      className={`rounded-[6px] border border-app-divider bg-app-surface px-3.5 py-2.5 text-base text-app-ink transition-colors focus-visible:border-app-action disabled:cursor-not-allowed disabled:bg-app-canvas disabled:text-app-tertiary ${className}`}
+      className={`app-field w-full transition-colors disabled:cursor-not-allowed disabled:bg-app-canvas disabled:text-app-tertiary ${className}`}
       disabled={disabled}
     >
       {availableCountryCodes.length > 0 && (

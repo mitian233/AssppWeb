@@ -31,7 +31,7 @@ export default function Badge({ status }: BadgeProps) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium leading-none ${styles[status]}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-normal leading-none ${styles[status]}`}
     >
       <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${dotStyles[status]}`} />
       {t(`downloads.status.${status}`)}

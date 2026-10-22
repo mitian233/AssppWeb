@@ -93,12 +93,12 @@ export default function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="w-full max-w-sm overflow-y-auto overscroll-contain rounded-app-card border border-app-divider bg-app-surface p-6 text-app-ink shadow-app-card"
+        className="w-full max-w-sm overflow-y-auto overscroll-contain rounded-app-card border border-app-divider bg-app-canvas p-6 text-app-ink"
         style={{
           maxHeight: 'calc(100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
         }}
       >
-        <h3 id={titleId} className="mb-4 text-[17px] font-bold leading-[22px]">
+        <h3 id={titleId} className="mb-4 text-[17px] font-semibold leading-[22px]">
           {title}
         </h3>
         {children}

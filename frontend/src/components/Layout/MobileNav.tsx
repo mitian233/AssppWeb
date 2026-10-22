@@ -22,7 +22,7 @@ export default function MobileNav() {
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 pb-1 pt-1.5 text-[10px] font-medium leading-none transition-colors ${
+              `flex min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 pb-1 pt-1.5 text-[10px] font-normal leading-none transition-colors motion-safe:active:scale-[0.95] ${
                 isActive ? 'text-app-action' : 'text-app-secondary hover:text-app-ink'
               }`
             }

@@ -39,7 +39,7 @@ export default function Sidebar() {
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `flex min-h-11 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-medium transition-colors ${
+              `flex min-h-11 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${
                 isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
               }`
             }
@@ -71,7 +71,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={cycleTheme}
-      className="flex min-h-11 w-full items-center gap-3 rounded-lg border border-app-divider bg-app-surface px-3.5 py-2.5 text-sm font-medium text-app-secondary transition-colors hover:bg-app-hover hover:text-app-ink"
+      className="flex min-h-11 w-full items-center gap-3 rounded-lg border border-app-divider bg-app-surface px-3.5 py-2.5 text-sm font-normal text-app-secondary transition-transform hover:bg-app-hover hover:text-app-ink motion-safe:active:scale-[0.95]"
       title={t(`theme.${theme}`)}
     >
       {theme === 'light' && <SunIcon className="h-5 w-5" />}

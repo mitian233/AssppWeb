@@ -24,9 +24,7 @@ export default function PageContainer({ title, children, action }: PageContainer
       <div className="mx-auto max-w-5xl px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
         {(title || action) && (
           <div className="mb-6 flex flex-wrap items-start justify-between gap-x-5 gap-y-3 sm:mb-7">
-            {title && (
-              <h1 className="min-w-0 text-[26px] font-bold leading-8 tracking-[-0.02em] text-app-ink">{title}</h1>
-            )}
+            {title && <h1 className="app-heading min-w-0">{title}</h1>}
             {action && <div className="ml-auto max-w-full">{action}</div>}
           </div>
         )}

@@ -20,7 +20,7 @@ export default function AppIcon({ url, name, size = 'md' }: AppIconProps) {
   if (!url || failed) {
     return (
       <div
-        className={`${sizeClasses[size]} ${surfaceClassName} flex items-center justify-center bg-gradient-to-br from-blue-500 to-blue-700 text-white`}
+        className={`${sizeClasses[size]} ${surfaceClassName} flex items-center justify-center bg-blue-700 text-white`}
         role="img"
         aria-label={name}
       >

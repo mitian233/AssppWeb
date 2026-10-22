@@ -67,7 +67,7 @@ export default function ToastContainer() {
             role={toast.type === 'error' ? 'alert' : 'status'}
             aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
             aria-atomic="true"
-            className="animate-toast-in pointer-events-auto flex w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] shrink-0 items-start gap-3 rounded-app-card border border-app-divider bg-app-surface p-3 shadow-app-card sm:w-auto sm:min-w-[320px] sm:max-w-md"
+            className="animate-toast-in pointer-events-auto flex w-[calc(100vw-2rem)] max-w-[calc(100vw-2rem)] shrink-0 items-start gap-3 rounded-app-card border border-app-divider bg-app-canvas p-3 sm:w-auto sm:min-w-[320px] sm:max-w-md"
           >
             <div
               className={`mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] ${iconBg[toast.type]}`}
@@ -77,11 +77,9 @@ export default function ToastContainer() {
 
             <div className="min-w-0 flex-1 py-0.5">
               {toast.title && (
-                <h4 className={`mb-0.5 text-[13px] font-semibold leading-4 ${titleColor[toast.type]}`}>
-                  {toast.title}
-                </h4>
+                <h4 className={`mb-0.5 text-sm font-semibold leading-5 ${titleColor[toast.type]}`}>{toast.title}</h4>
               )}
-              <p className="whitespace-pre-line break-words text-[13px] leading-4 text-app-secondary">
+              <p className="whitespace-pre-line break-words text-sm font-normal leading-5 text-app-secondary">
                 {toast.message}
               </p>
             </div>
