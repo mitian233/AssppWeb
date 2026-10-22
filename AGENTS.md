@@ -295,17 +295,17 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Design Tokens
 
-- **Semantic colors**: Use `app-canvas`, `app-surface`, `app-ink`, `app-secondary`, `app-tertiary`, `app-divider`, `app-selected`, `app-action`, and `app-hover` utilities, backed by the light/dark CSS variables in `frontend/src/index.css`.
-- **Canvas and surfaces**: Light canvas `#f5f5f7` with `#fff` surfaces; dark canvas `#151515` with `#1f1f1f` surfaces. Use the semantic tokens instead of paired hardcoded neutral overrides.
-- **Text hierarchy**: Primary, secondary, and tertiary ink use theme-aware opacity tokens. Keep status badges and alerts in their semantic green, blue, amber, purple, and red colors.
+- **Semantic colors**: Use `app-canvas`, `app-surface`, `app-ink`, `app-secondary`, `app-tertiary`, `app-divider`, `app-selected`, `app-action`, `app-link-action`, and `app-hover` utilities, backed by the light/dark CSS variables in `frontend/src/index.css`.
+- **Canvas and surfaces**: Light canvas is parchment `#f5f5f7`, with white `#ffffff` surfaces and near-black `#1d1d1f` ink. Dark canvas is `#1d1d1f`, with `#272729` surfaces and white ink. Light secondary text is `#6e6e73`; dark secondary text is `#cccccc`.
+- **Status colors**: Keep status badges and alerts in their semantic green, blue, amber, purple, and red colors.
 - **Borders and selection**: Use `app-divider` sparingly for structure. Sidebar selected items use the neutral `app-selected` fill and ink text; hover uses `app-hover`.
-- **Actions and focus**: `app-action` is `#007aff` in both themes. Keyboard `:focus-visible` uses a 4px `#007aff99` outline; controls must not add a competing ring.
+- **Actions and focus**: Filled actions use fixed `#0066cc` with white text. Inline links use `app-link-action` (`#0066cc` light, `#2997ff` dark). Keyboard `:focus-visible` uses a 2px `#0071e3` outline with 2px offset; controls must not add competing rings.
 
 ### Typography
 
 - System font stack with platform SF Pro fallbacks.
-- Body text: 13px / 16px. Metadata and captions: 12px / 15px. Section headings: 17px / 22px bold. Page headings: 26px / 32px bold. Keep form control text at 16px.
-- Preserve existing page-specific hierarchy and do not change text sizing by shrinking controls or altering their layout.
+- Body text: 17px / 1.47. Metadata: 12–14px. Section headings: 21px / 600. Page headings: 32px / 600. Keep form controls at 16px and search fields at 17px.
+- Use 400 or 600 font weights for interface text and headings; preserve page-specific hierarchy without shrinking controls or altering their layout.
 
 ### Spacing
 
@@ -316,9 +316,9 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Depth & Surfaces
 
-- Use semantic canvas and surface colors with the shared 17px `rounded-app-card` panel radius and low `shadow-app-card` elevation where panels need separation.
-- Keep lists and structural regions flat; use borders only for useful dividers and interactive boundaries.
-- Small controls retain their established radii; pills remain fully rounded. Avoid broad blur and heavy shadows in application chrome.
+- Page content sections, lists, forms, stats, and action regions use a flat page canvas without rounded card shells, shadows, or backdrop blur. Keep the Hero visually distinct through its surface color, without gradients or shadows.
+- Keep adjacent content sections flat and use fine `app-divider` borders only where they clarify structure.
+- Controls, icons and screenshots retain their own appropriate radii and surfaces. Modals and toasts use distinct surfaces and appropriate radii, without shadows.
 
 ### Layout
 
@@ -329,9 +329,10 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Component Patterns
 
-- **Buttons**: Use `app-action` for primary actions, neutral semantic surfaces for secondary actions, and status colors for destructive actions.
-- **Inputs**: Keep controls at 16px text; use semantic surfaces and the shared focus-visible outline without competing focus rings.
-- **Cards**: Use semantic surfaces, `rounded-app-card`, and low `shadow-app-card` when separation is needed.
+- **Buttons**: Use `.app-button-primary` for filled Action Blue pills with white text, `.app-button-secondary` for transparent outlined pills using `app-link-action`, and `.app-button-utility` for neutral surface controls. Buttons have a 44px minimum height; enabled pressed buttons and action links scale to 0.95, with reduced motion respected.
+- **Inputs**: Use `.app-field` for 16px controls with explicit 8px corners and `.app-search-field` for 17px pill-shaped search fields. Both use semantic surfaces, a 44px minimum height, and the shared focus-visible outline without competing focus rings.
+- **Headings**: Use `.app-heading` for 32px / 600 page headings.
+- **Cards**: Page content has no card shell except for the visually distinct homepage Hero. Avoid decorative gradients, container chrome, and shadows.
 - **Badge**: Color-coded status pills; neutral pending state uses semantic neutral tokens.
 - **ProgressBar**: Neutral track and action blue fill without glow.
 - **AppIcon**: 3 sizes (40/56/80px), 25% rounded corners, letter fallback.
@@ -343,7 +344,7 @@ These rules prevent the codebase from becoming messy after merging PRs. Enforce 
 
 ### `transition-colors` Usage Policy
 
-**Problem**: `transition-colors` on static containers (cards, sections, alerts, badges) causes visible color flashing when the page loads in dark mode — the element briefly renders in light colors then transitions to dark.
+**Problem**: `transition-colors` on static containers (flat sections, alerts, badges) causes visible color flashing when the page loads in dark mode — the element briefly renders in light colors then transitions to dark.
 
 **Rule**: Only use `transition-colors` on **interactive elements** that change color on user interaction:
 
@@ -354,8 +355,7 @@ These rules prevent the codebase from becoming messy after merging PRs. Enforce 
 
 **Never use `transition-colors` on**:
 
-- Card containers using semantic surfaces and card tokens
-- Section wrappers (`<section>` with background)
+- Flat content section wrappers (without card backgrounds)
 - Alert/warning banners (use the `<Alert>` component)
 - Badge pills
 - ProgressBar tracks
@@ -385,14 +385,9 @@ Before merging any frontend PR, verify imports follow the convention in every ch
 9. Types (always last)
 ```
 
-### Empty State Containers
+### Empty States
 
-Empty states (shown when a list has no items) use a consistent pattern:
-
-- `border-2 border-dashed` (not solid border)
-- `bg-app-canvas` background
-- No `transition-colors` (removed to prevent dark mode flashing)
-- Centered icon in a surface circle, title, description, optional CTA button
+Empty states (shown when a list has no items) use an unboxed layout with centered icon, title, description, and optional CTA. Preserve comfortable spacing; do not add a dashed border or container background.
 
 ### Dark Mode Color Pairings
 
