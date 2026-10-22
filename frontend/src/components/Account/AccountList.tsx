@@ -17,26 +17,17 @@ export default function AccountList() {
     <PageContainer
       title={t('accounts.title')}
       action={
-        <Link
-          to="/accounts/add"
-          className="inline-flex min-h-10 items-center rounded-full bg-app-action px-5 py-2 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700"
-        >
+        <Link to="/accounts/add" className="app-button-primary inline-flex items-center">
           {t('accounts.add')}
         </Link>
       }
     >
       {loading ? (
-        <div className="py-12 text-center text-[13px] leading-4 text-app-tertiary">{t('accounts.loading')}</div>
+        <div className="py-12 text-center text-sm leading-5 text-app-tertiary">{t('accounts.loading')}</div>
       ) : accounts.length === 0 ? (
-        <div className="my-4 flex flex-col items-center justify-center rounded-app-card bg-app-surface px-6 py-16 text-center shadow-app-card">
-          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-blue-50 dark:bg-blue-950">
-            <svg
-              className="h-8 w-8 text-blue-600 dark:text-blue-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
+        <div className="my-4 flex flex-col items-center justify-center px-6 py-16 text-center">
+          <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-xl bg-app-surface text-app-action">
+            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -44,14 +35,9 @@ export default function AccountList() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-[17px] leading-[22px] font-bold text-app-ink">{t('accounts.empty')}</h3>
-          <p className="mb-6 max-w-full text-[13px] leading-4 tracking-[-0.015em] text-app-secondary">
-            {t('accounts.emptyDesc')}
-          </p>
-          <Link
-            to="/accounts/add"
-            className="inline-flex min-h-11 items-center gap-2 rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700"
-          >
+          <h3 className="mb-2 text-lg leading-6 font-semibold text-app-ink">{t('accounts.empty')}</h3>
+          <p className="mb-6 max-w-full text-[17px] leading-relaxed text-app-secondary">{t('accounts.emptyDesc')}</p>
+          <Link to="/accounts/add" className="app-button-primary inline-flex items-center gap-2">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
@@ -59,7 +45,7 @@ export default function AccountList() {
           </Link>
         </div>
       ) : (
-        <div className="overflow-hidden rounded-app-card bg-app-surface shadow-app-card">
+        <div className="overflow-hidden">
           <div className="divide-y divide-app-divider">
             {accounts.map((account) => {
               const countryCode = storeIdToCountry(account.store) || account.store;
@@ -75,18 +61,18 @@ export default function AccountList() {
                     }`
                   }
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-lg font-semibold text-white">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-app-action text-lg font-normal text-white">
                     {(account.firstName || account.email).charAt(0).toUpperCase()}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] leading-4 font-semibold text-app-ink">
+                    <p className="truncate text-sm leading-5 font-normal text-app-ink">
                       {account.firstName} {account.lastName}
                     </p>
-                    <p className="truncate text-[12px] leading-[15px] text-app-secondary">{account.email}</p>
+                    <p className="truncate text-sm leading-5 text-app-secondary">{account.email}</p>
                   </div>
                   <div
                     title={countryName}
-                    className="max-w-24 shrink-0 truncate rounded-full bg-app-canvas px-2.5 py-1 text-[12px] leading-[15px] font-medium text-app-tertiary sm:px-3"
+                    className="max-w-24 shrink-0 truncate rounded-full bg-app-canvas px-2.5 py-1 text-sm leading-5 font-normal text-app-tertiary sm:px-3"
                   >
                     <span className="sm:hidden">{countryCode}</span>
                     <span className="hidden truncate sm:block">{countryName}</span>

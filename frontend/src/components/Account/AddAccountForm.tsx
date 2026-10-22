@@ -25,7 +25,7 @@ export default function AddAccountForm() {
   const [loading, setLoading] = useState(false);
   const [retry, setRetry] = useState<AuthRetry | null>(null);
   const inputClassName =
-    'block min-h-11 w-full min-w-0 max-w-full rounded-[6px] border-0 bg-app-canvas px-3 py-2 text-base text-app-ink focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:opacity-60';
+    'block min-w-0 w-full max-w-full app-field text-app-ink disabled:cursor-not-allowed disabled:opacity-60';
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -62,9 +62,9 @@ export default function AddAccountForm() {
     <PageContainer title={t('accounts.addForm.title')}>
       <div className="max-w-2xl">
         <form onSubmit={handleSubmit} className="space-y-6">
-          <section className="space-y-5 rounded-app-card bg-app-surface p-5 shadow-app-card sm:p-6">
+          <section className="space-y-5 p-5 sm:p-6">
             <div>
-              <label htmlFor="email" className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
+              <label htmlFor="email" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
                 {t('accounts.addForm.email')}
               </label>
               <input
@@ -80,10 +80,7 @@ export default function AddAccountForm() {
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary"
-              >
+              <label htmlFor="password" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
                 {t('accounts.addForm.password')}
               </label>
               <input
@@ -98,10 +95,7 @@ export default function AddAccountForm() {
             </div>
 
             <div>
-              <label
-                htmlFor="deviceId"
-                className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary"
-              >
+              <label htmlFor="deviceId" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
                 {t('accounts.addForm.deviceId')}
               </label>
               <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
@@ -118,17 +112,17 @@ export default function AddAccountForm() {
                   type="button"
                   onClick={() => setDeviceId(generateDeviceId())}
                   disabled={loading || needsCode}
-                  className="min-h-11 w-full shrink-0 whitespace-normal rounded-full bg-app-canvas px-4 py-2 text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:whitespace-nowrap"
+                  className="app-button-utility w-full shrink-0 whitespace-normal disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:whitespace-nowrap"
                 >
                   {t('accounts.addForm.randomize')}
                 </button>
               </div>
-              <p className="mt-1 text-[12px] leading-[15px] text-app-tertiary">{t('accounts.addForm.deviceIdHelp')}</p>
+              <p className="mt-1 text-sm leading-5 text-app-tertiary">{t('accounts.addForm.deviceIdHelp')}</p>
             </div>
 
             {needsCode && (
               <div>
-                <label htmlFor="code" className="mb-1 block text-[12px] leading-[15px] font-medium text-app-secondary">
+                <label htmlFor="code" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
                   {t('accounts.addForm.code')}
                 </label>
                 <input
@@ -144,7 +138,7 @@ export default function AddAccountForm() {
                   className={inputClassName}
                   autoFocus
                 />
-                <p className="mt-1 text-[12px] leading-[15px] text-app-tertiary">{t('accounts.addForm.codeHelp')}</p>
+                <p className="mt-1 text-sm leading-5 text-app-tertiary">{t('accounts.addForm.codeHelp')}</p>
               </div>
             )}
           </section>
@@ -153,7 +147,7 @@ export default function AddAccountForm() {
             <button
               type="submit"
               disabled={loading}
-              className="flex min-h-11 items-center justify-center gap-2 rounded-full bg-app-action px-6 py-2.5 text-[13px] leading-4 font-semibold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+              className="app-button-primary flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading && <Spinner />}
               {needsCode ? t('accounts.addForm.verify') : t('accounts.addForm.signIn')}
@@ -162,13 +156,13 @@ export default function AddAccountForm() {
               type="button"
               onClick={() => navigate('/accounts')}
               disabled={loading}
-              className="min-h-11 rounded-full bg-app-canvas px-6 py-2.5 text-[13px] leading-4 font-semibold text-app-secondary transition-colors hover:bg-app-hover disabled:opacity-50"
+              className="app-button-secondary disabled:opacity-50"
             >
               {t('accounts.addForm.cancel')}
             </button>
           </div>
           {retry && (
-            <p className="text-[13px] leading-4 text-app-secondary">
+            <p className="text-sm leading-5 text-app-secondary">
               {t('accounts.addForm.retrying', {
                 status: retry.status,
                 seconds: Math.round(retry.delayMs / 1000),
