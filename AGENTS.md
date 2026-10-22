@@ -332,7 +332,7 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Component Patterns
 
-- **Buttons**: Use `.app-button-primary` for filled Action Blue pills with white text, `.app-button-secondary` for transparent outlined pills using `app-link-action`, and `.app-button-utility` for neutral surface controls. Buttons have a 44px minimum height; enabled pressed buttons and action links scale to 0.95, with reduced motion respected.
+- **Buttons**: Use `.app-button-primary` for filled Action Blue pills with white text, `.app-button-secondary` for transparent outlined pills using `app-link-action`, `.app-button-secondary-rect` for the same secondary style with 8px rectangular corners, and `.app-button-utility` for neutral surface controls. Buttons have a 44px minimum height; enabled pressed buttons and action links scale to 0.95, with reduced motion respected.
 - **Inputs**: Use `.app-field` for 16px controls with explicit 8px corners and `.app-search-field` for 17px pill-shaped search fields. Both use semantic surfaces, a 44px minimum height, and the shared focus-visible outline without competing focus rings.
 - **Headings**: Use `.app-heading` for 32px / 600 page headings.
 - **Cards**: Page content has no card shell except for the visually distinct homepage Hero. Avoid decorative gradients, container chrome, and shadows.

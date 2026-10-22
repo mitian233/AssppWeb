@@ -124,8 +124,17 @@ body {
     @apply inline-flex min-h-11 items-center justify-center rounded-full bg-app-action px-[22px] py-[11px] text-sm font-normal text-white transition-transform;
   }
 
+  .app-button-secondary,
+  .app-button-secondary-rect {
+    @apply inline-flex min-h-11 items-center justify-center border border-app-link-action bg-transparent px-[22px] py-[11px] text-sm font-normal text-app-link-action transition-transform;
+  }
+
   .app-button-secondary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full border border-app-link-action bg-transparent px-[22px] py-[11px] text-sm font-normal text-app-link-action transition-transform;
+    border-radius: 9999px;
+  }
+
+  .app-button-secondary-rect {
+    border-radius: 8px;
   }
 
   .app-button-utility {
@@ -150,6 +159,7 @@ body {
 
   .app-button-primary:not(:disabled):active,
   .app-button-secondary:not(:disabled):active,
+  .app-button-secondary-rect:not(:disabled):active,
   .app-button-utility:not(:disabled):active,
   .app-link-action:active {
     transform: scale(0.95);
@@ -161,6 +171,7 @@ body {
 
   .app-button-primary:disabled,
   .app-button-secondary:disabled,
+  .app-button-secondary-rect:disabled,
   .app-button-utility:disabled {
     @apply cursor-not-allowed opacity-50;
   }
@@ -184,6 +195,7 @@ body {
 
   .app-button-primary:not(:disabled):active,
   .app-button-secondary:not(:disabled):active,
+  .app-button-secondary-rect:not(:disabled):active,
   .app-button-utility:not(:disabled):active,
   .app-link-action:active {
     transform: none;
@@ -316,7 +328,10 @@ html.dark ::selection {
   color: var(--app-secondary);
   text-align: center;
   white-space: nowrap;
-  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
+  transition:
+    color 150ms ease,
+    background-color 150ms ease,
+    transform 150ms ease;
 }
 
 .download-filter-tab:hover {

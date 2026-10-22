@@ -17,7 +17,7 @@ export default function AccountList() {
     <PageContainer
       title={t('accounts.title')}
       action={
-        <Link to="/accounts/add" className="app-button-primary inline-flex items-center">
+        <Link to="/accounts/add" className="app-button-primary inline-flex items-center rounded-[8px]">
           {t('accounts.add')}
         </Link>
       }
@@ -37,7 +37,7 @@ export default function AccountList() {
           </div>
           <h3 className="mb-2 text-lg leading-6 font-semibold text-app-ink">{t('accounts.empty')}</h3>
           <p className="mb-6 max-w-full text-[17px] leading-relaxed text-app-secondary">{t('accounts.emptyDesc')}</p>
-          <Link to="/accounts/add" className="app-button-primary inline-flex items-center gap-2">
+          <Link to="/accounts/add" className="app-button-primary inline-flex items-center gap-2 rounded-[8px]">
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
             </svg>
@@ -56,7 +56,8 @@ export default function AccountList() {
                   key={account.email}
                   to={`/accounts/${encodeURIComponent(account.email)}`}
                   className={({ isActive }) =>
-                    `flex items-center gap-4 p-4 transition-colors ${isActive ? 'bg-app-selected' : 'hover:bg-app-hover'
+                    `flex items-center gap-4 p-4 transition-colors ${
+                      isActive ? 'bg-app-selected' : 'hover:bg-app-hover'
                     }`
                   }
                 >

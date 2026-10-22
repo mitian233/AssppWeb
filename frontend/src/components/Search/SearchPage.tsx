@@ -57,12 +57,12 @@ export default function SearchPage() {
             value={term}
             onChange={(e) => setSearchParam({ term: e.target.value })}
             placeholder={t('search.placeholder')}
-            className="app-search-field min-h-11 flex-1"
+            className="app-search-field min-h-11 flex-1 rounded-[8px]"
           />
           <button
             type="submit"
             disabled={loading || !term.trim()}
-            className="app-button-primary whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
+            className="app-button-primary rounded-[8px] whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? t('search.searching') : t('search.button')}
           </button>

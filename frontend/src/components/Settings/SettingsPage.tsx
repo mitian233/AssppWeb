@@ -293,7 +293,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-[25px] font-semibold text-app-ink">{t('settings.data.title')}</h2>
+          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.data.title')}</h2>
           <p className="mb-4 max-w-full text-[17px] leading-relaxed text-app-secondary">
             {t('settings.data.description')}
           </p>
@@ -301,13 +301,13 @@ export default function SettingsPage() {
           <div className="mb-6 grid w-full min-w-0 grid-cols-2 gap-3 sm:max-w-sm">
             <button
               onClick={() => setExportModalOpen(true)}
-              className="app-button-secondary w-full min-w-0 whitespace-normal break-words text-center sm:w-auto"
+              className="app-button-secondary-rect w-full min-w-0 whitespace-normal wrap-break-word text-center sm:w-auto"
             >
               {t('settings.data.exportBtn')}
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="app-button-secondary w-full min-w-0 whitespace-normal break-words text-center sm:w-auto"
+              className="app-button-secondary-rect w-full min-w-0 whitespace-normal wrap-break-word text-center sm:w-auto"
             >
               {t('settings.data.importBtn')}
             </button>
@@ -324,7 +324,7 @@ export default function SettingsPage() {
                 window.location.href = '/';
               }, 1000);
             }}
-            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-full border border-red-600 px-4 py-2 text-center text-sm leading-5 font-normal text-red-600 transition-colors hover:bg-red-50 sm:w-auto dark:border-red-400 dark:text-red-400 dark:hover:bg-red-950/40"
+            className="min-h-11 w-full min-w-0 whitespace-normal wrap-break-word rounded-sm border border-red-600 px-4 py-2 text-center text-sm leading-5 font-normal text-red-600 transition-colors hover:bg-red-50 sm:w-auto dark:border-red-400 dark:text-red-400 dark:hover:bg-red-950/40"
           >
             {t('settings.data.button')}
           </button>
@@ -485,9 +485,8 @@ function SettingsInfoRow({
       <dt className={`${labelSize} min-w-0 break-all font-normal text-app-tertiary`}>{label}</dt>
       <dd
         title={valueTitle}
-        className={`${valueSize} min-w-0 max-w-full whitespace-pre-wrap break-all text-app-ink sm:text-right ${
-          mono ? 'font-mono' : ''
-        }`}
+        className={`${valueSize} min-w-0 max-w-full whitespace-pre-wrap break-all text-app-ink sm:text-right ${mono ? 'font-mono' : ''
+          }`}
       >
         {children}
       </dd>

@@ -203,13 +203,13 @@ export default function DownloadList() {
         <button
           onClick={handleCheckAllUpdates}
           disabled={checkingAll}
-          className="app-button-secondary flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
+          className="app-button-secondary-rect flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
         >
           {checkingAll ? t('downloads.checkingUpdates') : t('downloads.checkUpdates')}
         </button>
         <Link
           to="/downloads/add"
-          className="app-button-primary flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center"
+          className="app-button-primary flex h-11 rounded-[8px] w-full min-w-0 items-center justify-center px-2.5 text-center"
         >
           {t('downloads.new')}
         </Link>
@@ -222,37 +222,37 @@ export default function DownloadList() {
           role="group"
           aria-label={t('downloads.title')}
           onPointerDown={(event) => {
-          if (event.pointerType !== 'mouse' || event.button !== 0) return;
-          const container = filterTabsRef.current;
-          if (!container) return;
-          filterDragRef.current = {
-            startX: event.clientX,
-            scrollLeft: container.scrollLeft,
-            dragging: true,
-            moved: false,
-          };
-        }}
-        onPointerMove={(event) => {
-          const drag = filterDragRef.current;
-          const container = filterTabsRef.current;
-          if (!drag.dragging || !container) return;
-          const distance = event.clientX - drag.startX;
-          if (Math.abs(distance) > 4) drag.moved = true;
-          if (drag.moved) container.scrollLeft = drag.scrollLeft - distance;
-        }}
-        onPointerUp={() => {
-          filterDragRef.current.dragging = false;
-        }}
-        onPointerLeave={() => {
-          filterDragRef.current.dragging = false;
-        }}
-        onClickCapture={(event) => {
-          if (!filterDragRef.current.moved) return;
-          event.preventDefault();
-          event.stopPropagation();
-          filterDragRef.current.moved = false;
-        }}
-      >
+            if (event.pointerType !== 'mouse' || event.button !== 0) return;
+            const container = filterTabsRef.current;
+            if (!container) return;
+            filterDragRef.current = {
+              startX: event.clientX,
+              scrollLeft: container.scrollLeft,
+              dragging: true,
+              moved: false,
+            };
+          }}
+          onPointerMove={(event) => {
+            const drag = filterDragRef.current;
+            const container = filterTabsRef.current;
+            if (!drag.dragging || !container) return;
+            const distance = event.clientX - drag.startX;
+            if (Math.abs(distance) > 4) drag.moved = true;
+            if (drag.moved) container.scrollLeft = drag.scrollLeft - distance;
+          }}
+          onPointerUp={() => {
+            filterDragRef.current.dragging = false;
+          }}
+          onPointerLeave={() => {
+            filterDragRef.current.dragging = false;
+          }}
+          onClickCapture={(event) => {
+            if (!filterDragRef.current.moved) return;
+            event.preventDefault();
+            event.stopPropagation();
+            filterDragRef.current.moved = false;
+          }}
+        >
           {(['all', 'downloading', 'pending', 'paused', 'completed', 'failed'] as StatusFilter[]).map((status) => (
             <button
               key={status}
@@ -319,8 +319,8 @@ export default function DownloadList() {
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
-                status: t(`downloads.status.${filter}`),
-              })}
+                  status: t(`downloads.status.${filter}`),
+                })}
           </h3>
           <p
             className="mb-6 max-w-full overflow-hidden text-center text-[17px] leading-[1.47] text-app-secondary"

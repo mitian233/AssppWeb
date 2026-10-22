@@ -75,7 +75,7 @@ export default function AddAccountForm() {
         </header>
         <form onSubmit={handleSubmit} className="space-y-6">
           <section className="space-y-6">
-            <div className="rounded-[8px] border border-app-divider bg-app-surface">
+            <div className="rounded-sm border border-app-divider bg-app-surface">
               <div className="border-b border-app-divider">
                 <label htmlFor="email" className="block px-4 pt-3 text-sm leading-5 text-app-secondary">
                   {t('accounts.addForm.email')}
@@ -173,7 +173,7 @@ export default function AddAccountForm() {
             <button
               type="submit"
               disabled={loading}
-              className="app-button-primary flex items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+              className="app-button-primary flex items-center justify-center gap-2 rounded-[8px] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading && <Spinner />}
               {needsCode ? t('accounts.addForm.verify') : t('accounts.addForm.signIn')}
@@ -182,7 +182,7 @@ export default function AddAccountForm() {
               type="button"
               onClick={() => navigate('/accounts')}
               disabled={loading}
-              className="app-button-secondary disabled:opacity-50"
+              className="app-button-secondary-rect disabled:opacity-50"
             >
               {t('accounts.addForm.cancel')}
             </button>

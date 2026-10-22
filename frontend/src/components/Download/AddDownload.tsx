@@ -181,7 +181,7 @@ export default function AddDownload() {
 
         {!app && !isLoading && (
           <div className="flex min-w-0 flex-col items-center justify-center px-5 py-14 text-center sm:px-6">
-            <div className="mb-5 flex h-16 w-16 items-center justify-center bg-app-surface">
+            <div className="mb-5 flex h-16 w-16 items-center justify-center">
               <svg
                 className="h-8 w-8 text-app-action"
                 fill="none"

@@ -65,7 +65,7 @@ export default function App() {
         <GlobalDownloadNotifier />
 
         <Sidebar />
-        <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden md:pt-[env(safe-area-inset-top)]">
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden md:safe-top">
           <MobileHeader />
           <Suspense fallback={<Loading />}>
             <Routes>
