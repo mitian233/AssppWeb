@@ -125,7 +125,7 @@ export default function PackageQuickActions({ task, size = 'default' }: PackageQ
           >
             <div className="flex flex-col items-center bg-app-surface p-2 text-app-secondary">
               <QRCodeSVG value={installInfo.installUrl} size={128} className="mb-1 rounded bg-white p-1" />
-              <span className="mt-1 whitespace-nowrap text-[12px] leading-[15px]">{t('downloads.package.scan')}</span>
+              <span className="mt-1 whitespace-nowrap text-[12px] leading-3.75">{t('downloads.package.scan')}</span>
               <span className="absolute -bottom-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-b border-r border-app-divider bg-app-surface" />
             </div>
           </div>

@@ -121,12 +121,12 @@ body {
   }
 
   .app-button-primary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-app-action px-[22px] py-[11px] text-sm font-normal text-white transition-transform;
+    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-app-action px-5.5 py-2.75 text-sm font-normal text-white transition-transform;
   }
 
   .app-button-secondary,
   .app-button-secondary-rect {
-    @apply inline-flex min-h-11 items-center justify-center border border-app-link-action bg-transparent px-[22px] py-[11px] text-sm font-normal text-app-link-action transition-transform;
+    @apply inline-flex min-h-11 items-center justify-center border border-app-link-action bg-transparent px-5.5 py-2.75 text-sm font-normal text-app-link-action transition-transform;
   }
 
   .app-button-secondary {
@@ -138,11 +138,11 @@ body {
   }
 
   .app-button-utility {
-    @apply inline-flex min-h-11 items-center justify-center rounded-[8px] border border-app-divider bg-app-surface px-[15px] py-2 text-sm font-normal text-app-ink transition-transform;
+    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-app-divider bg-app-surface px-3.75 py-2 text-sm font-normal text-app-ink transition-transform;
   }
 
   .app-field {
-    @apply min-h-11 rounded-[8px] border border-app-divider bg-app-surface px-3.5 py-2.5 text-base text-app-ink;
+    @apply min-h-11 rounded-sm border border-app-divider bg-app-surface px-3.5 py-2.5 text-base text-app-ink;
   }
 
   .app-search-field {

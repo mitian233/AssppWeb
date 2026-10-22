@@ -209,7 +209,7 @@ export default function DownloadList() {
         </button>
         <Link
           to="/downloads/add"
-          className="app-button-primary flex h-11 rounded-[8px] w-full min-w-0 items-center justify-center px-2.5 text-center"
+          className="app-button-primary flex h-11 rounded-sm w-full min-w-0 items-center justify-center px-2.5 text-center"
         >
           {t('downloads.new')}
         </Link>
@@ -284,10 +284,10 @@ export default function DownloadList() {
         title={t('downloads.warning')}
         className="mb-5 min-w-0 max-w-full overflow-hidden rounded-sm bg-amber-50 px-2.5 py-3 text-center leading-relaxed text-amber-800 dark:bg-amber-950/30 dark:text-amber-300"
       >
-        <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-[15px] xl:hidden">
+        <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-3.75 xl:hidden">
           {t('downloads.warningShort')}
         </span>
-        <span aria-hidden="true" className="hidden whitespace-nowrap text-[12px] leading-[15px] xl:block">
+        <span aria-hidden="true" className="hidden whitespace-nowrap text-[12px] leading-3.75 xl:block">
           {t('downloads.warning')}
         </span>
       </div>
@@ -323,7 +323,7 @@ export default function DownloadList() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-center text-[17px] leading-[22px] font-semibold text-app-ink">
+          <h3 className="mb-2 text-center text-[17px] leading-5.5 font-semibold text-app-ink">
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
@@ -337,7 +337,7 @@ export default function DownloadList() {
           >
             {filter === 'all' ? (
               <>
-                <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-[15px] xl:hidden">
+                <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-3.75 xl:hidden">
                   {t('downloads.emptyAllDescShort')}
                 </span>
                 <span aria-hidden="true" className="hidden whitespace-nowrap text-[17px] leading-[1.47] xl:block">
@@ -345,7 +345,7 @@ export default function DownloadList() {
                 </span>
               </>
             ) : (
-              <span className="block whitespace-nowrap text-[12px] leading-[15px]">
+              <span className="block whitespace-nowrap text-[12px] leading-3.75">
                 {t('downloads.emptyFilterDesc')}
               </span>
             )}

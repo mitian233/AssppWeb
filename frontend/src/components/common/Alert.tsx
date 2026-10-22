@@ -19,7 +19,7 @@ export default function Alert({
 }) {
   return (
     <div
-      className={`rounded-app-card border bg-app-surface px-4 py-3 text-[13px] font-normal leading-5 [overflow-wrap:anywhere] ${styles[type]} ${className}`}
+      className={`rounded-app-card border bg-app-surface px-4 py-3 text-[13px] font-normal leading-5 wrap-anywhere ${styles[type]} ${className}`}
     >
       {children}
     </div>

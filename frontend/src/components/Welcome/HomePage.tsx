@@ -61,13 +61,13 @@ export default function HomePage() {
   const primaryAction =
     accounts.length === 0
       ? {
-          to: '/accounts/add',
-          label: t('home.actions.addAccount'),
-        }
+        to: '/accounts/add',
+        label: t('home.actions.addAccount'),
+      }
       : {
-          to: '/search',
-          label: t('home.actions.searchApps'),
-        };
+        to: '/search',
+        label: t('home.actions.searchApps'),
+      };
 
   return (
     <PageContainer>
@@ -206,7 +206,7 @@ function ActionCard({
         </span>
       </div>
       <div className="mt-auto pt-5">
-        <h2 className="text-[17px] leading-[22px] font-semibold text-app-ink">{title}</h2>
+        <h2 className="text-[17px] leading-5.5 font-semibold text-app-ink">{title}</h2>
         <p className="mt-1 text-[17px] leading-[1.47] text-app-secondary">{description}</p>
       </div>
     </Link>

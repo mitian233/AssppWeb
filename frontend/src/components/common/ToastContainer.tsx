@@ -79,7 +79,7 @@ export default function ToastContainer() {
               {toast.title && (
                 <h4 className={`mb-0.5 text-sm font-semibold leading-5 ${titleColor[toast.type]}`}>{toast.title}</h4>
               )}
-              <p className="whitespace-pre-line break-words text-sm font-normal leading-5 text-app-secondary">
+              <p className="whitespace-pre-line wrap-break-word text-sm font-normal leading-5 text-app-secondary">
                 {toast.message}
               </p>
             </div>

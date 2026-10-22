@@ -173,7 +173,7 @@ export default function AddAccountForm() {
             <button
               type="submit"
               disabled={loading}
-              className="app-button-primary flex items-center justify-center gap-2 rounded-[8px] disabled:cursor-not-allowed disabled:opacity-50"
+              className="app-button-primary flex items-center justify-center gap-2 rounded-sm disabled:cursor-not-allowed disabled:opacity-50"
             >
               {loading && <Spinner />}
               {needsCode ? t('accounts.addForm.verify') : t('accounts.addForm.signIn')}

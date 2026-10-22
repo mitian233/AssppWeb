@@ -168,7 +168,7 @@ export default function SettingsPage() {
     <PageContainer title={t('settings.title')}>
       <div className="min-w-0 space-y-6">
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-[25px] font-semibold text-app-ink">{t('settings.language.title')}</h2>
+          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.language.title')}</h2>
           <div className="space-y-4">
             <div>
               <label htmlFor="language" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
@@ -196,7 +196,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-[25px] font-semibold text-app-ink">{t('settings.defaults.title')}</h2>
+          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.defaults.title')}</h2>
           <div className="space-y-4">
             <div>
               <label htmlFor="country" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
@@ -242,7 +242,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-[25px] font-semibold text-app-ink">{t('settings.server.title')}</h2>
+          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.server.title')}</h2>
           {serverInfo ? (
             <div className="min-w-0 space-y-6">
               <dl className="min-w-0 divide-y divide-app-divider">
@@ -254,7 +254,7 @@ export default function SettingsPage() {
               </dl>
 
               <div className="min-w-0">
-                <h3 className="mb-3 text-[17px] leading-[22px] font-semibold text-app-ink">
+                <h3 className="mb-3 text-[17px] leading-5.5 font-semibold text-app-ink">
                   {t('settings.server.configuration')}
                 </h3>
                 <dl className="min-w-0 divide-y divide-app-divider border-y border-app-divider">
@@ -331,7 +331,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-[25px] font-semibold text-app-ink">{t('settings.about.title')}</h2>
+          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.about.title')}</h2>
           <p className="max-w-full text-[17px] leading-relaxed text-app-secondary">{t('settings.about.description')}</p>
           {serverInfo && (
             <dl className="mt-3 min-w-0 divide-y divide-app-divider">
@@ -383,14 +383,14 @@ export default function SettingsPage() {
         <div className="mt-6 grid grid-cols-2 w-full gap-3 flex-row-reverse flex-wrap ">
           <button
             onClick={() => setExportModalOpen(false)}
-            className="app-button-secondary min-w-0 whitespace-normal break-words sm:w-auto"
+            className="app-button-secondary min-w-0 whitespace-normal wrap-break-word sm:w-auto"
           >
             {t('settings.data.cancel')}
           </button>
           <button
             onClick={handleExport}
             disabled={!exportPassword || !exportConfirmPassword}
-            className="app-button-primary min-w-0 whitespace-normal break-words disabled:opacity-50 sm:w-auto"
+            className="app-button-primary min-w-0 whitespace-normal wrap-break-word disabled:opacity-50 sm:w-auto"
           >
             {t('settings.data.confirmBtn')}
           </button>
@@ -414,14 +414,14 @@ export default function SettingsPage() {
         <div className="mt-6 flex min-w-0 flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
           <button
             onClick={() => setImportModalOpen(false)}
-            className="app-button-secondary min-w-0 whitespace-normal break-words sm:w-auto"
+            className="app-button-secondary min-w-0 whitespace-normal wrap-break-word sm:w-auto"
           >
             {t('settings.data.cancel')}
           </button>
           <button
             onClick={handleImport}
             disabled={!importPassword}
-            className="app-button-primary min-w-0 whitespace-normal break-words disabled:opacity-50 sm:w-auto"
+            className="app-button-primary min-w-0 whitespace-normal wrap-break-word disabled:opacity-50 sm:w-auto"
           >
             {t('settings.data.confirmBtn')}
           </button>
@@ -433,7 +433,7 @@ export default function SettingsPage() {
         onClose={() => setConflictModalOpen(false)}
         title={t('settings.data.conflictTitle')}
       >
-        <p className="mb-6 min-w-0 break-words text-sm leading-5 text-app-secondary">
+        <p className="mb-6 min-w-0 wrap-break-word text-sm leading-5 text-app-secondary">
           {t('settings.data.conflictDesc', {
             conflict: conflictStats.conflict,
             new: conflictStats.new,
@@ -442,19 +442,19 @@ export default function SettingsPage() {
         <div className="flex min-w-0 flex-col gap-3">
           <button
             onClick={() => handleResolveConflict(true)}
-            className="min-h-11 w-full min-w-0 whitespace-normal break-words rounded-full bg-red-600 px-4 py-2 text-sm leading-5 font-normal text-white transition-colors hover:bg-red-700"
+            className="min-h-11 w-full min-w-0 whitespace-normal wrap-break-word rounded-full bg-red-600 px-4 py-2 text-sm leading-5 font-normal text-white transition-colors hover:bg-red-700"
           >
             {t('settings.data.conflictOverwrite')}
           </button>
           <button
             onClick={() => handleResolveConflict(false)}
-            className="app-button-secondary w-full min-w-0 whitespace-normal break-words"
+            className="app-button-secondary w-full min-w-0 whitespace-normal wrap-break-word"
           >
             {t('settings.data.conflictSkip')}
           </button>
           <button
             onClick={() => setConflictModalOpen(false)}
-            className="app-button-secondary mt-2 w-full min-w-0 whitespace-normal break-words"
+            className="app-button-secondary mt-2 w-full min-w-0 whitespace-normal wrap-break-word"
           >
             {t('settings.data.cancel')}
           </button>

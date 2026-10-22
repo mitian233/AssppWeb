@@ -31,7 +31,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
             <div className="min-w-0 flex-1">
               <Link
                 to={detailsHref}
-                className="block truncate text-[17px] leading-[22px] font-semibold text-app-ink transition-colors hover:text-app-link-action"
+                className="block truncate text-[17px] leading-5.5 font-semibold text-app-ink transition-colors hover:text-app-link-action"
               >
                 {task.software.name}
               </Link>
@@ -66,7 +66,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
       )}
 
       {task.error && (
-        <p className="mt-3 break-words rounded-lg bg-red-50 p-2.5 text-[14px] leading-5 text-red-700 dark:bg-red-950/40 dark:text-red-400">
+        <p className="mt-3 wrap-break-word rounded-lg bg-red-50 p-2.5 text-[14px] leading-5 text-red-700 dark:bg-red-950/40 dark:text-red-400">
           {task.error}
         </p>
       )}
@@ -97,7 +97,7 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
         <button
           type="button"
           onClick={() => onDelete(task.id)}
-          className="min-h-11 min-w-0 rounded-[8px] bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
+          className="min-h-11 min-w-0 rounded-sm bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
         >
           {t('downloads.package.delete')}
         </button>

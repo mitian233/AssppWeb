@@ -57,12 +57,12 @@ export default function SearchPage() {
             value={term}
             onChange={(e) => setSearchParam({ term: e.target.value })}
             placeholder={t('search.placeholder')}
-            className="app-search-field min-h-11 flex-1 rounded-[8px]"
+            className="app-search-field min-h-11 flex-1 rounded-sm"
           />
           <button
             type="submit"
             disabled={loading || !term.trim()}
-            className="app-button-primary rounded-[8px] whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
+            className="app-button-primary rounded-sm whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? t('search.searching') : t('search.button')}
           </button>
@@ -104,7 +104,7 @@ export default function SearchPage() {
               />
             </svg>
           </div>
-          <h3 className="mb-2 text-[17px] leading-[22px] font-semibold text-app-ink">{t('search.empty')}</h3>
+          <h3 className="mb-2 text-[17px] leading-5.5 font-semibold text-app-ink">{t('search.empty')}</h3>
           <p className="max-w-full text-[17px] leading-[1.47] text-app-secondary">{t('search.emptyDesc')}</p>
         </div>
       )}
@@ -121,7 +121,7 @@ export default function SearchPage() {
               >
                 <AppIcon url={app.artworkUrl} name={app.name} size="md" />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[17px] leading-[22px] font-semibold text-app-ink">{app.name}</p>
+                  <p className="truncate text-[17px] leading-5.5 font-semibold text-app-ink">{app.name}</p>
                   <p className="truncate text-[17px] leading-[1.47] text-app-secondary">{app.artistName}</p>
                   <div className="mt-1 flex items-center gap-2 overflow-hidden text-[14px] leading-5 text-app-tertiary">
                     <span className="shrink-0">{app.formattedPrice ?? t('search.free')}</span>

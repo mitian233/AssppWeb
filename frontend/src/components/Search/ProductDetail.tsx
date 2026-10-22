@@ -114,10 +114,10 @@ export default function ProductDetail() {
   }
 
   const hero = (
-    <section className="relative isolate overflow-hidden bg-[#30343b] text-white [overflow-wrap:anywhere]">
+    <section className="relative isolate overflow-hidden bg-[#30343b] text-white wrap-anywhere">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
         <div
-          className="absolute -inset-16 bg-cover bg-center blur-[64px]"
+          className="absolute -inset-16 bg-cover bg-center blur-3xl"
           style={{ backgroundImage: app.artworkUrl ? `url(${JSON.stringify(app.artworkUrl)})` : undefined }}
         />
         <div className="absolute inset-0 bg-[#26282c]/75" />
@@ -125,7 +125,7 @@ export default function ProductDetail() {
       <div className="relative mx-auto flex min-w-0 max-w-5xl items-center gap-5 px-5 py-8 sm:gap-8 sm:px-8 sm:py-10">
         <AppIcon url={app.artworkUrl} name={app.name} size="hero" />
         <div className="min-w-0 flex flex-col w-full gap-1">
-          <h1 className="min-w-0 text-[21px] leading-tight font-bold tracking-[-0.02em] text-white [overflow-wrap:anywhere] min-[375px]:text-2xl sm:text-[32px]">
+          <h1 className="min-w-0 text-[21px] leading-tight font-bold tracking-[-0.02em] text-white wrap-anywhere min-[375px]:text-2xl sm:text-[32px]">
             {app.name}
           </h1>
           <p className="text-[17px] font-semibold leading-[1.47] text-white/85">{app.artistName}</p>
@@ -144,7 +144,7 @@ export default function ProductDetail() {
 
   return (
     <PageContainer hero={hero}>
-      <div className="min-w-0 space-y-5 [overflow-wrap:anywhere]">
+      <div className="min-w-0 space-y-5 wrap-anywhere">
         {previewEnabled && (
           <Alert type="warning">
             <span className="font-semibold">{t('search.product.previewBadge')}</span>{' '}
@@ -198,9 +198,8 @@ export default function ProductDetail() {
                 onClick={handleDownload}
                 disabled={loadingAction !== null || !account}
                 aria-busy={isDownloading}
-                className={`app-button-primary inline-flex min-h-11 w-full min-w-0 items-center justify-center gap-1.5 px-2 disabled:cursor-not-allowed sm:gap-2 sm:px-5 ${
-                  !account || (loadingAction !== null && !isDownloading) ? 'opacity-50' : ''
-                }`}
+                className={`app-button-primary inline-flex min-h-11 w-full min-w-0 items-center justify-center gap-1.5 px-2 disabled:cursor-not-allowed sm:gap-2 sm:px-5 ${!account || (loadingAction !== null && !isDownloading) ? 'opacity-50' : ''
+                  }`}
               >
                 <span aria-hidden="true" className="flex h-4 w-4 shrink-0 items-center justify-center">
                   {isDownloading ? <Spinner /> : <DownloadIcon />}
@@ -345,7 +344,7 @@ function CollapsibleProductText({ text }: { text: string }) {
         <div className="flex justify-end">
           <button
             type="button"
-            className="app-link-action min-h-11 rounded-[8px] px-1 text-sm"
+            className="app-link-action min-h-11 rounded-sm px-1 text-sm"
             aria-expanded={expanded}
             aria-controls={descriptionId}
             onClick={() => setExpanded(true)}

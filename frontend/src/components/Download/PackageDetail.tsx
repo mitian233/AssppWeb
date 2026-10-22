@@ -155,13 +155,13 @@ export default function PackageDetail() {
             <div className="min-w-0 flex-1">
               <h2
                 title={task.software.name}
-                className="break-words text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]"
+                className="wrap-break-word text-[17px] leading-5.5 font-semibold text-app-ink wrap-anywhere"
               >
                 {task.software.name}
               </h2>
               <p
                 title={task.software.artistName}
-                className="mt-0.5 break-words text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]"
+                className="mt-0.5 wrap-break-word text-[17px] leading-[1.47] text-app-secondary wrap-anywhere"
               >
                 {task.software.artistName}
               </p>
@@ -187,7 +187,7 @@ export default function PackageDetail() {
           {task.error && (
             <p
               role="alert"
-              className="mt-4 min-w-0 break-words rounded-lg bg-red-50 px-3 py-2 text-[14px] leading-5 text-red-700 [overflow-wrap:anywhere] dark:bg-red-950/30 dark:text-red-400"
+              className="mt-4 min-w-0 wrap-break-word rounded-lg bg-red-50 px-3 py-2 text-[14px] leading-5 text-red-700 wrap-anywhere dark:bg-red-950/30 dark:text-red-400"
             >
               {task.error}
             </p>
@@ -266,7 +266,7 @@ export default function PackageDetail() {
             <button
               type="button"
               onClick={handleDelete}
-              className="min-h-11 min-w-0 rounded-[8px] bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
+              className="min-h-11 min-w-0 rounded-sm bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
             >
               {t('downloads.package.delete')}
             </button>
@@ -280,7 +280,7 @@ export default function PackageDetail() {
         title={t('downloads.package.updateAvailable')}
       >
         <div className="min-w-0 space-y-4">
-          <p className="min-w-0 break-words text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]">
+          <p className="min-w-0 wrap-break-word text-[17px] leading-[1.47] text-app-secondary wrap-anywhere">
             {t('downloads.package.updatePrompt', {
               version: latestApp?.version,
             })}
@@ -341,12 +341,11 @@ function PackageDetailRow({
 }) {
   return (
     <div className="grid min-w-0 grid-cols-[minmax(0,0.8fr)_minmax(0,1.6fr)] items-start gap-4 py-2.5 text-[14px] leading-5 sm:gap-6">
-      <dt className="min-w-0 break-words text-app-secondary [overflow-wrap:anywhere]">{label}</dt>
+      <dt className="min-w-0 wrap-break-word text-app-secondary wrap-anywhere">{label}</dt>
       <dd
         title={valueTitle}
-        className={`min-w-0 max-w-full whitespace-pre-wrap break-all text-right text-app-ink ${
-          mono ? 'font-mono' : ''
-        }`}
+        className={`min-w-0 max-w-full whitespace-pre-wrap break-all text-right text-app-ink ${mono ? 'font-mono' : ''
+          }`}
       >
         {children}
       </dd>

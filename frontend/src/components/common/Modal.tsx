@@ -98,7 +98,7 @@ export default function Modal({
           maxHeight: 'calc(100dvh - 2rem - env(safe-area-inset-top) - env(safe-area-inset-bottom))',
         }}
       >
-        <h3 id={titleId} className="mb-4 text-[17px] font-semibold leading-[22px]">
+        <h3 id={titleId} className="mb-4 text-[17px] font-semibold leading-5.5">
           {title}
         </h3>
         {children}

@@ -88,7 +88,7 @@ export default function VersionHistory() {
   if (!app) {
     return (
       <PageContainer title={t('search.versions.title')}>
-        <p className="text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]">
+        <p className="text-[17px] leading-[1.47] text-app-secondary wrap-anywhere">
           {t('search.versions.unavailable')}
         </p>
       </PageContainer>
@@ -103,15 +103,15 @@ export default function VersionHistory() {
             <AppIcon url={app.artworkUrl} name={app.name} size="md" />
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]">
+            <h2 className="text-[17px] leading-5.5 font-semibold text-app-ink wrap-anywhere">
               {app.name}
             </h2>
-            <p className="text-[14px] leading-5 text-app-secondary [overflow-wrap:anywhere]">{app.bundleID}</p>
+            <p className="text-[14px] leading-5 text-app-secondary wrap-anywhere">{app.bundleID}</p>
           </div>
         </div>
 
         {accounts.length > 0 && filteredAccounts.length === 0 ? (
-          <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-700 [overflow-wrap:anywhere] dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
+          <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-700 wrap-anywhere dark:border-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400">
             {t('search.product.noAccountsForRegion')}
           </div>
         ) : (
@@ -154,24 +154,24 @@ export default function VersionHistory() {
               return (
                 <div key={versionId} className="flex min-w-0 items-center justify-between gap-3 p-4">
                   <div className="min-w-0 flex-1">
-                    <p className="text-[17px] leading-[1.47] font-semibold text-app-ink [overflow-wrap:anywhere]">
+                    <p className="text-[17px] leading-[1.47] font-semibold text-app-ink wrap-anywhere">
                       {meta ? `v${meta.displayVersion}` : `ID: ${versionId}`}
                     </p>
                     {meta && (
-                      <p className="text-[14px] leading-5 text-app-secondary [overflow-wrap:anywhere]">
+                      <p className="text-[14px] leading-5 text-app-secondary wrap-anywhere">
                         {new Date(meta.releaseDate).toLocaleDateString()}
                       </p>
                     )}
                     {!meta && !isLoadingMeta && (
                       <button
                         onClick={() => handleLoadMeta(versionId)}
-                        className="app-link-action max-w-full py-1 text-left text-[14px] leading-5 [overflow-wrap:anywhere]"
+                        className="app-link-action max-w-full py-1 text-left text-[14px] leading-5 wrap-anywhere"
                       >
                         {t('search.versions.loadDetails')}
                       </button>
                     )}
                     {isLoadingMeta && (
-                      <span className="text-[14px] leading-5 text-app-tertiary [overflow-wrap:anywhere]">
+                      <span className="text-[14px] leading-5 text-app-tertiary wrap-anywhere">
                         {t('search.versions.loading')}
                       </span>
                     )}
@@ -179,7 +179,7 @@ export default function VersionHistory() {
                   <button
                     onClick={() => handleDownloadVersion(versionId)}
                     disabled={isDownloading || downloadingVersion !== null}
-                    className="app-button-primary max-w-[45%] shrink-0 text-center [overflow-wrap:anywhere]"
+                    className="app-button-primary max-w-[45%] shrink-0 text-center wrap-anywhere"
                   >
                     {isDownloading ? t('search.versions.downloading') : t('search.versions.download')}
                   </button>

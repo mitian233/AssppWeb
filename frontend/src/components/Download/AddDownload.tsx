@@ -142,7 +142,7 @@ export default function AddDownload() {
               <button
                 type="submit"
                 disabled={isLoading || !bundleId.trim()}
-                className="app-button-primary min-w-0 rounded-[8px] whitespace-normal break-words disabled:opacity-50 sm:w-auto"
+                className="app-button-primary min-w-0 rounded-sm whitespace-normal wrap-break-word disabled:opacity-50 sm:w-auto"
               >
                 {loadingAction === 'lookup' ? t('downloads.add.lookingUp') : t('downloads.add.lookup')}
               </button>
@@ -192,10 +192,10 @@ export default function AddDownload() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="mb-2 min-w-0 break-words text-center text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]">
+            <h3 className="mb-2 min-w-0 wrap-break-word text-center text-[17px] leading-5.5 font-semibold text-app-ink">
               {t('downloads.add.emptyTitle')}
             </h3>
-            <p className="max-w-sm min-w-0 break-words text-center text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]">
+            <p className="max-w-sm min-w-0 wrap-break-word text-center text-[17px] leading-[1.47] text-app-secondary">
               {t('downloads.add.emptyDesc')}
             </p>
           </div>
@@ -208,13 +208,13 @@ export default function AddDownload() {
               <div className="min-w-0 flex-1">
                 <p
                   title={app.name}
-                  className="min-w-0 break-words text-[17px] leading-[22px] font-semibold text-app-ink [overflow-wrap:anywhere]"
+                  className="min-w-0 wrap-break-word text-[17px] leading-5.5 font-semibold text-app-ink"
                 >
                   {app.name}
                 </p>
                 <p
                   title={app.artistName}
-                  className="min-w-0 break-words text-[17px] leading-[1.47] text-app-secondary [overflow-wrap:anywhere]"
+                  className="min-w-0 wrap-break-word text-[17px] leading-[1.47] text-app-secondary"
                 >
                   {app.artistName}
                 </p>
@@ -252,7 +252,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleGetLicense}
                   disabled={isLoading || !account}
-                  className="app-button-secondary-rect min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="app-button-secondary-rect min-w-0 whitespace-normal wrap-break-word disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {loadingAction === 'license' ? t('downloads.add.processing') : t('downloads.add.getLicense')}
                 </button>
@@ -261,7 +261,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleLoadVersions}
                   disabled={isLoading || !account}
-                  className="app-button-utility min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="app-button-utility min-w-0 whitespace-normal wrap-break-word disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {loadingAction === 'versions' ? t('downloads.add.processing') : t('downloads.add.selectVersion')}
                 </button>
@@ -269,7 +269,7 @@ export default function AddDownload() {
               <button
                 onClick={handleDownload}
                 disabled={isLoading || !account}
-                className="app-button-primary min-w-0 rounded-[8px] whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="app-button-primary min-w-0 rounded-sm whitespace-normal wrap-break-word disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               >
                 {loadingAction === 'download' ? t('downloads.add.processing') : t('downloads.add.download')}
               </button>

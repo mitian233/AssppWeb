@@ -17,7 +17,7 @@ export default function AccountList() {
     <PageContainer
       title={t('accounts.title')}
       action={
-        <Link to="/accounts/add" className="app-button-primary inline-flex items-center rounded-[8px]">
+        <Link to="/accounts/add" className="app-button-primary inline-flex items-center rounded-sm">
           {t('accounts.add')}
         </Link>
       }
