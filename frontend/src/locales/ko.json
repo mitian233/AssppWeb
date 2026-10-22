@@ -100,6 +100,7 @@
     "addFirst": "첫 번째 계정 추가",
     "addForm": {
       "title": "계정 추가",
+      "signInTitle": "Apple 계정으로 로그인",
       "email": "Apple ID (이메일)",
       "emailPlaceholder": "user@example.com",
       "password": "비밀번호",

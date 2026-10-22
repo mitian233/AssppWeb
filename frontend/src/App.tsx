@@ -60,7 +60,7 @@ export default function App() {
 
   return (
     <PasswordGate>
-      <div className="flex h-screen h-[100dvh] overflow-hidden bg-app-canvas text-app-ink selection:bg-blue-200 dark:selection:bg-blue-800">
+      <div className="flex h-dvh overflow-hidden bg-app-canvas text-app-ink selection:bg-blue-200 dark:selection:bg-blue-800">
         <ToastContainer />
         <GlobalDownloadNotifier />
 

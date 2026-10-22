@@ -24,6 +24,8 @@ export default function AddAccountForm() {
   const authenticator = useRef<Authenticator | null>(null);
   const [loading, setLoading] = useState(false);
   const [retry, setRetry] = useState<AuthRetry | null>(null);
+  const credentialInputClassName =
+    'block min-h-11 w-full min-w-0 rounded-[8px] bg-transparent px-4 pb-3 pt-1 text-base text-app-ink placeholder:text-app-tertiary disabled:cursor-not-allowed disabled:opacity-60';
   const inputClassName =
     'block min-w-0 w-full max-w-full app-field text-app-ink disabled:cursor-not-allowed disabled:opacity-60';
 
@@ -59,48 +61,66 @@ export default function AddAccountForm() {
   }
 
   return (
-    <PageContainer title={t('accounts.addForm.title')}>
-      <div className="max-w-2xl">
+    <PageContainer>
+      <div className="mx-auto w-full max-w-lg py-5 sm:py-9">
+        <header className="mb-8 flex flex-col items-center gap-6 text-center sm:mb-10">
+          <img
+            src="/icon-192x192.png"
+            alt="Asspp Web"
+            width={112}
+            height={112}
+            className="h-24 w-24 rounded-[25%] sm:h-28 sm:w-28"
+          />
+          <h1 className="app-heading text-balance">{t('accounts.addForm.signInTitle')}</h1>
+        </header>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <section className="space-y-5 p-5 sm:p-6">
-            <div>
-              <label htmlFor="email" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
-                {t('accounts.addForm.email')}
-              </label>
-              <input
-                id="email"
-                type="text"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={loading}
-                placeholder={t('accounts.addForm.emailPlaceholder')}
-                className={inputClassName}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
-                {t('accounts.addForm.password')}
-              </label>
-              <input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={loading}
-                className={inputClassName}
-              />
+          <section className="space-y-6">
+            <div className="rounded-[8px] border border-app-divider bg-app-surface">
+              <div className="border-b border-app-divider">
+                <label htmlFor="email" className="block px-4 pt-3 text-sm leading-5 text-app-secondary">
+                  {t('accounts.addForm.email')}
+                </label>
+                <input
+                  id="email"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
+                  autoCapitalize="none"
+                  spellCheck={false}
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={loading}
+                  placeholder={t('accounts.addForm.emailPlaceholder')}
+                  className={credentialInputClassName}
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block px-4 pt-3 text-sm leading-5 text-app-secondary">
+                  {t('accounts.addForm.password')}
+                </label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={loading}
+                  className={credentialInputClassName}
+                />
+              </div>
             </div>
 
             <div>
               <label htmlFor="deviceId" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
                 {t('accounts.addForm.deviceId')}
               </label>
-              <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+              <div className="flex gap-2 flex-row items-center">
                 <input
                   id="deviceId"
+                  aria-describedby="deviceId-help"
                   type="text"
                   required
                   value={deviceId}
@@ -112,12 +132,14 @@ export default function AddAccountForm() {
                   type="button"
                   onClick={() => setDeviceId(generateDeviceId())}
                   disabled={loading || needsCode}
-                  className="app-button-utility w-full shrink-0 whitespace-normal disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto sm:whitespace-nowrap"
+                  className="app-button-utility shrink-0 disabled:cursor-not-allowed disabled:opacity-50 w-auto whitespace-nowrap"
                 >
                   {t('accounts.addForm.randomize')}
                 </button>
               </div>
-              <p className="mt-1 text-sm leading-5 text-app-tertiary">{t('accounts.addForm.deviceIdHelp')}</p>
+              <p id="deviceId-help" className="mt-2 text-sm leading-5 text-app-secondary">
+                {t('accounts.addForm.deviceIdHelp')}
+              </p>
             </div>
 
             {needsCode && (
@@ -127,6 +149,8 @@ export default function AddAccountForm() {
                 </label>
                 <input
                   id="code"
+                  autoComplete="one-time-code"
+                  aria-describedby="code-help"
                   type="text"
                   inputMode="numeric"
                   pattern="[0-9]*"
@@ -138,12 +162,14 @@ export default function AddAccountForm() {
                   className={inputClassName}
                   autoFocus
                 />
-                <p className="mt-1 text-sm leading-5 text-app-tertiary">{t('accounts.addForm.codeHelp')}</p>
+                <p id="code-help" className="mt-2 text-sm leading-5 text-app-secondary">
+                  {t('accounts.addForm.codeHelp')}
+                </p>
               </div>
             )}
           </section>
 
-          <div className="grid grid-cols-1 gap-3 sm:flex sm:flex-wrap sm:items-center">
+          <div className="grid grid-cols-1 gap-3 pt-4 sm:grid-cols-2 sm:pt-8">
             <button
               type="submit"
               disabled={loading}
@@ -162,7 +188,7 @@ export default function AddAccountForm() {
             </button>
           </div>
           {retry && (
-            <p className="text-sm leading-5 text-app-secondary">
+            <p role="status" className="text-sm leading-5 text-app-secondary">
               {t('accounts.addForm.retrying', {
                 status: retry.status,
                 seconds: Math.round(retry.delayMs / 1000),

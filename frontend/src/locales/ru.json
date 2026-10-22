@@ -100,6 +100,7 @@
     "addFirst": "Добавьте ваш первый аккаунт",
     "addForm": {
       "title": "Добавить аккаунт",
+      "signInTitle": "Вход с Аккаунтом Apple",
       "email": "Apple ID (Email)",
       "emailPlaceholder": "user@example.com",
       "password": "Пароль",

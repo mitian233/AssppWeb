@@ -17,14 +17,13 @@ const navItems = [
   { to: '/accounts', label: 'accounts', icon: AccountsIcon },
   { to: '/search', label: 'search', icon: SearchIcon },
   { to: '/downloads', label: 'downloads', icon: DownloadsIcon },
-  { to: '/settings', label: 'settings', icon: SettingsIcon },
 ];
 
 export default function Sidebar() {
   const { t } = useTranslation();
 
   return (
-    <aside className="sticky top-0 z-30 hidden h-screen h-[100dvh] w-[17rem] flex-col border-r border-app-divider bg-app-canvas transition-colors duration-200 md:flex">
+    <aside className="sticky top-0 z-30 hidden h-dvh w-68 flex-col border-r border-app-divider bg-app-canvas transition-colors duration-200 md:flex">
       <div className="px-5 pb-4 pt-5">
         <div className="flex items-center gap-3">
           <img src="/icon-192x192.png" alt="" className="h-10 w-10 rounded-[25%]" />
@@ -39,8 +38,7 @@ export default function Sidebar() {
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `flex min-h-11 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${
-                isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
+              `flex min-h-11 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
               }`
             }
           >
@@ -50,7 +48,17 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="border-t border-app-divider p-3">
+      <div className="flex items-center gap-2 border-t border-app-divider p-3">
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            `flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
+            }`
+          }
+        >
+          <SettingsIcon className="h-5 w-5 shrink-0" />
+          {t('nav.settings')}
+        </NavLink>
         <ThemeToggle />
       </div>
     </aside>
@@ -71,13 +79,13 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={cycleTheme}
-      className="flex min-h-11 w-full items-center gap-3 rounded-lg border border-app-divider bg-app-surface px-3.5 py-2.5 text-sm font-normal text-app-secondary transition-transform hover:bg-app-hover hover:text-app-ink motion-safe:active:scale-[0.95]"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-app-divider text-app-secondary transition-transform hover:bg-app-hover hover:text-app-ink motion-safe:active:scale-[0.95]"
+      aria-label={t(`theme.${theme}`)}
       title={t(`theme.${theme}`)}
     >
       {theme === 'light' && <SunIcon className="h-5 w-5" />}
       {theme === 'dark' && <MoonIcon className="h-5 w-5" />}
       {theme === 'system' && <SystemIcon className="h-5 w-5" />}
-      <span>{t(`theme.${theme}`)}</span>
     </button>
   );
 }

@@ -100,6 +100,7 @@
     "addFirst": "新增您的第一個帳號",
     "addForm": {
       "title": "新增帳號",
+      "signInTitle": "使用 Apple 帳號登入",
       "email": "Apple ID (電子郵件)",
       "emailPlaceholder": "user@example.com",
       "password": "密碼",
