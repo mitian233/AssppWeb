@@ -298,7 +298,7 @@ export default function SettingsPage() {
             {t('settings.data.description')}
           </p>
 
-          <div className="mb-6 grid w-full min-w-0 grid-cols-2 gap-3 sm:max-w-sm">
+          <div className="mb-6 grid w-full min-w-0 grid-cols-2 gap-3">
             <button
               onClick={() => setExportModalOpen(true)}
               className="app-button-secondary-rect w-full min-w-0 whitespace-normal wrap-break-word text-center sm:w-auto"
@@ -324,7 +324,7 @@ export default function SettingsPage() {
                 window.location.href = '/';
               }, 1000);
             }}
-            className="min-h-11 w-full min-w-0 whitespace-normal wrap-break-word rounded-sm border border-red-600 px-4 py-2 text-center text-sm leading-5 font-normal text-red-600 transition-colors hover:bg-red-50 sm:w-auto dark:border-red-400 dark:text-red-400 dark:hover:bg-red-950/40"
+            className="min-h-11 w-full min-w-0 whitespace-normal wrap-break-word rounded-sm border border-red-600 px-4 py-2 text-center text-sm leading-5 font-normal text-red-600 transition-colors hover:bg-red-50 dark:border-red-400 dark:text-red-400 dark:hover:bg-red-950/40"
           >
             {t('settings.data.button')}
           </button>
@@ -380,7 +380,7 @@ export default function SettingsPage() {
             />
           </div>
         </div>
-        <div className="mt-6 flex min-w-0 flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
+        <div className="mt-6 grid grid-cols-2 w-full gap-3 flex-row-reverse flex-wrap ">
           <button
             onClick={() => setExportModalOpen(false)}
             className="app-button-secondary min-w-0 whitespace-normal break-words sm:w-auto"

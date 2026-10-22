@@ -246,7 +246,82 @@ select:focus-visible,
 textarea:focus-visible {
   box-shadow: none;
   outline: 2px solid #0071e3;
-  outline-offset: 2px;
+  outline-offset: 0;
+}
+
+.account-credentials {
+  border: 1px solid var(--app-divider);
+  border-radius: 8px;
+  background: var(--app-surface);
+}
+
+.account-credential-row {
+  position: relative;
+}
+
+.account-credential-row:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.account-credential-row:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+.account-credential-row + .account-credential-row {
+  border-top: 1px solid var(--app-divider);
+}
+
+.account-credential-row:focus-within {
+  z-index: 1;
+}
+
+.account-credential-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 56px;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  padding: 24px 16px 6px;
+  color: var(--app-ink);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.account-credential-input:focus {
+  outline: 2px solid #0071e3;
+  outline-offset: 0;
+  box-shadow: none;
+}
+
+.account-credential-label {
+  position: absolute;
+  top: 4px;
+  inset-inline-start: 16px;
+  max-width: calc(100% - 32px);
+  color: var(--app-secondary);
+  font-size: 12px;
+  line-height: 20px;
+  pointer-events: none;
+  transition:
+    top 150ms ease,
+    font-size 150ms ease;
+}
+
+.account-credential-input:placeholder-shown:not(:focus):not(:autofill):not(:-webkit-autofill)
+  + .account-credential-label {
+  top: 18px;
+  font-size: 16px;
+}
+
+.account-credential-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.account-credential-input:disabled + .account-credential-label {
+  opacity: 0.6;
 }
 
 ::selection {
@@ -262,6 +337,38 @@ html.dark ::selection {
 * {
   scrollbar-color: color-mix(in srgb, var(--color-gray-400) 55%, transparent) transparent;
   scrollbar-width: thin;
+}
+
+@property --gallery-mask-left {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --gallery-mask-right {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 1;
+}
+
+.screenshot-gallery {
+  mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / var(--gallery-mask-left)),
+    black 24px,
+    black calc(100% - 24px),
+    rgb(0 0 0 / var(--gallery-mask-right))
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgb(0 0 0 / var(--gallery-mask-left)),
+    black 24px,
+    black calc(100% - 24px),
+    rgb(0 0 0 / var(--gallery-mask-right))
+  );
+  transition:
+    --gallery-mask-left 180ms ease,
+    --gallery-mask-right 180ms ease;
 }
 
 .download-filter-wrap {
@@ -300,6 +407,7 @@ html.dark ::selection {
   inset-block: 0;
   width: 1.5rem;
   pointer-events: none;
+  transition: opacity 180ms ease;
 }
 
 .download-filter-fade-left {
@@ -348,6 +456,12 @@ html.dark ::selection {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .screenshot-gallery,
+  .download-filter-fade-left,
+  .download-filter-fade-right {
+    transition: none;
+  }
+
   .download-filter-tab {
     transition: none;
   }

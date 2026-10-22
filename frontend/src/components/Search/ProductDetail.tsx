@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef, useId } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PageContainer from '../Layout/PageContainer';
@@ -124,17 +124,17 @@ export default function ProductDetail() {
       </div>
       <div className="relative mx-auto flex min-w-0 max-w-5xl items-center gap-5 px-5 py-8 sm:gap-8 sm:px-8 sm:py-10">
         <AppIcon url={app.artworkUrl} name={app.name} size="hero" />
-        <div className="min-w-0 flex-1">
-          <h1 className="min-w-0 text-[21px] leading-tight font-semibold tracking-[-0.02em] text-white [overflow-wrap:anywhere] min-[375px]:text-2xl sm:text-[32px]">
+        <div className="min-w-0 flex flex-col w-full gap-1">
+          <h1 className="min-w-0 text-[21px] leading-tight font-bold tracking-[-0.02em] text-white [overflow-wrap:anywhere] min-[375px]:text-2xl sm:text-[32px]">
             {app.name}
           </h1>
-          <p className="mt-2 text-[17px] leading-[1.47] text-white/85">{app.artistName}</p>
-          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[14px] leading-5 text-white/85">
+          <p className="text-[17px] font-semibold leading-[1.47] text-white/85">{app.artistName}</p>
+          <div className="flex flex-wrap gap-x-3 gap-y-1 text-[14px] leading-5 text-white/85">
             <span>{app.formattedPrice ?? t('search.product.free')}</span>
             <span>{app.primaryGenreName}</span>
             <span>v{app.version}</span>
           </div>
-          <p className="mt-2 text-[14px] leading-5 text-white/85">
+          <p className="text-[14px] leading-5 text-white/85">
             ★ {app.averageUserRating.toFixed(1)} ({app.userRatingCount} {t('search.product.ratings')})
           </p>
         </div>
@@ -153,14 +153,14 @@ export default function ProductDetail() {
         )}
 
         {productAccounts.length === 0 ? (
-          <div className="rounded-2xl bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
+          <div className="rounded-sm bg-yellow-50 p-4 text-sm leading-[1.47] text-center text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
             <Link to="/accounts/add" className="app-link-action font-normal underline">
               {t('search.product.addAccountLink')}
             </Link>{' '}
             {t('search.product.addAccountPrompt')}
           </div>
         ) : filteredAccounts.length === 0 ? (
-          <div className="rounded-2xl bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
+          <div className="rounded-sm bg-yellow-50 p-4 text-sm leading-[1.47] text-center text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
             {t('search.product.noAccountsForRegion')}
           </div>
         ) : (
@@ -218,6 +218,33 @@ export default function ProductDetail() {
           </section>
         )}
 
+        {app.screenshotUrls && app.screenshotUrls.length > 0 && (
+          <section className="p-5 sm:p-6">
+            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
+              {t('search.product.screenshots')}
+            </h2>
+            <ScreenshotGallery key={app.id} urls={app.screenshotUrls} />
+          </section>
+        )}
+
+        {app.description && (
+          <section className="p-5 sm:p-6">
+            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
+              {t('search.product.description')}
+            </h2>
+            <CollapsibleProductText key={`${app.id}:${app.description}`} text={app.description} />
+          </section>
+        )}
+
+        {app.releaseNotes && (
+          <section className="p-5 sm:p-6">
+            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
+              {t('search.product.releaseNotes')}
+            </h2>
+            <CollapsibleProductText key={`${app.id}:${app.releaseNotes}`} text={app.releaseNotes} />
+          </section>
+        )}
+
         <section className="p-5 sm:p-6">
           <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">{t('search.product.details')}</h2>
           <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-[14px] leading-5 sm:grid-cols-2">
@@ -237,45 +264,97 @@ export default function ProductDetail() {
             <dd className="text-app-ink">{new Date(app.releaseDate).toLocaleDateString()}</dd>
           </dl>
         </section>
-
-        {app.description && (
-          <section className="p-5 sm:p-6">
-            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
-              {t('search.product.description')}
-            </h2>
-            <p className="text-[17px] leading-[1.47] text-app-secondary whitespace-pre-line">{app.description}</p>
-          </section>
-        )}
-
-        {app.releaseNotes && (
-          <section className="p-5 sm:p-6">
-            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
-              {t('search.product.releaseNotes')}
-            </h2>
-            <p className="text-[17px] leading-[1.47] text-app-secondary whitespace-pre-line">{app.releaseNotes}</p>
-          </section>
-        )}
-
-        {app.screenshotUrls && app.screenshotUrls.length > 0 && (
-          <section className="p-5 sm:p-6">
-            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
-              {t('search.product.screenshots')}
-            </h2>
-            <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {app.screenshotUrls.map((url, i) => (
-                <img
-                  key={i}
-                  src={url}
-                  alt={`Screenshot ${i + 1}`}
-                  className="h-64 shrink-0 snap-start snap-always rounded-app-card object-contain sm:h-80"
-                  loading="lazy"
-                />
-              ))}
-            </div>
-          </section>
-        )}
       </div>
     </PageContainer>
+  );
+}
+
+function ScreenshotGallery({ urls }: { urls: string[] }) {
+  const galleryRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = galleryRef.current;
+    if (!element) return;
+
+    const updateMask = () => {
+      const leftHidden = element.scrollLeft > 1;
+      const rightHidden = element.scrollWidth - element.clientWidth - element.scrollLeft > 1;
+      element.style.setProperty('--gallery-mask-left', leftHidden ? '0' : '1');
+      element.style.setProperty('--gallery-mask-right', rightHidden ? '0' : '1');
+    };
+
+    updateMask();
+    const observer = new ResizeObserver(updateMask);
+    observer.observe(element);
+    for (const image of element.children) observer.observe(image);
+    element.addEventListener('scroll', updateMask, { passive: true });
+    element.addEventListener('load', updateMask, true);
+    return () => {
+      observer.disconnect();
+      element.removeEventListener('scroll', updateMask);
+      element.removeEventListener('load', updateMask, true);
+    };
+  }, [urls]);
+
+  return (
+    <div
+      ref={galleryRef}
+      className="screenshot-gallery flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {urls.map((url, i) => (
+        <img
+          key={i}
+          src={url}
+          alt={`Screenshot ${i + 1}`}
+          className="h-64 shrink-0 snap-start snap-always rounded-app-card object-contain sm:h-80"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  );
+}
+
+function CollapsibleProductText({ text }: { text: string }) {
+  const { t } = useTranslation();
+  const [expanded, setExpanded] = useState(false);
+  const [overflowing, setOverflowing] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const descriptionId = useId();
+
+  useEffect(() => {
+    const element = textRef.current;
+    if (!element || expanded) return;
+
+    const measure = () => setOverflowing(element.scrollHeight > element.clientHeight + 1);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [expanded]);
+
+  return (
+    <div>
+      <p
+        ref={textRef}
+        id={descriptionId}
+        className={`text-sm leading-[1.47] text-app-secondary whitespace-pre-line ${expanded ? '' : 'line-clamp-4'}`}
+      >
+        {text}
+      </p>
+      {!expanded && overflowing && (
+        <div className="flex justify-end">
+          <button
+            type="button"
+            className="app-link-action min-h-11 rounded-[8px] px-1 text-sm"
+            aria-expanded={expanded}
+            aria-controls={descriptionId}
+            onClick={() => setExpanded(true)}
+          >
+            {t('search.product.more')}
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 

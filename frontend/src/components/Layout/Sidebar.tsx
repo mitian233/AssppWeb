@@ -38,7 +38,8 @@ export default function Sidebar() {
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `flex min-h-11 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
+              `flex min-h-11 items-center gap-3 rounded-[8px] px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${
+                isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
               }`
             }
           >
@@ -52,7 +53,8 @@ export default function Sidebar() {
         <NavLink
           to="/settings"
           className={({ isActive }) =>
-            `flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-md px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
+            `flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-[8px] px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${
+              isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
             }`
           }
         >
@@ -79,7 +81,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={cycleTheme}
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border-app-divider text-app-secondary transition-transform hover:bg-app-hover hover:text-app-ink motion-safe:active:scale-[0.95]"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[8px] border-app-divider text-app-secondary transition-transform hover:bg-app-hover hover:text-app-ink motion-safe:active:scale-[0.95]"
       aria-label={t(`theme.${theme}`)}
       title={t(`theme.${theme}`)}
     >

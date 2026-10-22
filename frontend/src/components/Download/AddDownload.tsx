@@ -142,7 +142,7 @@ export default function AddDownload() {
               <button
                 type="submit"
                 disabled={isLoading || !bundleId.trim()}
-                className="app-button-primary min-w-0 whitespace-normal break-words disabled:opacity-50 sm:w-auto"
+                className="app-button-primary min-w-0 rounded-[8px] whitespace-normal break-words disabled:opacity-50 sm:w-auto"
               >
                 {loadingAction === 'lookup' ? t('downloads.add.lookingUp') : t('downloads.add.lookup')}
               </button>
@@ -252,7 +252,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleGetLicense}
                   disabled={isLoading || !account}
-                  className="app-button-secondary min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="app-button-secondary-rect min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 >
                   {loadingAction === 'license' ? t('downloads.add.processing') : t('downloads.add.getLicense')}
                 </button>
@@ -269,7 +269,7 @@ export default function AddDownload() {
               <button
                 onClick={handleDownload}
                 disabled={isLoading || !account}
-                className="app-button-primary min-w-0 whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="app-button-primary min-w-0 rounded-[8px] whitespace-normal break-words disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               >
                 {loadingAction === 'download' ? t('downloads.add.processing') : t('downloads.add.download')}
               </button>

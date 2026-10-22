@@ -24,8 +24,7 @@ export default function AddAccountForm() {
   const authenticator = useRef<Authenticator | null>(null);
   const [loading, setLoading] = useState(false);
   const [retry, setRetry] = useState<AuthRetry | null>(null);
-  const credentialInputClassName =
-    'block min-h-11 w-full min-w-0 rounded-[8px] bg-transparent px-4 pb-3 pt-1 text-base text-app-ink placeholder:text-app-tertiary disabled:cursor-not-allowed disabled:opacity-60';
+  const credentialInputClassName = 'account-credential-input';
   const inputClassName =
     'block min-w-0 w-full max-w-full app-field text-app-ink disabled:cursor-not-allowed disabled:opacity-60';
 
@@ -75,11 +74,8 @@ export default function AddAccountForm() {
         </header>
         <form onSubmit={handleSubmit} className="space-y-6">
           <section className="space-y-6">
-            <div className="rounded-sm border border-app-divider bg-app-surface">
-              <div className="border-b border-app-divider">
-                <label htmlFor="email" className="block px-4 pt-3 text-sm leading-5 text-app-secondary">
-                  {t('accounts.addForm.email')}
-                </label>
+            <div className="account-credentials">
+              <div className="account-credential-row">
                 <input
                   id="email"
                   name="username"
@@ -91,14 +87,14 @@ export default function AddAccountForm() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   disabled={loading}
-                  placeholder={t('accounts.addForm.emailPlaceholder')}
+                  placeholder=" "
                   className={credentialInputClassName}
                 />
-              </div>
-              <div>
-                <label htmlFor="password" className="block px-4 pt-3 text-sm leading-5 text-app-secondary">
-                  {t('accounts.addForm.password')}
+                <label htmlFor="email" className="account-credential-label">
+                  {t('accounts.addForm.email')}
                 </label>
+              </div>
+              <div className="account-credential-row">
                 <input
                   id="password"
                   name="password"
@@ -108,8 +104,12 @@ export default function AddAccountForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   disabled={loading}
+                  placeholder=" "
                   className={credentialInputClassName}
                 />
+                <label htmlFor="password" className="account-credential-label">
+                  {t('accounts.addForm.password')}
+                </label>
               </div>
             </div>
 

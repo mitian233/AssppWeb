@@ -266,15 +266,23 @@ export default function DownloadList() {
             </button>
           ))}
         </div>
-        {filterOverflow.left && <span aria-hidden="true" className="download-filter-fade-left" />}
-        {filterOverflow.right && <span aria-hidden="true" className="download-filter-fade-right" />}
+        <span
+          aria-hidden="true"
+          className="download-filter-fade-left"
+          style={{ opacity: filterOverflow.left ? 1 : 0 }}
+        />
+        <span
+          aria-hidden="true"
+          className="download-filter-fade-right"
+          style={{ opacity: filterOverflow.right ? 1 : 0 }}
+        />
       </div>
 
       <div
         role="note"
         aria-label={t('downloads.warning')}
         title={t('downloads.warning')}
-        className="mb-5 min-w-0 max-w-full overflow-hidden rounded-2xl bg-amber-50 px-2.5 py-3 text-center leading-relaxed text-amber-800 dark:bg-amber-950/30 dark:text-amber-300"
+        className="mb-5 min-w-0 max-w-full overflow-hidden rounded-sm bg-amber-50 px-2.5 py-3 text-center leading-relaxed text-amber-800 dark:bg-amber-950/30 dark:text-amber-300"
       >
         <span aria-hidden="true" className="block whitespace-nowrap text-[12px] leading-[15px] xl:hidden">
           {t('downloads.warningShort')}
@@ -319,8 +327,8 @@ export default function DownloadList() {
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
-                  status: t(`downloads.status.${filter}`),
-                })}
+                status: t(`downloads.status.${filter}`),
+              })}
           </h3>
           <p
             className="mb-6 max-w-full overflow-hidden text-center text-[17px] leading-[1.47] text-app-secondary"

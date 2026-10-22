@@ -300,7 +300,7 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 - **Canvas and surfaces**: Light canvas is parchment `#f5f5f7`, with white `#ffffff` surfaces and near-black `#1d1d1f` ink. Dark canvas is `#1d1d1f`, with `#272729` surfaces and white ink. Light secondary text is `#6e6e73`; dark secondary text is `#cccccc`.
 - **Status colors**: Keep status badges and alerts in their semantic green, blue, amber, purple, and red colors.
 - **Borders and selection**: Use `app-divider` sparingly for structure. Sidebar selected items use the neutral `app-selected` fill and ink text; hover uses `app-hover`.
-- **Actions and focus**: Filled actions use fixed `#0066cc` with white text. Inline links use `app-link-action` (`#0066cc` light, `#2997ff` dark). Keyboard `:focus-visible` uses a 2px `#0071e3` outline with 2px offset; controls must not add competing rings.
+- **Actions and focus**: Filled actions use fixed `#0066cc` with white text. Inline links use `app-link-action` (`#0066cc` light, `#2997ff` dark). Keyboard `:focus-visible` uses a 2px `#0071e3` outline. Inputs, selects, and textareas use zero outline offset so the highlight meets the control border; buttons and links keep a 2px offset. Controls must not add competing rings.
 
 ### Typography
 
