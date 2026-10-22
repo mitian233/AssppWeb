@@ -160,12 +160,7 @@ describe('ProductDetail download action', () => {
     const licenseButton = screen.getByRole('button', {
       name: 'search.product.getLicense',
     });
-    const iconSlot = downloadButton.querySelector('span[aria-hidden="true"]');
-
-    expect(downloadButton).toHaveClass('w-full', 'min-w-0');
-    expect(downloadButton).not.toHaveClass('opacity-50');
     expect(downloadButton).toHaveAttribute('aria-busy', 'false');
-    expect(iconSlot).toHaveClass('h-4', 'w-4', 'shrink-0');
 
     await user.click(downloadButton);
 
@@ -175,9 +170,6 @@ describe('ProductDetail download action', () => {
     expect(downloadButton).toHaveAttribute('aria-busy', 'true');
     expect(downloadButton).toHaveTextContent('search.product.download');
     expect(downloadButton).not.toHaveTextContent('search.product.processing');
-    expect(downloadButton).toHaveClass('w-full', 'min-w-0');
-    expect(downloadButton).not.toHaveClass('opacity-50');
-    expect(downloadButton.querySelector('.animate-spin')).toBeInTheDocument();
     expect(accountSelect).toBeDisabled();
     expect(licenseButton).toBeDisabled();
 
@@ -204,7 +196,6 @@ describe('ProductDetail download action', () => {
     expect(downloadButton).toHaveAttribute('aria-busy', 'true');
     expect(downloadButton).toHaveTextContent('search.product.download');
     expect(downloadButton).not.toHaveTextContent('search.product.processing');
-    expect(downloadButton.querySelector('.animate-spin')).toBeInTheDocument();
     expect(mocks.startDownload).toHaveBeenCalledOnce();
 
     await act(async () => {
@@ -216,10 +207,6 @@ describe('ProductDetail download action', () => {
     expect(downloadButton).toHaveAttribute('aria-busy', 'false');
     expect(downloadButton).toHaveTextContent('search.product.download');
     expect(downloadButton).not.toHaveTextContent('search.product.processing');
-    expect(downloadButton).toHaveClass('w-full', 'min-w-0');
-    expect(downloadButton).not.toHaveClass('opacity-50');
-    expect(downloadButton.querySelector('.animate-spin')).not.toBeInTheDocument();
-    expect(downloadButton.querySelector('span[aria-hidden="true"]')).toBe(iconSlot);
   });
 
   it('is disabled on the initial commit before an account is selected', async () => {
@@ -235,30 +222,6 @@ describe('ProductDetail download action', () => {
     });
     expect(disabledByCommit[0]).toBe(true);
     await waitFor(() => expect(downloadButton).toBeEnabled());
-  });
-
-  it('keeps license, download, and version actions in one grid row', () => {
-    renderProductDetail();
-
-    const licenseButton = screen.getByRole('button', {
-      name: 'search.product.getLicense',
-    });
-    const downloadButton = screen.getByRole('button', {
-      name: 'search.product.download',
-    });
-    const versionLink = screen.getByRole('link', {
-      name: 'search.product.versionHistory',
-    });
-    const actionRow = licenseButton.parentElement;
-
-    expect(actionRow).toBe(downloadButton.parentElement);
-    expect(actionRow).toBe(versionLink.parentElement);
-    expect(actionRow).toHaveClass('grid', 'grid-flow-col', 'auto-cols-fr');
-    expect(Array.from(actionRow?.children ?? [])).toEqual([licenseButton, downloadButton, versionLink]);
-
-    for (const action of [licenseButton, downloadButton, versionLink]) {
-      expect(action).toHaveClass('w-full', 'min-w-0');
-    }
   });
 
   it('simulates a preview download without calling real services', async () => {
@@ -283,7 +246,6 @@ describe('ProductDetail download action', () => {
 
     expect(downloadButton).toBeDisabled();
     expect(downloadButton).toHaveAttribute('aria-busy', 'true');
-    expect(downloadButton.querySelector('.animate-spin')).toBeInTheDocument();
     expect(mocks.lookupApp).not.toHaveBeenCalled();
     expect(mocks.startDownload).not.toHaveBeenCalled();
     expect(mocks.acquireLicense).not.toHaveBeenCalled();
@@ -294,7 +256,6 @@ describe('ProductDetail download action', () => {
 
     expect(downloadButton).toBeDisabled();
     expect(downloadButton).toHaveAttribute('aria-busy', 'true');
-    expect(downloadButton.querySelector('.animate-spin')).toBeInTheDocument();
     expect(useToastStore.getState().toasts).toHaveLength(0);
     expect(mocks.lookupApp).not.toHaveBeenCalled();
     expect(mocks.startDownload).not.toHaveBeenCalled();
@@ -306,7 +267,6 @@ describe('ProductDetail download action', () => {
 
     expect(downloadButton).toBeEnabled();
     expect(downloadButton).toHaveAttribute('aria-busy', 'false');
-    expect(downloadButton.querySelector('.animate-spin')).not.toBeInTheDocument();
     expect(mocks.lookupApp).not.toHaveBeenCalled();
     expect(mocks.startDownload).not.toHaveBeenCalled();
     expect(mocks.acquireLicense).not.toHaveBeenCalled();

@@ -6,9 +6,10 @@ interface PageContainerProps {
   title?: string;
   children: ReactNode;
   action?: ReactNode;
+  hero?: ReactNode;
 }
 
-export default function PageContainer({ title, children, action }: PageContainerProps) {
+export default function PageContainer({ title, children, action, hero }: PageContainerProps) {
   const location = useLocation();
   const clearSearch = useSearch((state) => state.clear);
 
@@ -21,6 +22,7 @@ export default function PageContainer({ title, children, action }: PageContainer
 
   return (
     <div className="ios-scroll min-h-0 flex-1 overflow-y-auto overscroll-y-contain bg-app-canvas pb-[calc(6rem+env(safe-area-inset-bottom))] [scrollbar-gutter:stable] transition-colors duration-200 md:pb-10">
+      {hero}
       <div className="mx-auto max-w-5xl px-4 py-5 sm:px-6 sm:py-7 lg:px-8">
         {(title || action) && (
           <div className="mb-6 flex flex-wrap items-start justify-between gap-x-5 gap-y-3 sm:mb-7">

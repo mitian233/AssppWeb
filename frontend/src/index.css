@@ -115,6 +115,11 @@ body {
 }
 
 @layer components {
+  .app-spinner > rect {
+    opacity: 0.25;
+    animation: app-spinner-fade 1s linear infinite;
+  }
+
   .app-button-primary {
     @apply inline-flex min-h-11 items-center justify-center rounded-full bg-app-action px-[22px] py-[11px] text-sm font-normal text-white transition-transform;
   }
@@ -161,7 +166,22 @@ body {
   }
 }
 
+@keyframes app-spinner-fade {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.25;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .app-spinner > rect {
+    animation: none;
+    opacity: 0.55;
+  }
+
   .app-button-primary:not(:disabled):active,
   .app-button-secondary:not(:disabled):active,
   .app-button-utility:not(:disabled):active,

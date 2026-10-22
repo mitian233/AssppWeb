@@ -140,6 +140,7 @@ The backend proxies the bag endpoint via `GET /api/bag?guid=<deviceId>` using No
 - React 19, React Router 7, Zustand for state
 - Tailwind CSS 4 for styling
 - Vite for build tooling
+- Vite development responses use `Cache-Control: no-store` so public reverse proxies cannot retain old CSS alongside updated React modules. Preserve this header when exposing the dev server through a tunnel or CDN.
 - IndexedDB for credential storage (via `idb`)
 - `libcurl.js` (WASM) for browser-side TLS 1.3 via Mbed TLS — connects through Wisp protocol
 - `appleRequest()` in `frontend/src/apple/request.ts` wraps `libcurl.fetch` for all Apple API calls and forces HTTP/1.1 (`_libcurl_http_version: 1.1`)
@@ -153,9 +154,9 @@ The backend proxies the bag endpoint via `GET /api/bag?guid=<deviceId>` using No
 
 - **Alert** — `<Alert type="error|success|warning">` for status messages (replaces inline alert divs)
 - **Modal** — `<Modal open={bool} onClose={fn} title={string}>` for dialog overlays
-- **Spinner** — inline SVG loading spinner for buttons
+- **Spinner** — 16px inline SVG with 8 fading rounded blades, inherits text color; shared by buttons and route loading, static when reduced motion is requested
 - **CountrySelect** — optgroup-based country dropdown with "Available Regions" + "All Regions"
-- **AppIcon** — 3 sizes (40/56/80px), rounded corners, letter fallback
+- **AppIcon** — standard 40/56/80px sizes plus a responsive product Hero size (80/112/160px), rounded corners, letter fallback
 - **Badge** — color-coded status pill
 - **ProgressBar** — gray track, blue fill, percentage label
 - **icons** — shared SVG icon components (`HomeIcon`, `AccountsIcon`, `SearchIcon`, `DownloadsIcon`, `SettingsIcon`, `SunIcon`, `MoonIcon`, `SystemIcon`) used by Sidebar, MobileNav, and MobileHeader
@@ -319,6 +320,8 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 - Page content sections, lists, forms, stats, and action regions use a flat page canvas without rounded card shells, shadows, or backdrop blur. Keep the Hero visually distinct through its surface color, without gradients or shadows.
 - Keep adjacent content sections flat and use fine `app-divider` borders only where they clarify structure.
 - Controls, icons and screenshots retain their own appropriate radii and surfaces. Modals and toasts use distinct surfaces and appropriate radii, without shadows.
+- Product detail Hero uses the app artwork as a decorative cover background with a 64px blur and a 75% neutral gray overlay. Keep foreground artwork sharp and text white; the overlay must preserve readable contrast even for entirely white artwork. Missing artwork uses the neutral Hero base and the shared icon fallback.
+- Render the product detail Hero through `PageContainer`'s `hero` slot, before the padded, width-constrained content wrapper. Its background spans the full scrollable content width and meets the mobile header; constrain and pad only its foreground content.
 
 ### Layout
 
@@ -335,7 +338,7 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 - **Cards**: Page content has no card shell except for the visually distinct homepage Hero. Avoid decorative gradients, container chrome, and shadows.
 - **Badge**: Color-coded status pills; neutral pending state uses semantic neutral tokens.
 - **ProgressBar**: Neutral track and action blue fill without glow.
-- **AppIcon**: 3 sizes (40/56/80px), 25% rounded corners, letter fallback.
+- **AppIcon**: standard 40/56/80px sizes and a responsive 80/112/160px product Hero size, 25% rounded corners, letter fallback.
 - **Nav active state**: Neutral selected fill and ink in the sidebar; action color for the active mobile item.
 
 ## Frontend Cleanup Rules

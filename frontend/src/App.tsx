@@ -5,6 +5,7 @@ import MobileHeader from './components/Layout/MobileHeader';
 import MobileNav from './components/Layout/MobileNav';
 import Sidebar from './components/Layout/Sidebar';
 import GlobalDownloadNotifier from './components/common/GlobalDownloadNotifier';
+import Spinner from './components/common/Spinner';
 import ToastContainer from './components/common/ToastContainer';
 import PasswordGate from './components/Auth/PasswordGate';
 import { useSettingsStore } from './store/settings';
@@ -27,10 +28,7 @@ function Loading() {
   return (
     <div className="flex min-h-[40vh] items-center justify-center px-6" role="status">
       <div className="inline-flex items-center gap-2.5 rounded-full border border-app-divider bg-app-surface px-4 py-2.5 text-[13px] leading-4 font-medium text-app-secondary">
-        <span
-          aria-hidden="true"
-          className="h-4 w-4 animate-spin rounded-full border-2 border-blue-600/25 border-t-blue-600 dark:border-blue-500/25 dark:border-t-blue-500"
-        />
+        <Spinner />
         {t('loading')}
       </div>
     </div>

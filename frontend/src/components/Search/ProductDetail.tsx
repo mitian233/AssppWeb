@@ -113,8 +113,37 @@ export default function ProductDetail() {
     }
   }
 
+  const hero = (
+    <section className="relative isolate overflow-hidden bg-[#30343b] text-white [overflow-wrap:anywhere]">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div
+          className="absolute -inset-16 bg-cover bg-center blur-[64px]"
+          style={{ backgroundImage: app.artworkUrl ? `url(${JSON.stringify(app.artworkUrl)})` : undefined }}
+        />
+        <div className="absolute inset-0 bg-[#26282c]/75" />
+      </div>
+      <div className="relative mx-auto flex min-w-0 max-w-5xl items-center gap-5 px-5 py-8 sm:gap-8 sm:px-8 sm:py-10">
+        <AppIcon url={app.artworkUrl} name={app.name} size="hero" />
+        <div className="min-w-0 flex-1">
+          <h1 className="min-w-0 text-[21px] leading-tight font-semibold tracking-[-0.02em] text-white [overflow-wrap:anywhere] min-[375px]:text-2xl sm:text-[32px]">
+            {app.name}
+          </h1>
+          <p className="mt-2 text-[17px] leading-[1.47] text-white/85">{app.artistName}</p>
+          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-[14px] leading-5 text-white/85">
+            <span>{app.formattedPrice ?? t('search.product.free')}</span>
+            <span>{app.primaryGenreName}</span>
+            <span>v{app.version}</span>
+          </div>
+          <p className="mt-2 text-[14px] leading-5 text-white/85">
+            ★ {app.averageUserRating.toFixed(1)} ({app.userRatingCount} {t('search.product.ratings')})
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+
   return (
-    <PageContainer>
+    <PageContainer hero={hero}>
       <div className="min-w-0 space-y-5 [overflow-wrap:anywhere]">
         {previewEnabled && (
           <Alert type="warning">
@@ -122,26 +151,6 @@ export default function ProductDetail() {
             {t('search.product.previewDescription')}
           </Alert>
         )}
-
-        <section className="flex min-w-0 items-start gap-4 p-5 sm:gap-5 sm:p-6">
-          <div className="shrink-0">
-            <AppIcon url={app.artworkUrl} name={app.name} size="lg" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h1 className="app-heading min-w-0 break-words [overflow-wrap:anywhere]">{app.name}</h1>
-            <p className="text-[17px] leading-[1.47] text-app-secondary">{app.artistName}</p>
-            <div className="mt-3 flex flex-wrap gap-2 text-[14px] leading-5 font-normal text-app-secondary">
-              <span className="rounded-full bg-app-canvas px-3 py-1">
-                {app.formattedPrice ?? t('search.product.free')}
-              </span>
-              <span className="rounded-full bg-app-canvas px-3 py-1">{app.primaryGenreName}</span>
-              <span className="rounded-full bg-app-canvas px-3 py-1">v{app.version}</span>
-              <span>
-                ★ {app.averageUserRating.toFixed(1)} ({app.userRatingCount} {t('search.product.ratings')})
-              </span>
-            </div>
-          </div>
-        </section>
 
         {productAccounts.length === 0 ? (
           <div className="rounded-2xl bg-yellow-50 p-4 text-[17px] leading-[1.47] text-yellow-800 dark:bg-yellow-950/30 dark:text-yellow-300">
