@@ -110,7 +110,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
       <main className="w-full max-w-md p-6 sm:p-8">
         <div className="text-center">
           <AppMark />
-          <h1 className="app-heading mt-5 text-app-ink">{t('auth.title')}</h1>
+          <h1 className="app-heading mt-5">{t('auth.title')}</h1>
           <p className="mt-2 text-sm leading-5 text-app-secondary">Asspp Web</p>
         </div>
 
@@ -132,7 +132,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
               aria-describedby={error ? 'access-password-error' : undefined}
               autoComplete="current-password"
               autoFocus
-              className="app-field min-h-11 w-full pl-11 pr-4 text-app-ink placeholder:text-app-tertiary"
+              className="app-field-block pl-11 pr-4 placeholder:text-app-tertiary"
             />
           </div>
 
@@ -150,7 +150,7 @@ export default function PasswordGate({ children }: { children: ReactNode }) {
             type="submit"
             disabled={submitting || !password}
             aria-busy={submitting}
-            className="app-button-primary flex min-h-11 w-full items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+            className="app-button-primary flex w-full gap-2"
           >
             {submitting && <Spinner />}
             {submitting ? t('auth.verifying') : t('auth.submit')}

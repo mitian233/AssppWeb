@@ -197,20 +197,17 @@ export default function DownloadList() {
   return (
     <PageContainer>
       <div className="mb-6 grid grid-cols-2 items-start gap-2 min-[360px]:grid-cols-3 sm:mb-7 sm:grid-cols-6">
-        <h1 className="app-heading col-span-2 min-w-0 text-[28px] leading-tight min-[360px]:col-span-1 sm:col-span-4 sm:text-[32px]">
+        <h1 className="app-heading col-span-2 min-w-0 text-[28px] min-[360px]:col-span-1 sm:col-span-4 sm:text-[32px]">
           {t('downloads.title')}
         </h1>
         <button
           onClick={handleCheckAllUpdates}
           disabled={checkingAll}
-          className="app-button-secondary-rect flex h-11 w-full min-w-0 items-center justify-center px-2.5 text-center disabled:cursor-not-allowed disabled:opacity-50"
+          className="app-button-secondary-rect flex h-11 w-full min-w-0 px-2.5 text-center"
         >
           {checkingAll ? t('downloads.checkingUpdates') : t('downloads.checkUpdates')}
         </button>
-        <Link
-          to="/downloads/add"
-          className="app-button-primary flex h-11 rounded-sm w-full min-w-0 items-center justify-center px-2.5 text-center"
-        >
+        <Link to="/downloads/add" className="app-button-primary-rect flex h-11 w-full min-w-0 px-2.5 text-center">
           {t('downloads.new')}
         </Link>
       </div>
@@ -293,11 +290,8 @@ export default function DownloadList() {
       </div>
 
       {previewEnabled && (
-        <div className="mb-5 flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[17px] leading-[1.47] text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
-          <span
-            aria-hidden="true"
-            className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-full bg-blue-600 px-2 text-[10px] font-semibold uppercase tracking-wide text-white"
-          >
+        <div className="mb-5 app-preview-notice">
+          <span aria-hidden="true" className="app-preview-badge">
             {t('downloads.preview.badge')}
           </span>
           <p className="min-w-0 leading-5">{t('downloads.preview.description')}</p>
@@ -327,8 +321,8 @@ export default function DownloadList() {
             {filter === 'all'
               ? t('downloads.emptyAll')
               : t('downloads.emptyFilter', {
-                status: t(`downloads.status.${filter}`),
-              })}
+                  status: t(`downloads.status.${filter}`),
+                })}
           </h3>
           <p
             className="mb-6 max-w-full overflow-hidden text-center text-[17px] leading-[1.47] text-app-secondary"
@@ -345,13 +339,11 @@ export default function DownloadList() {
                 </span>
               </>
             ) : (
-              <span className="block whitespace-nowrap text-[12px] leading-3.75">
-                {t('downloads.emptyFilterDesc')}
-              </span>
+              <span className="block whitespace-nowrap text-[12px] leading-3.75">{t('downloads.emptyFilterDesc')}</span>
             )}
           </p>
           {filter === 'all' && (
-            <Link to="/search" className="app-button-primary inline-flex min-h-11 items-center gap-2">
+            <Link to="/search" className="app-button-primary gap-2">
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path
                   strokeLinecap="round"

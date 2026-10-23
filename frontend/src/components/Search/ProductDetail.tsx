@@ -166,13 +166,11 @@ export default function ProductDetail() {
         ) : (
           <section className="space-y-4 p-5">
             <div className="min-w-0">
-              <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
-                {t('search.product.account')}
-              </label>
+              <label className="app-form-label">{t('search.product.account')}</label>
               <select
                 value={selectedAccount}
                 onChange={(e) => setSelectedAccount(e.target.value)}
-                className="app-field min-h-11 w-full min-w-0"
+                className="app-field w-full min-w-0"
                 disabled={loadingAction !== null}
               >
                 {filteredAccounts.map((a) => (
@@ -188,7 +186,7 @@ export default function ProductDetail() {
                   type="button"
                   onClick={handlePurchase}
                   disabled={loadingAction !== null}
-                  className="app-button-secondary inline-flex min-h-11 w-full min-w-0 items-center justify-center px-2 text-center disabled:opacity-50 sm:px-5"
+                  className="app-button-secondary w-full min-w-0 px-2 text-center sm:px-5"
                 >
                   {loadingAction === 'purchase' ? t('search.product.processing') : t('search.product.getLicense')}
                 </button>
@@ -198,8 +196,7 @@ export default function ProductDetail() {
                 onClick={handleDownload}
                 disabled={loadingAction !== null || !account}
                 aria-busy={isDownloading}
-                className={`app-button-primary inline-flex min-h-11 w-full min-w-0 items-center justify-center gap-1.5 px-2 disabled:cursor-not-allowed sm:gap-2 sm:px-5 ${!account || (loadingAction !== null && !isDownloading) ? 'opacity-50' : ''
-                  }`}
+                className={`app-button-primary w-full min-w-0 gap-1.5 px-2 sm:gap-2 sm:px-5 ${!account || (loadingAction !== null && !isDownloading) ? 'opacity-50' : ''}`}
               >
                 <span aria-hidden="true" className="flex h-4 w-4 shrink-0 items-center justify-center">
                   {isDownloading ? <Spinner /> : <DownloadIcon />}
@@ -209,7 +206,7 @@ export default function ProductDetail() {
               <Link
                 to={`/search/${app.id}/versions`}
                 state={{ app, country }}
-                className="app-button-utility inline-flex min-h-11 w-full min-w-0 items-center justify-center px-2 text-center sm:px-5"
+                className="app-button-utility w-full min-w-0 px-2 text-center sm:px-5"
               >
                 {t('search.product.versionHistory')}
               </Link>
@@ -219,33 +216,27 @@ export default function ProductDetail() {
 
         {app.screenshotUrls && app.screenshotUrls.length > 0 && (
           <section className="p-5 sm:p-6">
-            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
-              {t('search.product.screenshots')}
-            </h2>
+            <h2 className="mb-2 app-section-heading">{t('search.product.screenshots')}</h2>
             <ScreenshotGallery key={app.id} urls={app.screenshotUrls} />
           </section>
         )}
 
         {app.description && (
           <section className="p-5 sm:p-6">
-            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
-              {t('search.product.description')}
-            </h2>
+            <h2 className="mb-2 app-section-heading">{t('search.product.description')}</h2>
             <CollapsibleProductText key={`${app.id}:${app.description}`} text={app.description} />
           </section>
         )}
 
         {app.releaseNotes && (
           <section className="p-5 sm:p-6">
-            <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">
-              {t('search.product.releaseNotes')}
-            </h2>
+            <h2 className="mb-2 app-section-heading">{t('search.product.releaseNotes')}</h2>
             <CollapsibleProductText key={`${app.id}:${app.releaseNotes}`} text={app.releaseNotes} />
           </section>
         )}
 
         <section className="p-5 sm:p-6">
-          <h2 className="mb-2 text-[21px] leading-tight font-semibold text-app-ink">{t('search.product.details')}</h2>
+          <h2 className="mb-2 app-section-heading">{t('search.product.details')}</h2>
           <dl className="grid grid-cols-1 gap-x-4 gap-y-2 text-[14px] leading-5 sm:grid-cols-2">
             <dt className="text-app-secondary">{t('search.product.bundleId')}</dt>
             <dd className="break-all text-app-ink">{app.bundleID}</dd>

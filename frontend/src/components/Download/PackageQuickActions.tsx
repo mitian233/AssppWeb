@@ -22,8 +22,8 @@ export default function PackageQuickActions({ task, size = 'default' }: PackageQ
 
   const installInfo = getInstallInfo(task.id);
   const isPreview = isPreviewDownloadTask(task);
-  const buttonSize = size === 'compact' ? 'min-h-11 px-2 text-[14px]' : 'min-h-11 px-3 text-[14px]';
-  const secondaryButton = `${buttonSize} app-button-utility inline-flex min-w-0 items-center justify-center gap-1.5`;
+  const buttonSize = size === 'compact' ? 'px-2' : 'px-3';
+  const secondaryButton = `${buttonSize} app-button-utility min-w-0 gap-1.5`;
 
   function showPreviewNotice() {
     addToast(t('downloads.preview.actionHint'), 'info', t('downloads.preview.badge'));
@@ -99,7 +99,7 @@ export default function PackageQuickActions({ task, size = 'default' }: PackageQ
       <a
         href={installInfo.installUrl}
         onClick={handleInstall}
-        className={`${buttonSize} app-button-primary inline-flex min-w-0 items-center justify-center gap-1.5`}
+        className={`${buttonSize} app-button-primary min-w-0 gap-1.5`}
         aria-label={t('downloads.package.install')}
       >
         <InstallIcon />

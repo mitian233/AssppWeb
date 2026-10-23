@@ -57,12 +57,12 @@ export default function SearchPage() {
             value={term}
             onChange={(e) => setSearchParam({ term: e.target.value })}
             placeholder={t('search.placeholder')}
-            className="app-search-field min-h-11 flex-1 rounded-sm"
+            className="app-search-field-rect flex-1"
           />
           <button
             type="submit"
             disabled={loading || !term.trim()}
-            className="app-button-primary rounded-sm whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-50"
+            className="app-button-primary-rect whitespace-nowrap"
           >
             {loading ? t('search.searching') : t('search.button')}
           </button>
@@ -79,7 +79,7 @@ export default function SearchPage() {
             value={activeEntity}
             onChange={(e) => setSearchParam({ entity: e.target.value })}
             aria-label={t('settings.defaults.entity')}
-            className="app-field min-h-11 w-1/2 truncate"
+            className="app-field w-1/2 truncate"
           >
             <option value="iPhone">iPhone</option>
             <option value="iPad">iPad</option>

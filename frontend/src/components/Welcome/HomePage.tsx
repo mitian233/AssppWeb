@@ -61,26 +61,24 @@ export default function HomePage() {
   const primaryAction =
     accounts.length === 0
       ? {
-        to: '/accounts/add',
-        label: t('home.actions.addAccount'),
-      }
+          to: '/accounts/add',
+          label: t('home.actions.addAccount'),
+        }
       : {
-        to: '/search',
-        label: t('home.actions.searchApps'),
-      };
+          to: '/search',
+          label: t('home.actions.searchApps'),
+        };
 
   return (
     <PageContainer>
       <div className="space-y-8 pb-4">
         <section className="relative min-h-80 overflow-hidden bg-app-surface px-6 py-8 sm:min-h-96 sm:px-10 sm:py-10">
           <div className="relative z-10 flex min-h-64 max-w-xl flex-col items-start justify-center sm:min-h-76">
-            <h1 className="app-heading text-[28px] leading-tight text-app-ink sm:text-[clamp(2.5rem,5vw,3.5rem)]">
-              {t('home.welcome')}
-            </h1>
+            <h1 className="app-heading text-[28px] sm:text-[clamp(2.5rem,5vw,3.5rem)]">{t('home.welcome')}</h1>
             <p className="mt-4 max-w-full text-[17px] leading-[1.47] text-app-secondary sm:max-w-lg">
               {t('home.subtitle')}
             </p>
-            <Link to={primaryAction.to} className="app-button-primary mt-7 inline-flex items-center gap-2 text-[17px]">
+            <Link to={primaryAction.to} className="app-button-primary mt-7 gap-2 text-[17px]">
               {primaryAction.label}
               <ArrowRightIcon />
             </Link>

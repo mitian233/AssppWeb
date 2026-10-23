@@ -168,10 +168,10 @@ export default function SettingsPage() {
     <PageContainer title={t('settings.title')}>
       <div className="min-w-0 space-y-6">
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.language.title')}</h2>
+          <h2 className="mb-4 app-section-heading leading-6.25">{t('settings.language.title')}</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="language" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
+              <label htmlFor="language" className="app-form-label">
                 {t('settings.language.label')}
               </label>
               <select
@@ -182,7 +182,7 @@ export default function SettingsPage() {
                   await i18n.changeLanguage(newLang);
                   addToast(t('settings.language.changed'), 'success');
                 }}
-                className="app-field block min-w-0 w-full max-w-full truncate text-app-ink"
+                className="app-field-select block"
               >
                 <option value="en-US">English (US)</option>
                 <option value="zh-CN">简体中文</option>
@@ -196,10 +196,10 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.defaults.title')}</h2>
+          <h2 className="mb-4 app-section-heading leading-6.25">{t('settings.defaults.title')}</h2>
           <div className="space-y-4">
             <div>
-              <label htmlFor="country" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
+              <label htmlFor="country" className="app-form-label">
                 {t('settings.defaults.country')}
               </label>
               <select
@@ -209,7 +209,7 @@ export default function SettingsPage() {
                   setCountry(e.target.value);
                   addToast(t('settings.defaults.countryChanged'), 'success');
                 }}
-                className="app-field block min-w-0 w-full max-w-full truncate text-app-ink"
+                className="app-field-select block"
               >
                 {sortedCountries.map((code) => (
                   <option key={code} value={code}>
@@ -219,7 +219,7 @@ export default function SettingsPage() {
               </select>
             </div>
             <div>
-              <label htmlFor="entity" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
+              <label htmlFor="entity" className="app-form-label">
                 {t('settings.defaults.entity')}
               </label>
               <select
@@ -229,7 +229,7 @@ export default function SettingsPage() {
                   setEntity(e.target.value);
                   addToast(t('settings.defaults.entityChanged'), 'success');
                 }}
-                className="app-field block min-w-0 w-full max-w-full truncate text-app-ink"
+                className="app-field-select block"
               >
                 {entityTypes.map((et) => (
                   <option key={et.value} value={et.value}>
@@ -242,7 +242,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.server.title')}</h2>
+          <h2 className="mb-4 app-section-heading leading-6.25">{t('settings.server.title')}</h2>
           {serverInfo ? (
             <div className="min-w-0 space-y-6">
               <dl className="min-w-0 divide-y divide-app-divider">
@@ -293,7 +293,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 border-b border-app-divider px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.data.title')}</h2>
+          <h2 className="mb-4 app-section-heading leading-6.25">{t('settings.data.title')}</h2>
           <p className="mb-4 max-w-full text-[17px] leading-relaxed text-app-secondary">
             {t('settings.data.description')}
           </p>
@@ -301,13 +301,13 @@ export default function SettingsPage() {
           <div className="mb-6 grid w-full min-w-0 grid-cols-2 gap-3">
             <button
               onClick={() => setExportModalOpen(true)}
-              className="app-button-secondary-rect w-full min-w-0 whitespace-normal wrap-break-word text-center sm:w-auto"
+              className="app-button-secondary-rect app-button-wrap w-full min-w-0 text-center sm:w-auto"
             >
               {t('settings.data.exportBtn')}
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              className="app-button-secondary-rect w-full min-w-0 whitespace-normal wrap-break-word text-center sm:w-auto"
+              className="app-button-secondary-rect app-button-wrap w-full min-w-0 text-center sm:w-auto"
             >
               {t('settings.data.importBtn')}
             </button>
@@ -331,7 +331,7 @@ export default function SettingsPage() {
         </section>
 
         <section className="min-w-0 px-4 py-4 sm:px-6 sm:py-6">
-          <h2 className="mb-4 text-[21px] leading-6.25 font-semibold text-app-ink">{t('settings.about.title')}</h2>
+          <h2 className="mb-4 app-section-heading leading-6.25">{t('settings.about.title')}</h2>
           <p className="max-w-full text-[17px] leading-relaxed text-app-secondary">{t('settings.about.description')}</p>
           {serverInfo && (
             <dl className="mt-3 min-w-0 divide-y divide-app-divider">
@@ -358,39 +358,32 @@ export default function SettingsPage() {
       <Modal open={exportModalOpen} onClose={() => setExportModalOpen(false)} title={t('settings.data.exportBtn')}>
         <div className="min-w-0 space-y-4">
           <div className="min-w-0">
-            <label className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
-              {t('settings.data.passwordPrompt')}
-            </label>
+            <label className="app-form-label">{t('settings.data.passwordPrompt')}</label>
             <input
               type="password"
               value={exportPassword}
               onChange={(e) => setExportPassword(e.target.value)}
-              className="app-field block min-w-0 w-full max-w-full text-app-ink"
+              className="app-field-block"
             />
           </div>
           <div className="min-w-0">
-            <label className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
-              {t('settings.data.passwordConfirm')}
-            </label>
+            <label className="app-form-label">{t('settings.data.passwordConfirm')}</label>
             <input
               type="password"
               value={exportConfirmPassword}
               onChange={(e) => setExportConfirmPassword(e.target.value)}
-              className="app-field block min-w-0 w-full max-w-full text-app-ink"
+              className="app-field-block"
             />
           </div>
         </div>
         <div className="mt-6 grid grid-cols-2 w-full gap-3 flex-row-reverse flex-wrap ">
-          <button
-            onClick={() => setExportModalOpen(false)}
-            className="app-button-secondary min-w-0 whitespace-normal wrap-break-word sm:w-auto"
-          >
+          <button onClick={() => setExportModalOpen(false)} className="app-button-secondary app-button-wrap sm:w-auto">
             {t('settings.data.cancel')}
           </button>
           <button
             onClick={handleExport}
             disabled={!exportPassword || !exportConfirmPassword}
-            className="app-button-primary min-w-0 whitespace-normal wrap-break-word disabled:opacity-50 sm:w-auto"
+            className="app-button-primary app-button-wrap sm:w-auto"
           >
             {t('settings.data.confirmBtn')}
           </button>
@@ -400,28 +393,23 @@ export default function SettingsPage() {
       <Modal open={importModalOpen} onClose={() => setImportModalOpen(false)} title={t('settings.data.importBtn')}>
         <div className="min-w-0 space-y-4">
           <div className="min-w-0">
-            <label className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
-              {t('settings.data.passwordPrompt')}
-            </label>
+            <label className="app-form-label">{t('settings.data.passwordPrompt')}</label>
             <input
               type="password"
               value={importPassword}
               onChange={(e) => setImportPassword(e.target.value)}
-              className="app-field block min-w-0 w-full max-w-full text-app-ink"
+              className="app-field-block"
             />
           </div>
         </div>
         <div className="mt-6 flex min-w-0 flex-col-reverse gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
-          <button
-            onClick={() => setImportModalOpen(false)}
-            className="app-button-secondary min-w-0 whitespace-normal wrap-break-word sm:w-auto"
-          >
+          <button onClick={() => setImportModalOpen(false)} className="app-button-secondary app-button-wrap sm:w-auto">
             {t('settings.data.cancel')}
           </button>
           <button
             onClick={handleImport}
             disabled={!importPassword}
-            className="app-button-primary min-w-0 whitespace-normal wrap-break-word disabled:opacity-50 sm:w-auto"
+            className="app-button-primary app-button-wrap sm:w-auto"
           >
             {t('settings.data.confirmBtn')}
           </button>
@@ -446,15 +434,12 @@ export default function SettingsPage() {
           >
             {t('settings.data.conflictOverwrite')}
           </button>
-          <button
-            onClick={() => handleResolveConflict(false)}
-            className="app-button-secondary w-full min-w-0 whitespace-normal wrap-break-word"
-          >
+          <button onClick={() => handleResolveConflict(false)} className="app-button-secondary app-button-wrap w-full">
             {t('settings.data.conflictSkip')}
           </button>
           <button
             onClick={() => setConflictModalOpen(false)}
-            className="app-button-secondary mt-2 w-full min-w-0 whitespace-normal wrap-break-word"
+            className="app-button-secondary app-button-wrap mt-2 w-full"
           >
             {t('settings.data.cancel')}
           </button>
@@ -485,8 +470,9 @@ function SettingsInfoRow({
       <dt className={`${labelSize} min-w-0 break-all font-normal text-app-tertiary`}>{label}</dt>
       <dd
         title={valueTitle}
-        className={`${valueSize} min-w-0 max-w-full whitespace-pre-wrap break-all text-app-ink sm:text-right ${mono ? 'font-mono' : ''
-          }`}
+        className={`${valueSize} min-w-0 max-w-full whitespace-pre-wrap break-all text-app-ink sm:text-right ${
+          mono ? 'font-mono' : ''
+        }`}
       >
         {children}
       </dd>

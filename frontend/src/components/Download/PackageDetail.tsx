@@ -141,10 +141,8 @@ export default function PackageDetail() {
     <PageContainer title={t('downloads.package.title')}>
       <div className="min-w-0 space-y-5">
         {isPreview && (
-          <div className="flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[17px] leading-[1.47] text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300">
-            <span className="mt-0.5 inline-flex h-5 shrink-0 items-center rounded-full bg-blue-600 px-2 text-[10px] font-semibold uppercase tracking-wide text-white">
-              {t('downloads.preview.badge')}
-            </span>
+          <div className="app-preview-notice">
+            <span className="app-preview-badge">{t('downloads.preview.badge')}</span>
             <p className="min-w-0 leading-5">{t('downloads.preview.description')}</p>
           </div>
         )}
@@ -195,7 +193,7 @@ export default function PackageDetail() {
         </section>
 
         <section aria-labelledby="package-information-title" className="min-w-0 p-4 sm:p-5">
-          <h3 id="package-information-title" className="text-[21px] leading-tight font-semibold text-app-ink">
+          <h3 id="package-information-title" className="app-section-heading">
             {t('downloads.package.information')}
           </h3>
 
@@ -226,7 +224,7 @@ export default function PackageDetail() {
         </section>
 
         <section aria-labelledby="package-actions-title" className="min-w-0 p-4 sm:p-5">
-          <h3 id="package-actions-title" className="text-[21px] leading-tight font-semibold text-app-ink">
+          <h3 id="package-actions-title" className="app-section-heading">
             {t('downloads.package.quickActions')}
           </h3>
 
@@ -263,11 +261,7 @@ export default function PackageDetail() {
                 {t('downloads.package.resume')}
               </button>
             )}
-            <button
-              type="button"
-              onClick={handleDelete}
-              className="min-h-11 min-w-0 rounded-sm bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
-            >
+            <button type="button" onClick={handleDelete} className="app-button-delete min-w-0">
               {t('downloads.package.delete')}
             </button>
           </div>
@@ -287,13 +281,11 @@ export default function PackageDetail() {
           </p>
           {availableVersions.length > 0 && (
             <div className="min-w-0">
-              <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
-                {t('downloads.package.selectVersion')}
-              </label>
+              <label className="app-form-label">{t('downloads.package.selectVersion')}</label>
               <select
                 value={selectedVersion}
                 onChange={(event) => setSelectedVersion(event.target.value)}
-                className="app-field min-h-11 w-full min-w-0 max-w-full truncate"
+                className="app-field-select"
               >
                 {availableVersions.map((version, index) => (
                   <option key={version} value={version}>
@@ -344,8 +336,9 @@ function PackageDetailRow({
       <dt className="min-w-0 wrap-break-word text-app-secondary wrap-anywhere">{label}</dt>
       <dd
         title={valueTitle}
-        className={`min-w-0 max-w-full whitespace-pre-wrap break-all text-right text-app-ink ${mono ? 'font-mono' : ''
-          }`}
+        className={`min-w-0 max-w-full whitespace-pre-wrap break-all text-right text-app-ink ${
+          mono ? 'font-mono' : ''
+        }`}
       >
         {children}
       </dd>

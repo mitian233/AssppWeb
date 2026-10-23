@@ -103,9 +103,7 @@ export default function VersionHistory() {
             <AppIcon url={app.artworkUrl} name={app.name} size="md" />
           </div>
           <div className="min-w-0 flex-1">
-            <h2 className="text-[17px] leading-5.5 font-semibold text-app-ink wrap-anywhere">
-              {app.name}
-            </h2>
+            <h2 className="text-[17px] leading-5.5 font-semibold text-app-ink wrap-anywhere">{app.name}</h2>
             <p className="text-[14px] leading-5 text-app-secondary wrap-anywhere">{app.bundleID}</p>
           </div>
         </div>
@@ -118,13 +116,11 @@ export default function VersionHistory() {
           filteredAccounts.length > 0 && (
             <div className="flex min-w-0 flex-col items-stretch gap-3 sm:flex-row sm:items-end">
               <div className="min-w-0 flex-1">
-                <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
-                  {t('search.versions.account')}
-                </label>
+                <label className="app-form-label">{t('search.versions.account')}</label>
                 <select
                   value={selectedAccount}
                   onChange={(e) => setSelectedAccount(e.target.value)}
-                  className="app-field min-h-11 w-full min-w-0"
+                  className="app-field w-full min-w-0"
                 >
                   {filteredAccounts.map((a) => (
                     <option key={a.email} value={a.email}>

@@ -129,20 +129,20 @@ export default function AddDownload() {
       <div className="min-w-0 space-y-6">
         <form onSubmit={handleLookup} className="min-w-0 space-y-4">
           <div className="min-w-0">
-            <label className="mb-1 block text-[14px] leading-5 text-app-secondary">{t('downloads.add.bundleId')}</label>
+            <label className="app-form-label">{t('downloads.add.bundleId')}</label>
             <div className="flex min-w-0 flex-col gap-2 sm:flex-row">
               <input
                 type="text"
                 value={bundleId}
                 onChange={(e) => setBundleId(e.target.value)}
                 placeholder={t('downloads.add.placeholder')}
-                className="app-field min-h-11 w-full min-w-0 flex-1 disabled:cursor-not-allowed disabled:opacity-60"
+                className="app-field w-full min-w-0 flex-1 disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={isLoading}
               />
               <button
                 type="submit"
                 disabled={isLoading || !bundleId.trim()}
-                className="app-button-primary min-w-0 rounded-sm whitespace-normal wrap-break-word disabled:opacity-50 sm:w-auto"
+                className="app-button-primary-rect app-button-wrap sm:w-auto"
               >
                 {loadingAction === 'lookup' ? t('downloads.add.lookingUp') : t('downloads.add.lookup')}
               </button>
@@ -158,12 +158,12 @@ export default function AddDownload() {
               availableCountryCodes={availableCountryCodes}
               allCountryCodes={allCountryCodes}
               disabled={isLoading}
-              className="app-field min-h-11 w-full min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
+              className="min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
             />
             <select
               value={selectedAccount}
               onChange={(e) => setSelectedAccount(e.target.value)}
-              className="app-field min-h-11 w-full min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
+              className="app-field-select disabled:cursor-not-allowed disabled:opacity-60"
               disabled={isLoading || filteredAccounts.length === 0}
             >
               {filteredAccounts.length > 0 ? (
@@ -229,13 +229,11 @@ export default function AddDownload() {
 
             {step === 'versions' && versions.length > 0 && (
               <div className="mb-4 min-w-0">
-                <label className="mb-1 block text-[14px] leading-5 text-app-secondary">
-                  {t('downloads.add.versionOptional')}
-                </label>
+                <label className="app-form-label">{t('downloads.add.versionOptional')}</label>
                 <select
                   value={selectedVersion}
                   onChange={(e) => setSelectedVersion(e.target.value)}
-                  className="app-field min-h-11 w-full min-w-0 max-w-full truncate disabled:cursor-not-allowed disabled:opacity-60"
+                  className="app-field-select disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <option value="">{t('downloads.add.latest')}</option>
                   {versions.map((v) => (
@@ -252,7 +250,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleGetLicense}
                   disabled={isLoading || !account}
-                  className="app-button-secondary-rect min-w-0 whitespace-normal wrap-break-word disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="app-button-secondary-rect app-button-wrap min-w-0 sm:w-auto"
                 >
                   {loadingAction === 'license' ? t('downloads.add.processing') : t('downloads.add.getLicense')}
                 </button>
@@ -261,7 +259,7 @@ export default function AddDownload() {
                 <button
                   onClick={handleLoadVersions}
                   disabled={isLoading || !account}
-                  className="app-button-utility min-w-0 whitespace-normal wrap-break-word disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                  className="app-button-utility app-button-wrap min-w-0 sm:w-auto"
                 >
                   {loadingAction === 'versions' ? t('downloads.add.processing') : t('downloads.add.selectVersion')}
                 </button>
@@ -269,7 +267,7 @@ export default function AddDownload() {
               <button
                 onClick={handleDownload}
                 disabled={isLoading || !account}
-                className="app-button-primary min-w-0 rounded-sm whitespace-normal wrap-break-word disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                className="app-button-primary-rect app-button-wrap min-w-0 sm:w-auto"
               >
                 {loadingAction === 'download' ? t('downloads.add.processing') : t('downloads.add.download')}
               </button>

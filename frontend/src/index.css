@@ -120,33 +120,110 @@ body {
     animation: app-spinner-fade 1s linear infinite;
   }
 
-  .app-button-primary {
-    @apply inline-flex min-h-11 items-center justify-center rounded-full bg-app-action px-5.5 py-2.75 text-sm font-normal text-white transition-transform;
+  .app-button-primary,
+  .app-button-primary-rect,
+  .app-button-secondary,
+  .app-button-secondary-rect,
+  .app-button-utility {
+    @apply inline-flex min-h-11 items-center justify-center text-sm font-normal transition-transform;
+  }
+
+  .app-button-primary,
+  .app-button-primary-rect,
+  .app-button-secondary,
+  .app-button-secondary-rect {
+    @apply px-5.5 py-2.75;
+  }
+
+  .app-button-primary,
+  .app-button-primary-rect {
+    @apply bg-app-action text-white;
   }
 
   .app-button-secondary,
   .app-button-secondary-rect {
-    @apply inline-flex min-h-11 items-center justify-center border border-app-link-action bg-transparent px-5.5 py-2.75 text-sm font-normal text-app-link-action transition-transform;
+    @apply border border-app-link-action bg-transparent text-app-link-action;
+  }
+
+  .app-button-primary {
+    @apply rounded-full;
   }
 
   .app-button-secondary {
     border-radius: 9999px;
   }
 
+  .app-button-primary-rect,
   .app-button-secondary-rect {
     border-radius: 8px;
   }
 
   .app-button-utility {
-    @apply inline-flex min-h-11 items-center justify-center rounded-sm border border-app-divider bg-app-surface px-3.75 py-2 text-sm font-normal text-app-ink transition-transform;
+    @apply rounded-sm border border-app-divider bg-app-surface px-3.75 py-2 text-app-ink;
   }
 
-  .app-field {
-    @apply min-h-11 rounded-sm border border-app-divider bg-app-surface px-3.5 py-2.5 text-base text-app-ink;
+  .app-button-wrap {
+    @apply min-w-0 whitespace-normal wrap-break-word;
+  }
+
+  .app-button-delete {
+    @apply min-h-11 rounded-sm bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60;
+  }
+
+  .app-field,
+  .app-field-block,
+  .app-field-select,
+  .app-search-field,
+  .app-search-field-rect {
+    @apply min-h-11 border border-app-divider bg-app-surface text-app-ink;
+  }
+
+  .app-field,
+  .app-field-block,
+  .app-field-select {
+    @apply rounded-sm px-3.5 py-2.5 text-base;
+  }
+
+  .app-field-block,
+  .app-field-select {
+    @apply min-w-0 w-full max-w-full;
+  }
+
+  .app-field-block {
+    display: block;
+  }
+
+  .app-field-select {
+    @apply truncate;
+  }
+
+  .app-search-field,
+  .app-search-field-rect {
+    @apply px-5 py-2.5 text-[17px];
   }
 
   .app-search-field {
-    @apply min-h-11 rounded-full border border-app-divider bg-app-surface px-5 py-2.5 text-[17px] text-app-ink;
+    @apply rounded-full;
+  }
+
+  .app-search-field-rect {
+    border-radius: 8px;
+  }
+
+  .app-form-label {
+    @apply mb-1 block text-sm leading-5 font-normal text-app-secondary;
+  }
+
+  .app-section-heading {
+    @apply text-[21px] leading-tight font-semibold text-app-ink;
+  }
+
+  .app-preview-notice {
+    @apply flex min-w-0 items-start gap-3 rounded-lg border border-blue-200 bg-blue-50 px-3.5 py-3 text-[17px] leading-[1.47] text-blue-800 dark:border-blue-900 dark:bg-blue-950/40 dark:text-blue-300;
+  }
+
+  .app-preview-badge {
+    @apply mt-0.5 inline-flex h-5 shrink-0 items-center rounded-full bg-blue-600 px-2 text-[10px] font-semibold uppercase tracking-wide text-white;
   }
 
   .app-heading {
@@ -154,10 +231,15 @@ body {
   }
 
   .app-link-action {
-    @apply text-app-link-action transition-transform;
+    @apply inline-block text-app-link-action transition-transform;
+  }
+
+  .app-sidebar-link {
+    @apply flex min-h-11 items-center gap-3 rounded-sm px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95];
   }
 
   .app-button-primary:not(:disabled):active,
+  .app-button-primary-rect:not(:disabled):active,
   .app-button-secondary:not(:disabled):active,
   .app-button-secondary-rect:not(:disabled):active,
   .app-button-utility:not(:disabled):active,
@@ -165,11 +247,8 @@ body {
     transform: scale(0.95);
   }
 
-  .app-link-action {
-    display: inline-block;
-  }
-
   .app-button-primary:disabled,
+  .app-button-primary-rect:disabled,
   .app-button-secondary:disabled,
   .app-button-secondary-rect:disabled,
   .app-button-utility:disabled {
@@ -187,21 +266,6 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .app-spinner > rect {
-    animation: none;
-    opacity: 0.55;
-  }
-
-  .app-button-primary:not(:disabled):active,
-  .app-button-secondary:not(:disabled):active,
-  .app-button-secondary-rect:not(:disabled):active,
-  .app-button-utility:not(:disabled):active,
-  .app-link-action:active {
-    transform: none;
-  }
-}
-
 input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='hidden']),
 select {
   min-height: 2.75rem;
@@ -211,22 +275,19 @@ select:not([multiple]):not([size]) {
   -webkit-appearance: none;
   appearance: none;
   padding-right: 2.75rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%23636366' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.875rem center;
   background-size: 0.75rem 0.5rem;
 }
 
-html.dark select:not([multiple]):not([size]) {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%238e8e93' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-
-select:not([multiple]):not([size]):disabled {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%238e8e93' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-
+select:not([multiple]):not([size]),
 html.dark select:not([multiple]):not([size]):disabled {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%23636366' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+html.dark select:not([multiple]):not([size]),
+select:not([multiple]):not([size]):disabled {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='m1 1.5 5 5 5-5' fill='none' stroke='%238e8e93' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 button,
@@ -456,22 +517,27 @@ html.dark ::selection {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .screenshot-gallery,
-  .download-filter-fade-left,
-  .download-filter-fade-right {
-    transition: none;
+  .app-spinner > rect {
+    animation: none;
+    opacity: 0.55;
   }
 
+  .screenshot-gallery,
+  .download-filter-fade-left,
+  .download-filter-fade-right,
   .download-filter-tab {
     transition: none;
   }
 
+  .app-button-primary:not(:disabled):active,
+  .app-button-primary-rect:not(:disabled):active,
+  .app-button-secondary:not(:disabled):active,
+  .app-button-secondary-rect:not(:disabled):active,
+  .app-button-utility:not(:disabled):active,
+  .app-link-action:active,
   .download-filter-tab:not(:disabled):active {
     transform: none;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {

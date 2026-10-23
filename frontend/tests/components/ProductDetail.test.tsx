@@ -127,6 +127,14 @@ function renderProductPreview() {
 
 describe('ProductDetail download action', () => {
   beforeEach(() => {
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe = vi.fn();
+        unobserve = vi.fn();
+        disconnect = vi.fn();
+      },
+    );
     mocks.accounts = [account];
     mocks.startDownload.mockReset();
     mocks.acquireLicense.mockReset();
@@ -138,6 +146,7 @@ describe('ProductDetail download action', () => {
   });
 
   afterEach(() => {
+    vi.unstubAllGlobals();
     if (vi.isFakeTimers()) {
       vi.clearAllTimers();
       vi.useRealTimers();

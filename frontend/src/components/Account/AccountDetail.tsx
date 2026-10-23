@@ -111,7 +111,7 @@ export default function AccountDetail() {
 
         {needsCode && (
           <section className="p-5 sm:p-6">
-            <label htmlFor="reauth-code" className="mb-1 block text-sm leading-5 font-normal text-app-secondary">
+            <label htmlFor="reauth-code" className="app-form-label">
               {t('accounts.detail.code')}
             </label>
             <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
@@ -125,13 +125,13 @@ export default function AccountDetail() {
                 onChange={(e) => setReauthCode(e.target.value)}
                 disabled={reauthing}
                 placeholder="000000"
-                className="app-field min-w-0 w-full flex-1 text-app-ink disabled:opacity-60"
+                className="app-field min-w-0 w-full flex-1 disabled:opacity-60"
                 autoFocus
               />
               <button
                 onClick={handleReauth}
                 disabled={reauthing || !reauthCode}
-                className="app-button-primary flex shrink-0 items-center justify-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
+                className="app-button-primary flex shrink-0 gap-2"
               >
                 {reauthing && <Spinner />}
                 {t('accounts.detail.verify')}
@@ -152,11 +152,7 @@ export default function AccountDetail() {
         )}
 
         <div className="flex flex-wrap items-center gap-3">
-          <button
-            onClick={handleReauth}
-            disabled={reauthing}
-            className="app-button-primary flex items-center gap-2 disabled:cursor-not-allowed disabled:opacity-50"
-          >
+          <button onClick={handleReauth} disabled={reauthing} className="app-button-primary flex gap-2">
             {reauthing && <Spinner />}
             {t('accounts.detail.reauth')}
           </button>

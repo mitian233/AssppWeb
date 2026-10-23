@@ -38,7 +38,7 @@ export default function Sidebar() {
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `flex min-h-11 items-center gap-3 rounded-sm px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${
+              `app-sidebar-link ${
                 isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
               }`
             }
@@ -53,7 +53,7 @@ export default function Sidebar() {
         <NavLink
           to="/settings"
           className={({ isActive }) =>
-            `flex min-h-11 min-w-0 flex-1 items-center gap-3 rounded-sm px-3.5 py-2.5 text-[15px] font-normal transition-colors motion-safe:active:scale-[0.95] ${
+            `app-sidebar-link min-w-0 flex-1 ${
               isActive ? 'bg-app-selected text-app-ink' : 'text-app-secondary hover:bg-app-hover hover:text-app-ink'
             }`
           }

@@ -87,18 +87,11 @@ export default function DownloadItem({ task, preview = false, onPause, onResume,
             {t('downloads.package.resume')}
           </button>
         ) : (
-          <Link
-            to={detailsHref}
-            className="app-button-utility inline-flex min-w-0 items-center justify-center text-center"
-          >
+          <Link to={detailsHref} className="app-button-utility min-w-0 text-center">
             {t('downloads.package.title')}
           </Link>
         )}
-        <button
-          type="button"
-          onClick={() => onDelete(task.id)}
-          className="min-h-11 min-w-0 rounded-sm bg-red-50 px-3 py-2 text-[14px] leading-5 font-normal text-red-600 transition-colors hover:bg-red-100 dark:bg-red-950/40 dark:text-red-400 dark:hover:bg-red-950/60"
-        >
+        <button type="button" onClick={() => onDelete(task.id)} className="app-button-delete min-w-0">
           {t('downloads.package.delete')}
         </button>
       </div>

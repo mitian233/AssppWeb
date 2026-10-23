@@ -332,14 +332,16 @@ The `e2e/docker-test.sh` script automates the full flow: build, test, and verify
 
 ### Component Patterns
 
-- **Buttons**: Use `.app-button-primary` for filled Action Blue pills with white text, `.app-button-secondary` for transparent outlined pills using `app-link-action`, `.app-button-secondary-rect` for the same secondary style with 8px rectangular corners, and `.app-button-utility` for neutral surface controls. Buttons have a 44px minimum height; enabled pressed buttons and action links scale to 0.95, with reduced motion respected.
-- **Inputs**: Use `.app-field` for 16px controls with explicit 8px corners and `.app-search-field` for 17px pill-shaped search fields. Both use semantic surfaces, a 44px minimum height, and the shared focus-visible outline without competing focus rings.
-- **Headings**: Use `.app-heading` for 32px / 600 page headings.
+- **Buttons**: Use `.app-button-primary` for filled Action Blue pills with white text, `.app-button-secondary` for transparent outlined pills using `app-link-action`, and their `-rect` variants for 8px rectangular corners. Use `.app-button-utility` for neutral surface controls, `.app-button-delete` for red delete actions, and `.app-button-wrap` when labels must wrap. The shared button classes supply display, alignment, typography, a 44px minimum height, and disabled cursor/opacity; retain only local width, gap, padding, and responsive overrides. Enabled pressed buttons and action links scale to 0.95, with reduced motion respected.
+- **Inputs**: Use `.app-field` for 16px controls with 8px corners, `.app-field-block` for full-width block fields, and `.app-field-select` for full-width truncated selectors. Use `.app-search-field` for 17px pill-shaped search fields and `.app-search-field-rect` for 8px rectangular search fields. These classes supply semantic surfaces, a 44px minimum height, and the shared focus-visible outline without competing focus rings. Keep disabled field cursor/opacity modifiers and functional `disabled` conditions explicit.
+- **Headings and labels**: Use `.app-heading` for 32px / 600 page headings, `.app-section-heading` for 21px / 600 section headings, and `.app-form-label` for standard form labels.
 - **Cards**: Page content has no card shell except for the visually distinct homepage Hero. Avoid decorative gradients, container chrome, and shadows.
 - **Badge**: Color-coded status pills; neutral pending state uses semantic neutral tokens.
 - **ProgressBar**: Neutral track and action blue fill without glow.
 - **AppIcon**: standard 40/56/80px sizes and a responsive 80/112/160px product Hero size, 25% rounded corners, letter fallback.
 - **Nav active state**: Neutral selected fill and ink in the sidebar; action color for the active mobile item.
+- **Preview notices**: Use `.app-preview-notice` and `.app-preview-badge` for the shared download preview notice. Preserve distinct warning and error treatments.
+- **Style reuse**: Shared semantic classes live in `frontend/src/index.css`. Avoid repeating utilities they already supply; retain component-specific geometry, state conditions, and responsive overrides. Sidebar navigation links use `.app-sidebar-link` with active/hover colors supplied by the component.
 
 ## Frontend Cleanup Rules
 
